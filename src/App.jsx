@@ -11,7 +11,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/project/:id" element={<SinglePage />} />
+        <Route path="/project/:slug" element={<SinglePage />} />
         <Route path="/imprint" element={<ImprintPage />} />
       </Routes>
     </>

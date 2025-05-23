@@ -7,22 +7,23 @@ import Github from "/src/assets/github.svg";
 import Linkedin from "/src/assets/linkedin.svg";
 import Julia from "/src/assets/julia.png";
 import { Button } from "../components/button";
+import { SinglePage } from "./SinglePage";
 
 export function Home() {
   return (
     <>
       <NavBar />
 
-      <div className="flex flex-col items-center p-4 md:p-8 lg:p-16 w-screen h-full">
-        <div className="max-w-[1192px]">
+      <div className="flex flex-col items-center p-4 md:p-8 lg:p-16 h-full">
+        <div className="lg:max-w-[1192px]">
           {/* Intro */}
-          <div className="flex flex-col gap-1 max-w-[900px]">
-            <div className="text-h2 blue">Hi,</div>
+          <div className="flex flex-col gap-1 lg:max-w-[900px]">
+            <div className="text-h2 blue ">Hi,</div>
             <div className="title pink">I am Júlia</div>
             <div className="subtitle">
               I bridge the gap between research, design & front-end development.
             </div>
-            <div className="paragraph max-w-[600px] pt-4">
+            <div className="paragraph lg:max-w-[600px] pt-4">
               As a Product Experience Designer with a frontend mindset, I turn
               user insights into thoughtful, feasible solutions that feel good
               to use—and realistic to build.
@@ -94,7 +95,7 @@ export function Home() {
           </div>
 
           {/* <Experience /> */}
-          
+
           {/* Contact */}
           <div className="py-4 md:py-10 lg:py-20">
             <div className="text-h2 blue pb-4 md:pb-6">Contact</div>
