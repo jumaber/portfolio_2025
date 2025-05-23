@@ -1,11 +1,12 @@
 import { NavBar } from "../components/NavBar";
 import { Card } from "../components/Card";
-import { Imprint } from "../components/Imprint";
+import { Footer } from "../components/Footer";
+import { Experience } from "../components/Experience";
 
-
-import Github from "/src/assets/github.svg"
-import Linkedin from "/src/assets/linkedin.svg"
-import Julia from "/src/assets/julia.png"
+import Github from "/src/assets/github.svg";
+import Linkedin from "/src/assets/linkedin.svg";
+import Julia from "/src/assets/julia.png";
+import { Button } from "../components/button";
 
 export function Home() {
   return (
@@ -35,7 +36,7 @@ export function Home() {
           {/* Featured Projects */}
           <div className="py-4 md:py-10 lg:py-20">
             <div className="text-h2 blue pb-4 md:pb-6">Featured Projects</div>
-            <div className="flex flex-row w-full gap-10">
+            <div className="flex flex-row w-full gap-10 pb-10">
               <Card />
               <Card />
             </div>
@@ -51,7 +52,7 @@ export function Home() {
             <div className="text-h2 blue pb-4 md:pb-6">
               Other Noteworthy Projects
             </div>
-            <div className="flex flex-row  w-full gap-10">
+            <div className="flex flex-row  w-full gap-10 pb-10">
               <Card />
               <Card />
               <Card />
@@ -91,9 +92,21 @@ export function Home() {
               />
             </div>
           </div>
+
+          {/* <Experience /> */}
+          
+          {/* Contact */}
+          <div className="py-4 md:py-10 lg:py-20">
+            <div className="text-h2 blue pb-4 md:pb-6">Contact</div>
+            <div className="paragraph pb-10">
+              I am currently looking for new experiences - get in touch if you
+              want to get to know me!
+            </div>
+            <Button />
+          </div>
         </div>
       </div>
-      <Imprint />
+      <Footer />
     </>
   );
 }
