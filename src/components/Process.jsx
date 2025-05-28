@@ -6,7 +6,7 @@ export function Process({ process }) {
   const activeContent = process.find((p) => p.phase === activePhase);
 
   return (
-    <div className="flex flex-col p-4 md:p-8 lg:p-16 w-screen h-full py-20 gap-6 bg-[#fef9f8]">
+    <div className="flex flex-col p-4 md:p-8 lg:p-16 w-full h-full py-20 gap-6 bg-[#fef9f8]">
       <div className="text-h2 blue pb-2">Process</div>
 
       {/* Phase Tabs */}

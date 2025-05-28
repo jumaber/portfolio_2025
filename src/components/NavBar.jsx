@@ -1,7 +1,12 @@
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export function NavBar() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [show, setShow] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+
   let lastScrollY = window.scrollY;
 
   useEffect(() => {
@@ -19,26 +24,84 @@ export function NavBar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleNavClick = (id) => {
+    setIsOpen(false);
+    if (location.pathname !== "/") {
+      navigate("/", { replace: false });
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div
-      className={`fixed top-0 left-0 z-50 w-full transition-transform duration-300 ${
+      className={`fixed top-0 left-0 z-50 w-screen bg-[#FFF6F6] shadow-[0_2px_6px_rgba(0,0,0,0.06)] md:shadow-none transition-transform duration-300 ${
         show ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="flex flex-row justify-between md:justify-end p-4 md:px-8 lg:px-16">
-        <a href="#work" className="text-h5 p-2 blue">
-          Work
-        </a>
-        <a href="#about" className="text-h5 p-2 blue">
-          About
-        </a>
-        <a href="#experience" className="text-h5 p-2 blue">
-          Experience
-        </a>
-        <a href="#contact" className="text-h5 p-2 blue">
-          Contact
-        </a>
+      <div className="flex justify-between items-center p-4 md:px-8 lg:px-16">
+        {/* Logo */}
+        <img src="/src/assets/logo.png" alt="JMB Design" className="w-8 h-8" />
+
+        {/* Hamburger Toggle */}
+        <button
+          className="md:hidden relative w-8 h-8 flex items-center justify-center"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle navigation"
+        >
+          <span
+            className={`absolute w-6 h-0.75 bg-indigo-800 rounded-sm transition-transform duration-300 ${
+              isOpen ? "rotate-45" : "-translate-y-1.5"
+            }`}
+          ></span>
+          <span
+            className={`absolute w-6 h-0.75 bg-indigo-800 rounded-sm transition-transform duration-300 ${
+              isOpen ? "-rotate-45" : "translate-y-1.5"
+            }`}
+          ></span>
+        </button>
+
+        {/* Desktop Menu */}
+        <DesktopMenu handleNavClick={handleNavClick} />
       </div>
+
+      {/* Mobile Menu */}
+      {isOpen && <MobileMenu handleNavClick={handleNavClick} />}
+    </div>
+  );
+}
+
+function DesktopMenu({ handleNavClick }) {
+  return (
+    <div className="hidden md:flex gap-4">
+      {["work", "about", "experience", "contact"].map((id) => (
+        <button
+          key={id}
+          onClick={() => handleNavClick(id)}
+          className="text-h5 blue"
+        >
+          {id.charAt(0).toUpperCase() + id.slice(1)}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function MobileMenu({ handleNavClick }) {
+  return (
+    <div className="md:hidden flex flex-col items-end pr-4 gap-2 pb-6 pt-4 bg-[#FFF6F6] ">
+      {["work", "about", "experience", "contact"].map((id) => (
+        <button
+          key={id}
+          onClick={() => handleNavClick(id)}
+          className="text-h5 blue"
+        >
+          {id.charAt(0).toUpperCase() + id.slice(1)}
+        </button>
+      ))}
     </div>
   );
 }

@@ -8,6 +8,7 @@ import { Process } from "../components/Process";
 import { Outcome } from "../components/Outcome";
 import { Learnings } from "../components/Learnings";
 import { Wireframes } from "../components/Wireframes";
+import { NavBar } from "../components/NavBar";
 
 
   export function SinglePage() {
@@ -40,6 +41,9 @@ import { Wireframes } from "../components/Wireframes";
   
   return (
     <>
+    <NavBar />
+     <div className="flex flex-col w-screen items-center p-4 md:p-8 lg:p-16 h-full bg-[#FFF6F6] ">
+     <div className="lg:max-w-[1124px]">
       {/* Intro Section */}
       <Intro
         title={title}
@@ -66,6 +70,8 @@ import { Wireframes } from "../components/Wireframes";
 
       {/* Wireframes */}
       <Wireframes wireframes={wireframes} />
+      </div>
+      </div>
     </>
   );
 }

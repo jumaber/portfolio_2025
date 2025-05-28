@@ -2,9 +2,124 @@
 
 @import "tailwindcss";
 
+/* root {
+  margin: 0 auto;
+  height: 100%;
+  background-color: #FFF6F6;
+} */
+
+:root {
+  --color-blue: #0C0093;
+  --color-yellow: #FDFF92;
+  --color-pink: #FFA7A7;
+  --color-cream: #FFF6F6;
+  --color-black: #333333;
+  --color-gray: #656565;
+}
+
 /* 🌫️ Soft drop shadow */
 .shadow-soft {
   box-shadow: 2px 2px 30px rgba(51, 51, 51, 0.03);
+}
+
+/* 🎨 Color Utilities */
+.blue {
+  color: #0C0093;
+}
+
+.yellow {
+  color: #FDFF92;
+}
+
+.pink {
+  color: #FFA7A7;
+}
+
+.cream {
+  color: #FFF6F6;
+}
+
+.black {
+  color: #333333;
+}
+
+.gray {
+  color: #656565;
+}
+
+/* 🔤 Fonts */
+.inter {
+  font-family: 'Inter', sans-serif;
+}
+
+.mono {
+  font-family: 'Roboto Mono', monospace;
+}
+
+/* 🧱 Typography */
+.title {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+}
+
+.subtitle {
+  font-size: clamp(1.75rem, 6vw, 3.25rem);
+  font-weight: 200;
+  line-height: clamp(2.5rem, 8vw, 3.75rem);
+  font-family: 'Inter', sans-serif;
+}
+
+.text-h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  font-family: 'Roboto Mono', monospace;
+  color: #0C0093;
+}
+
+.text-h2 {
+  font-size: clamp(1.25rem, 3.5vw, 1.5rem);
+  font-weight: 700;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.text-h3 {
+  font-size: clamp(1.25rem, 3.5vw, 1.5rem);
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+}
+
+.text-h4 {
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  font-weight: 700;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.text-h5 {
+  font-size: clamp(0.875rem, 2.5vw, 1rem);
+  font-weight: 700;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.paragraph {
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  font-weight: 400;
+  line-height: clamp(1.75rem, 5vw, 2.25rem);
+  font-family: 'Inter', sans-serif;
+}
+
+.subparagraph {
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  font-weight: 300;
+  line-height: 1.625;
+  font-family: 'Inter', sans-serif;
+}
+
+.tag {
+  font-size: clamp(0.75rem, 2vw, 0.875rem);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  font-family: 'Roboto Mono', monospace;
 }
 
 /* Navigation styles */
@@ -21,4 +136,10 @@
   background-color: #E7DDEC;
   border-left: 0.25rem solid #0C0093;
   color: #0C0093;
+}
+
+/* Navbar Animation */
+
+html {
+  scroll-behavior: smooth;
 }

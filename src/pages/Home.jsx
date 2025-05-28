@@ -14,10 +14,13 @@ export function Home() {
     <>
       <NavBar />
 
-      <div className="flex flex-col items-center p-4 md:p-8 lg:p-16 h-full bg-[#FFF6F6]">
-        <div className="lg:max-w-[1192px]">
+      <div className="flex flex-col w-screen items-center p-4 md:p-8 lg:p-16 h-full bg-[#FFF6F6] ">
+        <div className="lg:max-w-[1124px]">
           {/* Intro */}
-          <div className="flex flex-col gap-1 lg:max-w-[900px]">
+          <section
+            id="home"
+            className="flex flex-col w-full pt-20 gap-1 lg:max-w-[900px]"
+          >
             <div className="text-h2 blue ">Hi,</div>
             <div className="title pink">I am Júlia</div>
             <div className="subtitle">
@@ -32,28 +35,31 @@ export function Home() {
               <img src={Github} alt="GitHub icon" className="w-6 h-6" />
               <img src={Linkedin} alt="LinkedIn icon" className="w-6 h-6" />
             </div>
-          </div>
+          </section>
 
           {/* Featured Projects */}
-          <div className="py-4 md:py-10 lg:py-20">
+          <section
+            id="work"
+            className="flex flex-col w-full py-4 md:py-10 lg:py-20"
+          >
             <div className="text-h2 blue pb-4 md:pb-6">Featured Projects</div>
-            <div className="flex flex-row w-full gap-10 pb-10">
+            <div className="flex flex-col md:flex-row gap-10 pb-10">
               <Card slug="lens-config" />
               <Card slug="login-redesign" />
             </div>
-            <div className="flex flex-row w-full gap-10">
+            <div className="flex flex-col md:flex-row gap-10 pb-10">
               <Card slug="linsenpate" />
               <Card slug="plant-pal" />
               <Card slug="recipe-book" />
             </div>
-          </div>
+          </section>
 
           {/* Other Noteworthy Projects */}
-          <div className="py-4 md:py-10 lg:py-20">
+          <div className="flex flex-col w-full py-4 md:py-10 lg:py-20">
             <div className="text-h2 blue pb-4 md:pb-6">
               Other Noteworthy Projects
             </div>
-            <div className="flex flex-row  w-full gap-10 pb-10">
+            <div className="flex flex-col md:flex-row gap-10 pb-10">
               {/* <Card slug="recipe-book" /> */}
               <Card slug="oop-game" />
               <Card slug="julia-css-animation" />
@@ -66,7 +72,7 @@ export function Home() {
           </div>
 
           {/* About Me */}
-          <div className="py-4 md:py-10 lg:py-20">
+          <section id="about" className="py-4 md:py-10 lg:py-20">
             <div className="text-h2 blue pb-4 md:pb-6">About Me</div>
             <div className="flex flex-col md:flex-row gap-10">
               <div className="paragraph md:min-w-xxs">
@@ -92,19 +98,19 @@ export function Home() {
                 className="w-full h-fit"
               />
             </div>
-          </div>
+          </section>
 
           {/* <Experience /> */}
 
           {/* Contact */}
-          <div className="py-4 md:py-10 lg:py-20">
+          <section id="contact" className="py-4 md:py-10 lg:py-20">
             <div className="text-h2 blue pb-4 md:pb-6">Contact</div>
             <div className="paragraph pb-10">
               I am currently looking for new experiences - get in touch if you
               want to get to know me!
             </div>
             <Button />
-          </div>
+          </section>
         </div>
       </div>
       <Footer />
