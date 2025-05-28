@@ -2,7 +2,8 @@ export function Card({
   img = "src/assets/GOP.png",
   title = "Lens Configuration Page",
   subtitle = "MisterSpex",
-  tag="UX/UI"
+  tag=["UX/UI"],
+  tech=[""]
 }) {
   return (
     <>
@@ -14,6 +15,7 @@ export function Card({
         </div>
         <div className="flex flex-row flex-wrap gap-3 pb-4">
           <div className="tag blue">{tag}</div>
+          <div className="tag blue">{tech}</div>
         </div>
         <div className="flex flex-row gap-4">
           <img src="src/assets/github_v2.svg" className="w-5 h-5" />

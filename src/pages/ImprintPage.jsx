@@ -14,7 +14,7 @@ export function ImprintPage() {
 
           <h1 className="text-h1 mb-10">Imprint</h1>
 
-          <section className="mb-10">
+          <section className="mb-10 bg-red-800">
             <h2 className="text-h4 mb-2">Information according to § 5 TMG</h2>
             <p className="paragraph">
               Júlia Marí Bernaus

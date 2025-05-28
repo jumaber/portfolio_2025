@@ -108,6 +108,7 @@ export function Home() {
         </div>
       </div>
       <Footer />
+      <SinglePage />
     </>
   );
 }

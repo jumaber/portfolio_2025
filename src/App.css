@@ -1,15 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-
-#root {
+/* root {
   margin: 0 auto;
   height: 100%;
   background-color: #FFF6F6;
-}
+} */
 
 :root {
   --color-blue: #0C0093; /* Use like this: bg-[var(--color-background)] */
@@ -18,7 +15,6 @@
   --color-cream: #FFF6F6;
   --color-black: #333333;
   --color-gray: #656565;
-
 }
 
 
