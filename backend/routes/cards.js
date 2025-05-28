@@ -28,4 +28,31 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+// GET card by slug
+
+router.get("/slug/:slug", async (req, res) => {
+  try {
+    const card = await Card.findOne({ slug: req.params.slug });
+    if (!card) return res.status(404).json({ error: "Card not found" });
+    res.json(card);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch card by slug 😬" });
+  }
+});
+
+
+// GET card by id
+
+router.get("/:id", async (req, res) => {
+  try {
+    const card = await Card.findById(req.params.id);
+    if (!card) return res.status(404).json({ error: "Card not found" });
+    res.json(card);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch card by ID 😬" });
+  }
+});
+
+
+
 export default router;

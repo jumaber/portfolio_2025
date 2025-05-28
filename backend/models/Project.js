@@ -4,7 +4,7 @@ const processSchema = new mongoose.Schema({
   phase: String,
   location: String,
   period: String,
-  highlights: [String], // renamed from "tasks" for clarity in your UI
+  highlights: [String], // renamed from "tasks" for clarity in  UI
 });
 
 const projectSchema = new mongoose.Schema({

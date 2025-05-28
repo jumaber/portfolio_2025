@@ -9,6 +9,8 @@ import Julia from "/src/assets/julia.png";
 import { Button } from "../components/button";
 
 export function Home() {
+  const validSlugs = projects.map((p) => p.slug);
+
   return (
     <>
       <NavBar />
