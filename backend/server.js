@@ -1,7 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import projectRoutes from "./routes/projects.js"; // adjust path if needed
+import projectRoutes from "./routes/projects.js";
+import cors from "cors"
 
 dotenv.config(); // Load your .env file
 
@@ -9,6 +10,16 @@ const app = express();
 const PORT = process.env.PORT || 5005;
 
 app.use(express.json()); // Middleware to parse JSON
+
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://portfolio-2025-wyed.onrender.com",
+    ],
+  })
+);
+
 app.use("/api/projects", projectRoutes);
 
 // Connect to MongoDB Atlas

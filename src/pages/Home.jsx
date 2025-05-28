@@ -7,7 +7,6 @@ import Github from "/src/assets/github.svg";
 import Linkedin from "/src/assets/linkedin.svg";
 import Julia from "/src/assets/julia.png";
 import { Button } from "../components/button";
-import { SinglePage } from "./SinglePage";
 
 export function Home() {
   return (
@@ -108,7 +107,6 @@ export function Home() {
         </div>
       </div>
       <Footer />
-      <SinglePage />
     </>
   );
 }

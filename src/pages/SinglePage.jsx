@@ -15,10 +15,10 @@ import { Wireframes } from "../components/Wireframes";
     const [project, setProject] = useState(null);
   
     useEffect(() => {
-      fetch(`https://your-backend-url.com/projects/${slug}`)
-        .then(res => res.json())
-        .then(data => setProject(data))
-        .catch(err => console.error("Failed to fetch project:", err));
+      fetch(`https://portfolio-2025-wyed.onrender.com/api/projects/${slug}`)
+        .then((res) => res.json())
+        .then((data) => setProject(data))
+        .catch((err) => console.error("Failed to fetch project:", err));
     }, [slug]);
   
     if (!project) return <div className="p-10">Loading...</div>;
