@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
 @import "tailwindcss";
 
 /* 🌫️ Soft drop shadow */
@@ -6,11 +7,18 @@
   box-shadow: 2px 2px 30px rgba(51, 51, 51, 0.03);
 }
 
-/* Custom Navigation Styling */
+/* Navigation styles */
 .experience-nav {
-  @apply min-w-[16.44rem] p-6 border-l-[0.25rem] text-gray border-gray;
+  min-width: 16.44rem;
+  padding: 1.5rem;
+  border-left: 0.25rem solid #656565;
+  color: #656565;
 }
 
 .experience-nav-active {
-  @apply min-w-[16.44rem] p-6 bg-[#E7DDEC] border-l-[0.25rem] text-blue border-blue;
+  min-width: 16.44rem;
+  padding: 1.5rem;
+  background-color: #E7DDEC;
+  border-left: 0.25rem solid #0C0093;
+  color: #0C0093;
 }
