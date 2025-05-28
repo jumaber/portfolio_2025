@@ -14,7 +14,7 @@ export function Home() {
     <>
       <NavBar />
 
-      <div className="flex flex-col items-center p-4 md:p-8 lg:p-16 h-full">
+      <div className="flex flex-col items-center p-4 md:p-8 lg:p-16 h-full bg-[#FFF6F6]">
         <div className="lg:max-w-[1192px]">
           {/* Intro */}
           <div className="flex flex-col gap-1 lg:max-w-[900px]">
