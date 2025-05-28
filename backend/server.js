@@ -1,8 +1,10 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import cors from "cors";
 import projectRoutes from "./routes/projects.js";
-import cors from "cors"
+import cardRoutes from "./routes/cards.js";
+
 
 dotenv.config(); // Load your .env file
 
@@ -21,6 +23,7 @@ app.use(
 );
 
 app.use("/api/projects", projectRoutes);
+app.use("/api/cards", cardRoutes);
 
 // Connect to MongoDB Atlas
 mongoose

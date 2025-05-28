@@ -1,27 +1,27 @@
-export function Card({
-  img = "src/assets/GOP.png",
-  title = "Lens Configuration Page",
-  subtitle = "MisterSpex",
-  tag=["UX/UI"],
-  tech=[""]
-}) {
+import { Link } from "react-router-dom";
+
+export function Card({ slug, image, title, subtitle, roles, tech }) {
   return (
-    <>
-      <div className="bg-white p-4 rounded-sm shadow-soft">
-        <div className="pb-4">
-          <img src={img} alt={title} />
-          <div className="text-h3">{title}</div>
-          <div className="subparagraph">{subtitle}</div>
+    <Link to={`/project/${slug}`}>
+      <div className="bg-white p-4 rounded-sm shadow-soft hover:shadow-md transition-all">
+        <img src={image} alt={title} />
+        <div className="text-h3">{title}</div>
+        <div className="subparagraph">{subtitle}</div>
+        <div className="flex flex-wrap gap-3 pt-2">
+          {roles.map((role, i) => (
+            <div key={i} className="tag blue">
+              {role}
+            </div>
+          ))}
         </div>
-        <div className="flex flex-row flex-wrap gap-3 pb-4">
-          <div className="tag blue">{tag}</div>
-          <div className="tag blue">{tech}</div>
-        </div>
-        <div className="flex flex-row gap-4">
-          <img src="src/assets/github_v2.svg" className="w-5 h-5" />
-          <img src="src/assets/link.svg" className="w-5 h-5" />
+        <div className="flex flex-wrap gap-3 pt-2">
+          {tech.map((item, i) => (
+            <div key={i} className="tag blue">
+              {item}
+            </div>
+          ))}
         </div>
       </div>
-    </>
+    </Link>
   );
 }
