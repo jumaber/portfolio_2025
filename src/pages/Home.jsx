@@ -9,7 +9,6 @@ import Julia from "/src/assets/julia.png";
 import { Button } from "../components/button";
 
 export function Home() {
-  const validSlugs = projects.map((p) => p.slug);
 
   return (
     <>
@@ -39,13 +38,13 @@ export function Home() {
           <div className="py-4 md:py-10 lg:py-20">
             <div className="text-h2 blue pb-4 md:pb-6">Featured Projects</div>
             <div className="flex flex-row w-full gap-10 pb-10">
-              <Card />
-              <Card />
+              <Card slug="lens-config" />
+              <Card slug="login-redesign" />
             </div>
             <div className="flex flex-row w-full gap-10">
-              <Card />
-              <Card />
-              <Card />
+              <Card slug="linsenpate" />
+              <Card slug="plant-pal" />
+              <Card slug="recipe-book" />
             </div>
           </div>
 
@@ -55,15 +54,15 @@ export function Home() {
               Other Noteworthy Projects
             </div>
             <div className="flex flex-row  w-full gap-10 pb-10">
-              <Card />
-              <Card />
-              <Card />
+              {/* <Card slug="recipe-book" /> */}
+              <Card slug="oop-game" />
+              <Card slug="julia-css-animation" />
             </div>
-            <div className="flex flex-row  w-full  gap-10">
+            {/* <div className="flex flex-row  w-full  gap-10">
               <Card />
               <Card />
               <Card />
-            </div>
+            </div> */}
           </div>
 
           {/* About Me */}
