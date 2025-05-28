@@ -1,6 +1,6 @@
 const cards = [
   {
-    id: "lens-config",
+    _id: "6836f5636be13c5e82d51d82",
     slug: "lens-config",
     title: "Lens Configuration Page @ MisterSpex",
     subtitle: "Mister Spex",
@@ -22,7 +22,7 @@ const cards = [
     featured: true,
   },
   {
-    id: "final-project-ironhack",
+    _id: "6836f5636be13c5e82d51d83",
     slug: "final-project-ironhack",
     title: "Final Project - WIP",
     subtitle: "Ironhack",
@@ -34,7 +34,7 @@ const cards = [
     featured: true,
   },
   {
-    id: "emarsys-emails",
+    _id: "6836f5636be13c5e82d51d84",
     slug: "emarsys-emails",
     title: "Emarsys Email Templates",
     subtitle: "Mister Spex",
@@ -46,8 +46,8 @@ const cards = [
     featured: true,
   },
   {
-    id: "auth0-auth",
-    slug: "auth0-auth",
+    _id: "6836f5636be13c5e82d51d85",
+    slug: "login-redesign",
     title: "Authentication with Auth0",
     subtitle: "Mister Spex",
     roles: ["Product Experience Designer"],
@@ -58,7 +58,7 @@ const cards = [
     featured: true,
   },
   {
-    id: "plant-pal",
+    _id: "6836f5636be13c5e82d51d86",
     slug: "plant-pal",
     title: "Watering Plants React App",
     subtitle: "Plant Pal",
@@ -70,10 +70,10 @@ const cards = [
     featured: true,
   },
   {
-    id: "real-estate",
-    slug: "real-estate",
+    _id: "6836f5636be13c5e82d51d87",
+    slug: "setting",
     title: "Real-estate Marketplace",
-    subtitle: "Setting",
+    subtitle: "setting",
     roles: ["UX/UI Designer", "UX Researcher", "UX Copywriter"],
     tech: ["Figma"],
     image: "src/assets/placeholder.png",
@@ -82,7 +82,7 @@ const cards = [
     featured: false,
   },
   {
-    id: "recipe-book",
+    _id: "6836f5636be13c5e82d51d88",
     slug: "recipe-book",
     title: "Recipe Book React App",
     subtitle: "Peachy",
@@ -94,7 +94,7 @@ const cards = [
     featured: false,
   },
   {
-    id: "oop-game",
+    _id: "6836f5636be13c5e82d51d89",
     slug: "oop-game",
     title: "OOP JavaScript Game",
     subtitle: "Happy Cat",
@@ -106,7 +106,7 @@ const cards = [
     featured: false,
   },
   {
-    id: "design-friends",
+    _id: "6836f5636be13c5e82d51d8a",
     slug: "design-friends",
     title: "Design + Friends",
     subtitle: "Berliner Designer Community with Monthly Meetups",
@@ -118,7 +118,7 @@ const cards = [
     featured: false,
   },
   {
-    id: "linsenpate",
+    _id: "6836f5636be13c5e82d51d8b",
     slug: "linsenpate",
     title: "Der Linsenpate",
     subtitle: "MisterSpex’s Spin-off Contact Lenses E-commerce Shop",
@@ -130,7 +130,7 @@ const cards = [
     featured: false,
   },
   {
-    id: "julia-css-animation",
+    _id: "6836f5636be13c5e82d51d8c",
     slug: "julia-css-animation",
     title: "Learning CSS Animations",
     subtitle: "Study on CSS Animations from a UX perspective",
@@ -142,5 +142,6 @@ const cards = [
     featured: false,
   },
 ];
+
 
 export default cards;
