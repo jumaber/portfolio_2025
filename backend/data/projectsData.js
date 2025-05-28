@@ -1,5 +1,6 @@
 export const projects = {
   lensConfig: {
+    slug: "lens-config",
     title: "Redesigning the Lens Configuration Page",
     subtitle: "Mister Spex",
     location: "Berlin, Germany",
@@ -82,6 +83,7 @@ export const projects = {
     ],
   },
   loginRedesign: {
+    slug: "login-redesign",
     title: "Streamlining Log in & Sign Up with Auth0",
     subtitle: "Mister Spex",
     location: "Berlin, Germany",
@@ -153,6 +155,7 @@ export const projects = {
     ],
   },
   emailTemplates: {
+    slug: "email-templates",
     title: "Redesigning the Email Templates with Emarsys",
     subtitle: "Mister Spex",
     location: "Berlin, Germany",
@@ -225,6 +228,7 @@ export const projects = {
     ],
   },
   linsenpate: {
+    slug: "linsenpate",
     title: "Redesigning linsenpate.de",
     subtitle: "Linsenpate",
     location: "Berlin, Germany",
@@ -289,6 +293,7 @@ export const projects = {
     ],
   },
   setting: {
+    slug: "setting",
     title: "Redesigning Setting.io",
     subtitle: "Setting HQ",
     location: "Berlin, Germany",
@@ -356,6 +361,7 @@ export const projects = {
     ],
   },
   designFriends: {
+    slug: "design-friends",
     title: "Design+Friends",
     subtitle: "Designer Community & Responsive Website",
     location: "Berlin, Germany",

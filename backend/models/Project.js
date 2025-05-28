@@ -9,6 +9,7 @@ const processSchema = new mongoose.Schema({
 
 const projectSchema = new mongoose.Schema({
   title: { type: String, required: true },
+  slug: String,
   subtitle: String,
   location: String,
   period: String,

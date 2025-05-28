@@ -1,34 +1,28 @@
 import express from "express";
 import mongoose from "mongoose";
-import cors from "cors";
 import dotenv from "dotenv";
-import projectRoutes from "./routes/projects.js";
 
-dotenv.config();
+dotenv.config(); // Load your .env file
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 5005;
 
-// Middleware
-app.use(cors());
-app.use(express.json());
+app.use(express.json()); // Middleware to parse JSON
 
-// Define the root route
+// Connect to MongoDB Atlas
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("✅ Connected to MongoDB Atlas"))
+  .catch((error) => console.error("❌ MongoDB connection error:", error));
+
+// Example route
 app.get("/", (req, res) => {
-  res.send("Welcome to the Portfolio API");
+  res.send("Hello from the backend!");
 });
 
-// Use the project routes
-app.use("/projects", projectRoutes);
-
-// Connect to MongoDB and start the server
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    app.listen(PORT, () => {
-      console.log(`✅ Server running on http://localhost:${PORT}`);
-    });
-  })
-  .catch((error) => {
-    console.error("❌ MongoDB connection error:", error);
-  });
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
+});
