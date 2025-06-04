@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 export function Footer() {
   return (
     <>
-      <div className="flex flex-row justify-center p-4 md:px-8 lg:px-16 w-screen ">
+      <div className="flex flex-row justify-center p-4 md:px-8 lg:px-16 w-screen bg-[var(--color-cream)] ">
         <NavLink to="/imprint" className="text-h5 p-2 blue">
           Imprint
         </NavLink>

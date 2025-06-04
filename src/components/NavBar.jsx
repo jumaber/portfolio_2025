@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export function NavBar() {
@@ -44,8 +44,13 @@ export function NavBar() {
     >
       <div className="flex justify-between items-center p-4 md:px-8 lg:px-16">
         {/* Logo */}
-        <img src="/src/assets/logo.png" alt="JMB Design" className="w-8 h-8" />
-
+        <Link to="/">
+          <img
+            src="/src/assets/logo.png"
+            alt="JMB Design"
+            className="w-8 h-8"
+          />
+        </Link>
         {/* Hamburger Toggle */}
         <button
           className="md:hidden relative w-8 h-8 flex items-center justify-center"

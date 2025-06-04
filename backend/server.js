@@ -17,6 +17,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
+      "http://localhost:5174",
       "https://portfolio-2025-wyed.onrender.com",
     ],
   })
@@ -40,3 +41,6 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
+
+
+

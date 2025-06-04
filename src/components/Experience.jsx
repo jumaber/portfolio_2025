@@ -1,73 +1,107 @@
+import { useState } from "react";
+
+const experiences = [
+  {
+    company: "Mister Spex",
+    title: "Senior Product Experience Designer",
+    location: "Berlin, Germany",
+    period: "Apr 2021 - Oct 2024",
+    highlights: [
+      "Redesigned the Lens Configuration Page to eliminate legacy constraints and reduce maintenance risk. Aligned cross-functional stakeholders around a shared vision, delivered an optimized MVP, and improved consistency across the 6-step flow—resulting in a 2% increase in CVR.",
+      "Led up to 3 user research cycles per month using a mix of qualitative and quantitative methods to drive iterative design and support A/B testing. Informed product decisions for the Lens Configurator and other core journeys.",
+      "Streamlined the login and registration experience by rearchitecting flows with Auth0, simplifying edge cases, and improving usability. Resulted in a 20% increase in sign-ups while lowering engineering overhead and security risks.",
+      "Defined the early design direction for the Premium Private Lenses Label in close collaboration with developers, category managers, and brand teams—delivering launch-ready assets within two months and aligning digital and in-store touchpoints.",
+      "Overhauled all company marketing and transactional emails by auditing existing communications and building a scalable, responsive design system in Emarsys. Enabled a reduced Marketing team and external partners to deliver consistent, high-quality campaigns to millions of users.",
+    ],
+  },
+  {
+    company: "CareerFoundry",
+    title: "UX Mentor",
+    location: "Remote",
+    period: "2020 - 2021",
+    highlights: [
+      "Mentored over 20 aspiring UX designers through CareerFoundry’s intensive program.",
+      "Gave detailed feedback on design projects and portfolio work, helping students land jobs in the industry.",
+    ],
+  },
+  {
+    company: "Freelancing",
+    title: "UX/UI Designer",
+    location: "Berlin, Germany",
+    period: "2018 - 2020",
+    highlights: [
+      "Designed and built websites and apps for startups in health, e-commerce, and education.",
+      "Balanced branding, usability, and performance in fast-paced MVP delivery.",
+    ],
+  },
+  {
+    company: "Artconnect",
+    title: "Founder & CEO",
+    location: "Berlin, Germany",
+    period: "2012 - 2018",
+    highlights: [
+      "Founded and grew Artconnect into a thriving creative community platform with over 25,000 users.",
+      "Managed product, partnerships, community, and design while building a small team from scratch.",
+    ],
+  },
+];
+
 export function Experience() {
+  const [activeCompany, setActiveCompany] = useState(experiences[0].company);
+  const activeContent = experiences.find(
+    (exp) => exp.company === activeCompany
+  );
 
   return (
-    <div className="py-4 md:py-10 lg:py-20">
-      <div className="text-h2 blue pb-4 md:pb-6">Working Experience</div>
+    <div className="w-full py-20 px-4 md:px-8 lg:px-16">
+      <div className="text-h2 blue pb-8">Working Experience</div>
 
-      {/* Experience Box */}
-      <div className="flex md:flex-row gap-10">
-        {/* Left Col */}
-        <div className="flex flex-row md:flex-col">
-          <div className="experience-nav-active text-h5">Mister Spex</div>
-          <div className="experience-nav text-h5  ">CareerFoundry</div>
-          <div className="experience-nav text-h5 ">Freelancing</div>
-          <div className="experience-nav text-h5">Artconnect</div>
+      <div className="flex flex-col lg:flex-row gap-6">
+        {/* Tabs */}
+        <div className="flex flex-row justify-between md:justify-start md:flex-col md:min-w-[200px]">
+          {experiences.map(({ company }) => (
+            <div key={company} className="relative w-full">
+              <button
+                className={`text-h5 text-left w-full px-4 py-4 md:py-8 transition-all duration-300 ${
+                  activeCompany === company
+                    ? "bg-[#e5dcf9] text-[#0C0093] font-semibold"
+                    : "text-[#656565] hover:text-black"
+                }`}
+                onClick={() => setActiveCompany(company)}
+              >
+                {company}
+              </button>
+              <div
+                className={`absolute bottom-0 left-0 w-full h-[2px] md:bottom-auto md:top-0 md:left-0 md:w-[4px] md:h-full transition-all duration-300 ease-in-out ${
+                  activeCompany === company ? "bg-[#0C0093]" : "bg-[#656565]"
+                }`}
+              />
+            </div>
+          ))}
         </div>
 
-        {/* Right Col */}
-        <div className="flex flex-col gap-2 min-w-[75%]">
-          {/* Title */}
-          <div className="flex flex-col">
+        {/* Content */}
+        <div key={activeCompany} className="flex-1 animate-fade-slide">
+          <div className="flex flex-col mb-6">
             <div className="text-h3">
-              Senior Product Experience Designer
-              <span className="blue"> @ MisterSpex</span>
+              {activeContent.title}
+              <span className="blue"> @ {activeContent.company}</span>
             </div>
             <div className="text-h5 gray">
-              Berlin, Germany – Apr 2021 - Oct 2024
+              {activeContent.location} – {activeContent.period}
             </div>
           </div>
-          <div className="flex flex-col gap-4 p-4">
-            <div className="paragraph">
-              ✔️ <strong>Redesigned the Lens Configuration Page</strong> to
-              eliminate legacy constraints and reduce maintenance risk. Aligned
-              cross-functional stakeholders around a shared vision, delivered an
-              optimized MVP, and improved consistency across the 6-step
-              flow—resulting in a 2% increase in CVR.
-            </div>
-            <div className="paragraph">
-              ✔️ <strong>Led up to 3 user research cycles per month</strong>{" "}
-              using a mix of qualitative and quantitative methods to drive
-              iterative design and support A/B testing. Informed product
-              decisions for the Lens Configurator and other core journeys.
-            </div>
-            <div className="paragraph">
-              ✔️{" "}
-              <strong>Streamlined the login and registration experience</strong>{" "}
-              by rearchitecting flows with Auth0, simplifying edge cases, and
-              improving usability. Resulted in a 20% increase in sign-ups while
-              lowering engineering overhead and security risks.
-            </div>
-            <div className="paragraph">
-              ✔️{" "}
-              <strong>
-                Defined the early design direction for the Premium Private
-                Lenses Label
-              </strong>{" "}
-              in close collaboration with developers, category managers, and
-              brand teams—delivering launch-ready assets within two months and
-              aligning digital and in-store touchpoints.
-            </div>
-            <div className="paragraph">
-              ✔️{" "}
-              <strong>
-                Overhauled all company marketing and transactional emails
-              </strong>{" "}
-              by auditing existing communications and building a scalable,
-              responsive design system in Emarsys. Enabled a reduced Marketing
-              team and external partners to deliver consistent, high-quality
-              campaigns to millions of users.
-            </div>
-          </div>
+
+          <ul className="space-y-4 list-none">
+            {activeContent.highlights.map((item, index) => (
+              <li
+                key={index}
+                className="paragraph black relative md:ml-4 md:pl-4 before:absolute before:bg-[#333] before:left-0 before:top-[0.9rem] before:w-1 before:h-1 before:rounded-full"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
