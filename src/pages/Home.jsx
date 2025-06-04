@@ -6,7 +6,7 @@ import { Experience } from "../components/Experience";
 import Github from "/src/assets/github.svg";
 import Linkedin from "/src/assets/linkedin.svg";
 import Julia from "/src/assets/julia.png";
-import { Button } from "../components/button";
+import { Button } from "../components/Button";
 import { Link } from "react-router-dom";
 
 export function Home() {
