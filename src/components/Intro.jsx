@@ -1,7 +1,7 @@
-// src/components/Intro.jsx
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import LinkIcon from "/src/assets/link_pink.svg";
-import DefaultImage from "/src/assets/placeholder.png";
+import DefaultImage from "./DefaultImage";
 
 export function Intro({
   title,
@@ -13,6 +13,9 @@ export function Intro({
   introImage,
   hero,
 }) {
+  const [heroError, setHeroError] = useState(false);
+  const [introImageError, setIntroImageError] = useState(false);
+
   return (
     <>
       <div className="flex flex-col items-start w-full h-full py-20">
@@ -35,19 +38,30 @@ export function Intro({
         {/* Description & Image */}
         <div className="flex flex-col-reverse gap-4 md:flex-row lg:gap-10 mt-10">
           <div className="paragraph">{description}</div>
-          <img
-            src={introImage || DefaultImage}
-            alt={title}
-            className="md:w-[50%]"
-          />
+          {!introImageError && introImage ? (
+            <img
+              src={introImage}
+              alt={title}
+              className="md:min-w-[288px]"
+              onError={() => setIntroImageError(true)}
+            />
+          ) : (
+            <DefaultImage className="md:min-w-md h-64" />
+          )}
         </div>
       </div>
 
       {/* Hero Image */}
-      <img
-        src={hero || DefaultImage}
-        className="w-full h-auto sm:hidden md:flex"
-      />
+      {!heroError && hero ? (
+        <img
+          src={hero}
+          alt="hero"
+          className="w-full h-auto sm:hidden md:flex"
+          onError={() => setHeroError(true)}
+        />
+      ) : (
+        <DefaultImage className="w-full h-96 sm:hidden md:flex" />
+      )}
     </>
   );
 }

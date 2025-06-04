@@ -1,20 +1,36 @@
-import DefaultImage from "/src/assets/placeholder.png";
+import { useState } from "react";
+import DefaultImage from "./DefaultImage";
 
 export function Wireframes({ wireframes = [] }) {
-  if (!wireframes.length) return null; // Don't render if there are no images
+  if (!wireframes.length) return null;
+
+  const [errorIndexes, setErrorIndexes] = useState([]);
+
+  const handleImageError = (index) => {
+    setErrorIndexes((prev) => [...prev, index]);
+  };
 
   return (
     <div className="flex flex-col items-start w-full h-full py-20 gap-6">
       <div className="text-h2 blue pb-2">Wireframes</div>
       <div className="flex flex-wrap w-full gap-4 lg:gap-10 items-center">
-        {wireframes.map((src, index) => (
-          <img
-            key={index}
-            src={src || DefaultImage}
-            alt={`Wireframe ${index + 1}`}
-            className="w-full sm:w-[47%] shadow-soft"
-          />
-        ))}
+        {wireframes.map((src, index) =>
+          !errorIndexes.includes(index) && src ? (
+            <img
+              key={index}
+              src={src}
+              alt={`Wireframe ${index + 1}`}
+              className="w-full sm:w-[47%] shadow-soft"
+              onError={() => handleImageError(index)}
+            />
+          ) : (
+            <DefaultImage
+              key={index}
+              className="w-full sm:w-[47%] h-64 shadow-soft"
+              text={`Wireframe ${index + 1}`}
+            />
+          )
+        )}
       </div>
     </div>
   );
