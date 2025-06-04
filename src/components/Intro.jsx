@@ -14,7 +14,7 @@ export function Intro({
 }) {
   return (
     <>
-      <div className="flex flex-col items-start p-4 md:p-8 lg:p-16 w-full h-full py-20">
+      <div className="flex flex-col items-start w-full h-full py-20">
         {/* Title & Subtitle */}
         <div>
           <div className="text-h1">{title}</div>

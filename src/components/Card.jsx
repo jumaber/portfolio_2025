@@ -15,9 +15,9 @@ export function Card({ slug }) {
 
   return (
     <Link to={`/project/${card.slug}`}>
-      <div className="flex flex-col justify-between h-full bg-white p-4 rounded-sm shadow-soft hover:shadow-md transition-all">
+      <div className="card-hover flex flex-col justify-between h-full bg-white p-4 rounded-sm shadow-soft">
         <div>
-          <img src={card.image} alt={card.title} className="w-full"/>
+          <img src={card.image} alt={card.title} className="w-full" />
         </div>
         <div>
           <div className="text-h3">{card.title}</div>

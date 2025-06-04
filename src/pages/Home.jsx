@@ -79,10 +79,11 @@ export function Home() {
         </div>
 
         {/* About Me */}
-        <section id="about" className="flex flex-col w-full py-4 md:py-10 lg:py-20">
-          <div className="text-h2 blue pb-4 md:pb-6">
-            About Me
-          </div>
+        <section
+          id="about"
+          className="flex flex-col w-full py-4 md:py-10 lg:py-20"
+        >
+          <div className="text-h2 blue pb-4 md:pb-6">About Me</div>
           <div className="flex flex-col items-start w-full md:flex-row gap-10">
             <div className="paragraph">
               I'm a Senior Product Experience Designer with a strong track
@@ -110,12 +111,41 @@ export function Home() {
         <Experience />
 
         {/* Contact */}
+        {/* Contact */}
         <section id="contact" className="py-4 md:py-10 lg:py-20">
           <div className="text-h2 blue pb-4 md:pb-6">Contact</div>
+
           <div className="paragraph pb-10">
-            I am currently looking for new experiences - get in touch if you
-            want to get to know me!
+            I'm looking for part-time job (max. 32h/week) on a project where I can keep on growing professionally and can work in cross-functional teams. <br />
+            I’ve already proven that I can match full-time results with fewer
+            hours — and I’m ready to do it again 💪.
           </div>
+
+          <div className="flex flex-row items-start gap-4 pb-10">
+            <a
+              href="https://github.com/jumaber"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="/src/assets/github.svg"
+                alt="GitHub icon"
+                className="w-6 h-6"
+              />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/juliamaribernaus"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="/src/assets/linkedin.svg"
+                alt="LinkedIn icon"
+                className="w-6 h-6"
+              />
+            </a>
+          </div>
+
           <Button />
         </section>
       </div>

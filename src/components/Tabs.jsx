@@ -1,48 +1,54 @@
 import { useState } from "react";
 
-export function TabbedSection({ title, tabs }) {
-  const [activeIndex, setActiveIndex] = useState(0);
+export function Process({ process }) {
+  const [activePhase, setActivePhase] = useState(process[0]?.phase);
+  const activeContent = process.find((p) => p.phase === activePhase);
 
   return (
-    <section className="w-full py-10 bg-[var(--color-cream)] text-black">
-      <div className="max-w-[1440px] mx-auto px-4 md:px-8 lg:px-16">
-        {title && <h2 className="text-h2 mb-6 blue">{title}</h2>}
+    <div className="py-4 md:py-10 lg:py-20">
+      <div className="text-h2 blue pb-4 md:pb-6">Process</div>
 
-        <div className="flex flex-col md:flex-row gap-4 md:gap-10">
-          {/* Tabs */}
-          <div className="flex md:flex-col md:w-1/4">
-            {tabs.map((tab, i) => {
-              const isActive = i === activeIndex;
-              let tabClasses = "text-left text-h5 px-4 py-3 border-l-4 ";
+      {/* Process Box */}
+      <div className="flex flex-col lg:flex-row gap-10">
+        {/* Left Col – Tabs */}
+        <div className="flex flex-row lg:flex-col overflow-x-auto lg:overflow-visible">
+          {process.map(({ phase }) => (
+            <div
+              key={phase}
+              className={
+                activePhase === phase
+                  ? "experience-nav-active text-h5"
+                  : "experience-nav text-h5"
+              }
+              onClick={() => setActivePhase(phase)}
+            >
+              {phase}
+            </div>
+          ))}
+        </div>
 
-              tabClasses += isActive
-                ? "bg-[#E7DDEC] border-[var(--color-blue)] text-[var(--color-blue)]"
-                : "border-[var(--color-gray)] text-[var(--color-gray)] hover:text-black";
+        {/* Right Col – Highlights */}
+        <div className="flex flex-col gap-4 min-w-[75%]">
+          {/* Title (optional) */}
+          <div className="text-h3">{activeContent.phase}</div>
+          {/* Optional: location and period */}
+          {(activeContent.location || activeContent.period) && (
+            <div className="text-h5 gray">
+              {activeContent.location}{" "}
+              {activeContent.location && activeContent.period && "–"}{" "}
+              {activeContent.period}
+            </div>
+          )}
 
-              return (
-                <button
-                  key={i}
-                  onClick={() => setActiveIndex(i)}
-                  className={tabClasses}
-                >
-                  {tab.label}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Content */}
-          <div className="w-full md:w-3/4">
-            <ul className="flex flex-col gap-4 list-disc list-inside">
-              {tabs[activeIndex].content.map((item, i) => (
-                <li key={i} className="paragraph">
-                  {item}
-                </li>
-              ))}
-            </ul>
+          <div className="flex flex-col gap-4 p-4">
+            {activeContent.highlights.map((item, index) => (
+              <div key={index} className="paragraph">
+                ✔️ {item}
+              </div>
+            ))}
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

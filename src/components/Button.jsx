@@ -10,7 +10,9 @@ export function Button({
   if (isExternal) {
     return (
       <a href={to} aria-label={ariaLabel}>
-        <div className="rounded-sm bg-[var(--color-blue)] text-h4 text-white px-4 py-3 max-w-fit">{text}</div>
+        <div className="rounded-sm bg-[var(--color-blue)] text-h4 text-white px-4 py-3 max-w-fit transition-all duration-200 ease-in-out shadow-none hover:shadow-[8px_8px_0_0_var(--color-pink)] hover:translate-x-[-2px] hover:translate-y-[-2px]">
+          {text}
+        </div>
       </a>
     );
   }

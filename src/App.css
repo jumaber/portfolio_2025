@@ -19,7 +19,7 @@
 
 /* 🌫️ Soft drop shadow */
 .shadow-soft {
-  box-shadow: 2px 2px 30px rgba(51, 51, 51, 0.03);
+  box-shadow: 2px 2px 30px rgba(51, 51, 51, 0.04);
 }
 
 /* 🎨 Color Utilities */
@@ -159,4 +159,14 @@ html {
 
 .animate-fade-slide {
   animation: fade-slide 0.8s ease-in-out;
+}
+
+
+/* Card Hovering */
+.card-hover {
+  transition: all 0.3s ease-in-out;
+}
+.card-hover:hover {
+  box-shadow: 10px 10px 0px 0px rgba(255, 167, 167, 0.4); 
+  transform: translate(-1px, -1px);
 }

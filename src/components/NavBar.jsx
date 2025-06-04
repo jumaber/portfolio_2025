@@ -37,12 +37,13 @@ export function NavBar() {
   };
 
   return (
+
     <div
-      className={`fixed top-0 left-0 z-50 w-screen bg-[#FFF6F6] shadow-[0_2px_6px_rgba(0,0,0,0.06)] md:shadow-none transition-transform duration-300 ${
+      className={`fixed top-0 left-0 z-50 w-screen px-4 md:px-8 lg:px-48 bg-[#FFF6F6] shadow-[0_2px_6px_rgba(0,0,0,0.06)] md:shadow-none transition-transform duration-300 ${
         show ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="flex justify-between items-center p-4 md:px-8 lg:px-16">
+      <div className="flex justify-between items-center py-4 ">
         {/* Logo */}
         <Link to="/">
           <img
