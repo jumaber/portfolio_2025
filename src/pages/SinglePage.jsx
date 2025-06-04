@@ -42,8 +42,7 @@ import { Process } from "../components/Process"
   return (
     <>
       <NavBar />
-      <div className="flex flex-col w-screen items-center p-4 md:p-8 lg:p-16 h-full bg-[#FFF6F6] ">
-        <div className="lg:max-w-[1124px]">
+      <div className="h-full bg-[#FFF6F6] flex flex-col items-start px-4 md:px-8 lg:px-48 max-w-full overflow-x-hidden">
           {/* Intro Section */}
           <Intro
             title={title}
@@ -71,7 +70,6 @@ import { Process } from "../components/Process"
           {/* Wireframes */}
           <Wireframes wireframes={wireframes} />
         </div>
-      </div>
     </>
   );
 }

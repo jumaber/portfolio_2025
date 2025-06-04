@@ -49,12 +49,12 @@ export function Home() {
           id="work"
           className="flex flex-col flex-wrap w-full py-4 md:py-10 lg:py-20"
         >
-          <div className="flex flex-col md:flex-row gap-10 pb-10">
+          <div className="flex flex-col md:flex-row gap-5 pb-5">
             <Card slug="lens-config" />
             <Card slug="login-redesign" />
           </div>
 
-          <div className="flex flex-col md:flex-row gap-10 pb-10">
+          <div className="flex flex-col md:flex-row gap-5 pb-5">
             <Card slug="linsenpate" />
             <Card slug="plant-pal" />
             <Card slug="recipe-book" />
@@ -66,7 +66,7 @@ export function Home() {
           <div className="text-h2 blue pb-4 md:pb-6">
             Other Noteworthy Projects
           </div>
-          <div className="flex flex-col md:flex-row gap-10 pb-10">
+          <div className="flex flex-col md:flex-row gap-5 pb-5">
             {/* <Card slug="recipe-book" /> */}
             <Card slug="oop-game" />
             <Card slug="julia-css-animation" />
@@ -79,10 +79,12 @@ export function Home() {
         </div>
 
         {/* About Me */}
-        <section id="about" className="py-4 md:py-10 lg:py-20">
-          <div className="text-h2 blue pb-4 md:pb-6">About Me</div>
-          <div className="flex flex-col md:flex-row gap-10">
-            <div className="paragraph md:min-w-xxs">
+        <section id="about" className="flex flex-col w-full py-4 md:py-10 lg:py-20">
+          <div className="text-h2 blue pb-4 md:pb-6">
+            About Me
+          </div>
+          <div className="flex flex-col items-start w-full md:flex-row gap-10">
+            <div className="paragraph">
               I'm a Senior Product Experience Designer with a strong track
               record of driving design consistency, improving user satisfaction,
               and contributing to business growth. <br />
@@ -99,7 +101,7 @@ export function Home() {
             <img
               src={Julia}
               alt="Julia Mari Bernaus"
-              className="w-full h-fit"
+              className="w-full md:max-w-2xs h-auto object-contain"
             />
           </div>
         </section>

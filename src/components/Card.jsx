@@ -11,26 +11,28 @@ export function Card({ slug }) {
       .catch((err) => console.error("❌ Failed to fetch card:", err));
   }, [slug]);
 
-  if (!card) return null; // or show a skeleton/loader
+  if (!card) return null; 
 
   return (
     <Link to={`/project/${card.slug}`}>
-      <div className="bg-white p-4 rounded-sm shadow-soft hover:shadow-md transition-all">
-        <img src={card.image} alt={card.title} />
-        <div className="text-h3">{card.title}</div>
-        <div className="subparagraph">{card.subtitle}</div>
+      <div className="flex flex-col justify-between h-full bg-white p-4 rounded-sm shadow-soft hover:shadow-md transition-all">
+        <div>
+          <img src={card.image} alt={card.title} className="w-full"/>
+        </div>
+        <div>
+          <div className="text-h3">{card.title}</div>
+          {/* <div className="subparagraph">{card.subtitle}</div> */}
+          {card.roles && (
+            <div className="flex flex-wrap gap-0.5 pt-3">
+              {card.roles.map((role, i) => (
+                <div key={i} className="tag blue pr-4 ">
+                  {role}
+                </div>
+              ))}
+            </div>
+          )}
 
-        {card.roles && (
-          <div className="flex flex-wrap gap-3 pt-2">
-            {card.roles.map((role, i) => (
-              <div key={i} className="tag blue">
-                {role}
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* {card.tech && (
+          {/* {card.tech && (
           <div className="flex flex-wrap gap-3 pt-2">
             {card.tech.map((item, i) => (
               <div key={i} className="tag blue">
@@ -39,6 +41,7 @@ export function Card({ slug }) {
             ))}
           </div>
         )} */}
+        </div>
       </div>
     </Link>
   );
