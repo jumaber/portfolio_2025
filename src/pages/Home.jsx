@@ -55,9 +55,9 @@ export function Home() {
           </div>
 
           <div className="flex flex-col md:flex-row gap-5 pb-5">
+            <Card slug="emarsys-emails" />
             <Card slug="linsenpate" />
             <Card slug="plant-pal" />
-            <Card slug="recipe-book" />
           </div>
         </section>
 
@@ -70,6 +70,7 @@ export function Home() {
             {/* <Card slug="recipe-book" /> */}
             <Card slug="oop-game" />
             <Card slug="julia-css-animation" />
+            <Card slug="recipe-book" />
           </div>
           {/* <div className="flex flex-row  w-full  gap-10">
               <Card />
@@ -116,7 +117,9 @@ export function Home() {
           <div className="text-h2 blue pb-4 md:pb-6">Contact</div>
 
           <div className="paragraph pb-10">
-            I'm looking for part-time job (max. 32h/week) on a project where I can keep on growing professionally and can work in cross-functional teams. <br />
+            I'm looking for part-time job (max. 32h/week) on a project where I
+            can keep on growing professionally and can work in cross-functional
+            teams. <br />
             I’ve already proven that I can match full-time results with fewer
             hours — and I’m ready to do it again 💪.
           </div>
@@ -127,22 +130,14 @@ export function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img
-                src={Github}
-                alt="GitHub icon"
-                className="w-6 h-6"
-              />
+              <img src={Github} alt="GitHub icon" className="w-6 h-6" />
             </a>
             <a
               href="https://www.linkedin.com/in/juliamaribernaus"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img
-                src={Linkedin}
-                alt="LinkedIn icon"
-                className="w-6 h-6"
-              />
+              <img src={Linkedin} alt="LinkedIn icon" className="w-6 h-6" />
             </a>
           </div>
 
