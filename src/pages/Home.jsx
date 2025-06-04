@@ -128,7 +128,7 @@ export function Home() {
               rel="noopener noreferrer"
             >
               <img
-                src="/src/assets/github.svg"
+                src={Github}
                 alt="GitHub icon"
                 className="w-6 h-6"
               />
@@ -139,7 +139,7 @@ export function Home() {
               rel="noopener noreferrer"
             >
               <img
-                src="/src/assets/linkedin.svg"
+                src={Linkedin}
                 alt="LinkedIn icon"
                 className="w-6 h-6"
               />
