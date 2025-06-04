@@ -1,5 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { logo } from "/src/assets/logo.png";
 
 export function NavBar() {
   const navigate = useNavigate();
@@ -37,7 +38,6 @@ export function NavBar() {
   };
 
   return (
-
     <div
       className={`fixed top-0 left-0 z-50 w-screen px-4 md:px-8 lg:px-48 bg-[#FFF6F6] shadow-[0_2px_6px_rgba(0,0,0,0.06)] md:shadow-none transition-transform duration-300 ${
         show ? "translate-y-0" : "-translate-y-full"
@@ -46,11 +46,7 @@ export function NavBar() {
       <div className="flex justify-between items-center py-4 ">
         {/* Logo */}
         <Link to="/">
-          <img
-            src="/src/assets/logo.png"
-            alt="JMB Design"
-            className="w-8 h-8"
-          />
+          <img src={logo} alt="JMB Design" className="w-8 h-8" />
         </Link>
         {/* Hamburger Toggle */}
         <button
