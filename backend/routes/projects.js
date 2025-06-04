@@ -33,5 +33,24 @@ router.get("/:slug", async (req, res) => {
   }
 });
 
+// UPDATE a project by slug
+router.put("/:slug", async (req, res) => {
+  try {
+    const updatedProject = await Project.findOneAndUpdate(
+      { slug: req.params.slug },
+      { $set: req.body },
+      { new: true }
+    );
+
+    if (!updatedProject) {
+      return res.status(404).json({ error: "Project not found" });
+    }
+
+    res.json(updatedProject);
+  } catch (error) {
+    console.error("Error updating project:", error);
+    res.status(500).json({ error: "Failed to update project 😬" });
+  }
+});
 
 export default router;
