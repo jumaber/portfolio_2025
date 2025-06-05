@@ -63,13 +63,14 @@ router.get("/slug/:slug", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const card = await Card.findById(req.params.id);
+    const card = await Card.findOne({ _id: req.params.id }); // <-- use findOne instead of findById
     if (!card) return res.status(404).json({ error: "Card not found" });
     res.json(card);
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch card by ID 😬" });
   }
 });
+
 
 
 
