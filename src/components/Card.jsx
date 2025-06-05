@@ -21,7 +21,7 @@ export function Card({ slug }) {
           <img
             src={card.image || DefaultImage}
             alt={card.title}
-            className="w-full"
+            className="w-full aspect-[4/3] h-full"
           />
         </div>
         <div>

@@ -50,14 +50,27 @@ export function Home() {
           className="flex flex-col flex-wrap w-full py-4 md:py-10 lg:py-20"
         >
           <div className="flex flex-col md:flex-row gap-5 pb-5">
-            <Card slug="lens-config" />
-            <Card slug="login-redesign" />
+            <div className="md:w-1/2">
+              <Card slug="lens-config" />
+            </div>
+            <div className="md:w-1/2">
+              <Card slug="email-templates" />
+            </div>
           </div>
 
           <div className="flex flex-col md:flex-row gap-5 pb-5">
-            <Card slug="email-templates" />
-            <Card slug="linsenpate" />
-            <Card slug="plant-pal" />
+            <div className="md:w-1/3">
+              {" "}
+              <Card slug="login-redesign" />
+            </div>
+            <div className="md:w-1/3">
+              {" "}
+              <Card slug="setting" />
+            </div>
+            <div className="md:w-1/3">
+              {" "}
+              <Card slug="plant-pal" />
+            </div>
           </div>
         </section>
 
@@ -67,10 +80,29 @@ export function Home() {
             Other Noteworthy Projects
           </div>
           <div className="flex flex-col md:flex-row gap-5 pb-5">
+            <div className="md:w-1/2">
+              <Card slug="linsenpate" />
+            </div>
+            <div className="md:w-1/2">
+              <Card slug="recipe-book" />
+            </div>
+          </div>
+
+          <div className="flex flex-col md:flex-row gap-5 pb-5">
+            <div className="md:w-1/3">
+              {" "}
+              <Card slug="oop-game" />
+            </div>
+            <div className="md:w-1/3">
+              {" "}
+              <Card slug="julia-css-animation" />
+            </div>
+            <div className="md:w-1/3">
+              {" "}
+              <Card slug="design-friends" />
+            </div>
+
             {/* <Card slug="recipe-book" /> */}
-            <Card slug="oop-game" />
-            <Card slug="julia-css-animation" />
-            <Card slug="recipe-book" />
           </div>
           {/* <div className="flex flex-row  w-full  gap-10">
               <Card />
