@@ -41,6 +41,9 @@ router.put("/:slug", async (req, res) => {
       { $set: req.body },
       { new: true }
     );
+    console.log("🔧 Incoming update for:", req.params.slug);
+    console.log("📦 Update body:", req.body);
+
 
     if (!updatedProject) {
       return res.status(404).json({ error: "Project not found" });

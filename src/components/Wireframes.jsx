@@ -11,7 +11,7 @@ export function Wireframes({ wireframes = [] }) {
   };
 
   return (
-    <div className="flex flex-col items-start w-full h-full py-20 gap-6">
+    <div className="flex flex-col items-start w-full h-full py-20 px-4 md:px-8 lg:px-48 gap-6 bg-[#d9d9d9]">
       <div className="text-h2 blue pb-2">Wireframes</div>
       <div className="flex flex-wrap w-full gap-4 lg:gap-10 items-center">
         {wireframes.map((src, index) =>

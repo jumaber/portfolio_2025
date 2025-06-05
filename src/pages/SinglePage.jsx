@@ -8,8 +8,8 @@ import { Outcome } from "../components/Outcome";
 import { Learnings } from "../components/Learnings";
 import { Wireframes } from "../components/Wireframes";
 import { NavBar } from "../components/NavBar";
-import { Process } from "../components/Process"
-
+import { Process } from "../components/Process";
+import { HeroImage } from "../components/HeroImage"
 
   export function SinglePage() {
     const { slug } = useParams();
@@ -42,34 +42,36 @@ import { Process } from "../components/Process"
   return (
     <>
       <NavBar />
-      <div className="h-full bg-[#FFF6F6] flex flex-col items-start px-4 md:px-8 lg:px-48 max-w-full overflow-x-hidden">
-          {/* Intro Section */}
-          <Intro
-            title={title}
-            subtitle={subtitle}
-            location={location}
-            period={period}
-            link={link}
-            description={description}
-            introImage={introImage}
-            hero={hero}
-          />
+      <div className="h-full bg-[#FFF6F6] flex flex-col items-start max-w-full overflow-x-hidden">
+        {/* Intro Section */}
+        <Intro
+          title={title}
+          subtitle={subtitle}
+          location={location}
+          period={period}
+          link={link}
+          description={description}
+          introImage={introImage}
+        />
 
-          {/* Challenge */}
-          {challenges && <Challenge challenges={challenges} />}
+        {/* Hero */}
+        <HeroImage hero={hero} />
 
-          {/* The Process */}
-          {project.process && <Process process={project.process} />}
+        {/* Challenge */}
+        {challenges && <Challenge challenges={challenges} />}
 
-          {/* Outcome */}
-          {outcomes && <Outcome outcomes={outcomes} />}
+        {/* The Process */}
+        {project.process && <Process process={project.process} />}
 
-          {/* Learnings */}
-          {learnings && <Learnings learnings={learnings} />}
+        {/* Outcome */}
+        {outcomes && <Outcome outcomes={outcomes} />}
 
-          {/* Wireframes */}
-          <Wireframes wireframes={wireframes} />
-        </div>
+        {/* Learnings */}
+        {learnings && <Learnings learnings={learnings} />}
+
+        {/* Wireframes */}
+        <Wireframes wireframes={wireframes} />
+      </div>
     </>
   );
 }

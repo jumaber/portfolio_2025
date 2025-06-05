@@ -6,7 +6,7 @@ import projectRoutes from "./routes/projects.js";
 import cardRoutes from "./routes/cards.js";
 
 
-dotenv.config(); // Load your .env file
+dotenv.config(); 
 
 const app = express();
 const PORT = process.env.PORT || 5005;
