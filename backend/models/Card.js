@@ -7,7 +7,7 @@ const cardSchema = new mongoose.Schema({
   subtitle: String,
   roles: [String],
   tech: [String],
-  image: String,
+  introImage: String,
   githubUrl: String,
   liveUrl: String,
   featured: Boolean,
