@@ -19,7 +19,7 @@ export function Card({ slug }) {
       <div className="card-hover flex flex-col  h-full bg-white p-4 rounded-sm shadow-soft">
         <div>
           <img
-            src={card.introImage || DefaultImage}
+            src={card.image || DefaultImage}
             alt={card.title}
             className="w-full"
           />
