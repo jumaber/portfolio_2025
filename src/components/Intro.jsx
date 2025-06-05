@@ -11,9 +11,9 @@ export function Intro({
   link,
   description,
   introImage,
-  hero,
+  // hero,
 }) {
-  const [heroError, setHeroError] = useState(false);
+  // const [heroError, setHeroError] = useState(false);
   const [introImageError, setIntroImageError] = useState(false);
 
   return (
@@ -37,12 +37,15 @@ export function Intro({
 
         {/* Description & Image */}
         <div className="flex flex-col-reverse gap-4 xl:flex-row lg:gap-10 mt-10">
-          <div className="paragraph">{description}</div>
+          <div
+            className="paragraph"
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
           {!introImageError && introImage ? (
             <img
               src={introImage}
               alt={title}
-              className="lg:min-w-[50%] xl:min-w-[55%] h-fit rounded-sm shadow-soft"
+              className="lg:min-w-[40%] h-fit rounded-sm"
               onError={() => setIntroImageError(true)}
             />
           ) : (

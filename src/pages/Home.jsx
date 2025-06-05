@@ -55,7 +55,7 @@ export function Home() {
           </div>
 
           <div className="flex flex-col md:flex-row gap-5 pb-5">
-            <Card slug="emarsys-emails" />
+            <Card slug="email-templates" />
             <Card slug="linsenpate" />
             <Card slug="plant-pal" />
           </div>
