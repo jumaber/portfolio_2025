@@ -28,6 +28,24 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+
+// PUT by slug
+router.put("/slug/:slug", async (req, res) => {
+  try {
+    const updatedCard = await Card.findOneAndUpdate(
+      { slug: req.params.slug },
+      req.body,
+      { new: true }
+    );
+    if (!updatedCard) return res.status(404).json({ error: "Card not found" });
+    res.json(updatedCard);
+  } catch (error) {
+    console.error("Error updating card by slug:", error);
+    res.status(500).json({ error: "Failed to update card by slug 😬" });
+  }
+});
+
+
 // GET card by slug
 
 router.get("/slug/:slug", async (req, res) => {

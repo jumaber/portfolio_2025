@@ -36,13 +36,13 @@ export function Intro({
         </div>
 
         {/* Description & Image */}
-        <div className="flex flex-col-reverse gap-4 md:flex-row lg:gap-10 mt-10">
+        <div className="flex flex-col-reverse gap-4 xl:flex-row lg:gap-10 mt-10">
           <div className="paragraph">{description}</div>
           {!introImageError && introImage ? (
             <img
               src={introImage}
               alt={title}
-              className="md:min-w-[288px]"
+              className="lg:min-w-[50%] xl:min-w-[55%] h-fit rounded-sm shadow-soft"
               onError={() => setIntroImageError(true)}
             />
           ) : (
@@ -52,7 +52,7 @@ export function Intro({
       </div>
 
       {/* Hero Image */}
-      {!heroError && hero ? (
+      {/* {!heroError && hero ? (
         <img
           src={hero}
           alt="hero"
@@ -61,7 +61,7 @@ export function Intro({
         />
       ) : (
         <DefaultImage className="w-full h-96 sm:hidden md:flex" />
-      )}
+      )} */}
     </>
   );
 }

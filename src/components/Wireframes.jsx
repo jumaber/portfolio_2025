@@ -20,13 +20,13 @@ export function Wireframes({ wireframes = [] }) {
               key={index}
               src={src}
               alt={`Wireframe ${index + 1}`}
-              className="w-full sm:w-[47%] shadow-soft"
+              className="w-full"
               onError={() => handleImageError(index)}
             />
           ) : (
             <DefaultImage
               key={index}
-              className="w-full sm:w-[47%] h-64 shadow-soft"
+              className="w-full h-64"
               text={`Wireframe ${index + 1}`}
             />
           )
