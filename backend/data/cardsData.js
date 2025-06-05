@@ -35,7 +35,7 @@ const cards = [
   },
   {
     _id: "6836f5636be13c5e82d51d84",
-    slug: "emarsys-emails",
+    slug: "email-templates",
     title: "Emarsys Email Templates",
     subtitle: "Mister Spex",
     roles: ["UX/UI Designer", "Design Systems Designer"],
