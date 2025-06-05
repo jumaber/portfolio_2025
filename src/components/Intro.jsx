@@ -30,7 +30,7 @@ export function Intro({
           <div className="text-h5 gray">{location}</div>
           <div className="text-h5 gray">–</div>
           <div className="text-h5 gray">{period}</div>
-          <Link to={link}>
+          <Link to={link} target="blank">
             <img src={LinkIcon} alt="link icon" className="w-5 h-5" />
           </Link>
         </div>
