@@ -5,7 +5,8 @@ export function Process({ process }) {
   const activeContent = process.find((p) => p.phase === activePhase);
 
   return (
-    <div className="py-4 md:py-10 lg:py-20 px-4 md:px-8 lg:px-48">
+<div className="flex items-center w-full h-full py-20 px-4 md:px-8">
+  <div className="w-full max-w-[800px] mx-auto">
       <div className="text-h2 blue pb-4 md:pb-6">Process</div>
 
       <div className="flex flex-col lg:flex-row gap-4">
@@ -47,6 +48,7 @@ export function Process({ process }) {
           ))}
         </ul>
       </div>
+    </div>
     </div>
   );
 }

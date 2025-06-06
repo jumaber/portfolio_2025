@@ -16,7 +16,10 @@ export function Home() {
       <NavBar />
 
       <div className="h-full bg-[#FFF6F6] flex flex-col items-start px-4 md:px-8 lg:px-48 max-w-full overflow-x-hidden">
+      <div className="w-full max-w-[800px] mx-auto">
+
         {/* Intro */}
+
         <section
           id="home"
           className="flex flex-col w-full pt-20 gap-1 lg:max-w-[900px]"
@@ -50,47 +53,43 @@ export function Home() {
           className="flex flex-col flex-wrap w-full py-4 md:py-10 lg:py-20"
         >
           <div className="flex flex-col md:flex-row gap-5 pb-5">
-            <div className="md:w-1/3">
+            <div className="md:w-1/2">
               <Card slug="lens-config" />
             </div>
-            <div className="md:w-1/3">
+            <div className="md:w-1/2">
               <Card slug="email-templates" />
             </div>
-            <div className="md:w-1/3">
+          </div>
+          <div className="flex flex-col md:flex-row gap-5 pb-5">
+            <div className="md:w-1/2">
               <Card slug="login-redesign" />
+            </div>
+            <div className="md:w-1/2">
+              <Card slug="setting" />
             </div>
           </div>
 
           <div className="flex flex-col md:flex-row gap-5 pb-5">
-            <div className="md:w-1/3">
-              <Card slug="setting" />
-            </div>
-            <div className="md:w-1/3">
+            <div className="md:w-1/2">
               <Card slug="plant-pal" />
             </div>
-            <div className="md:w-1/3">
+            <div className="md:w-1/2">
               <Card slug="oop-game" />
             </div>
           </div>
-        </section>
 
-        {/* Other Noteworthy Projects */}
-        <div className="flex flex-col w-full py-4 md:py-10 lg:py-20">
-          <div className="text-h2 blue pb-4 md:pb-6">
-            Other Noteworthy Projects
-          </div>
           <div className="flex flex-col md:flex-row gap-5 pb-5">
-            <div className="md:w-1/3">
+            <div className="md:w-1/2">
               <Card slug="linsenpate" />
             </div>
-            <div className="md:w-1/3">
+            <div className="md:w-1/2">
               <Card slug="recipe-book" />
             </div>
-            <div className="md:w-1/3">
-              <Card slug="julia-css-animation" />
-            </div>
+            {/* <div className="md:w-1/3">
+                <Card slug="julia-css-animation" />
+              </div> */}
           </div>
-        </div>
+        </section>
 
         {/* About Me */}
         <section
@@ -158,6 +157,7 @@ export function Home() {
         </section>
       </div>
       <Footer />
+      </div>
     </>
   );
 }

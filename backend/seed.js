@@ -24,13 +24,13 @@ async function seed() {
 
     // Optional: Clear collections
     await db.collection("cards").deleteMany({});
-    // await db.collection("experience").deleteMany({});
-    // await db.collection("projects").deleteMany({});
+    await db.collection("experience").deleteMany({});
+    await db.collection("projects").deleteMany({});
 
     // Insert updated data
     await db.collection("cards").insertMany(cards);
-    // await db.collection("experience").insertMany(experience);
-    // await db.collection("projects").insertMany(projects);
+    await db.collection("experience").insertMany(experience);
+    await db.collection("projects").insertMany(projects);
 
     console.log("✅ Data seeded successfully!");
   } catch (error) {

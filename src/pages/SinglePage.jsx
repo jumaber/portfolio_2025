@@ -18,9 +18,13 @@ import { HeroImage } from "../components/HeroImage"
     useEffect(() => {
       fetch(`https://portfolio-2025-wyed.onrender.com/api/projects/${slug}`)
         .then((res) => res.json())
-        .then((data) => setProject(data))
+        .then((data) => {
+          console.log("Fetched project:", data); // 
+          setProject(data);
+        })
         .catch((err) => console.error("Failed to fetch project:", err));
     }, [slug]);
+    
   
     if (!project) return <div className="p-10">Loading...</div>;
   
@@ -29,9 +33,10 @@ import { HeroImage } from "../components/HeroImage"
       subtitle,
       location,
       period,
-      link,
+      liveUrl,
+      githubUrl,
       description,
-      introImage,
+      image,
       hero,
       challenges,
       outcomes,
@@ -49,9 +54,10 @@ import { HeroImage } from "../components/HeroImage"
           subtitle={subtitle}
           location={location}
           period={period}
-          link={link}
+          liveURL={liveUrl}
+          githubUrl={githubUrl}
           description={description}
-          introImage={introImage}
+          image={image}
         />
 
         {/* Hero */}

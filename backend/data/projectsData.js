@@ -5,10 +5,13 @@ export const projects = {
     subtitle: "Mister Spex",
     location: "Berlin, Germany",
     period: "2022/2023",
-    link: "https://www.misterspex.de",
     description:
       "Mister Spex is one of Europe’s leading online opticians. As a digital-first company, delivering a smooth and cohesive online shopping experience is essential.\n\nHowever, the Lens Configuration Page—where customers select and customize their lenses—was outdated. It was weighed down by technical legacy, limiting UX improvements and hindering marketing flexibility. Visually, it no longer aligned with the updated design system used across the rest of the site. In addition, the mobile and desktop versions were built on separate codebases, making updates inefficient and preventing a truly responsive, unified experience.\n\nI was responsible for the complete redesign of this critical page. It represents the most complex step in the shopping journey—both from UX and development perspectives—and the most decisive moment in the purchase process. My goal was to modernize the UI, unify the experience across devices and touchpoints, and lay the groundwork for improved performance, scalability, and future experimentation.",
-    introImage: "/src/assets/GOP.png",
+    image:
+      "https://res.cloudinary.com/jumaber/image/upload/v1748000747/msx_800x600_hplq4m.png",
+    githubUrl: "",
+    liveUrl:
+      "https://www.misterspex.de/__service/lens-configuration-service/lens/configuration?SKU=7480279",
     hero: "/src/assets/hero-gop.png",
     challenges: [
       "How can we deliver maximum UX impact with minimal development effort?",
@@ -88,10 +91,13 @@ export const projects = {
     subtitle: "Mister Spex",
     location: "Berlin, Germany",
     period: "2022/2023",
-    link: "https://www.misterspex.de",
     description:
       "We set out to redesign the Log in and Sign-up flow for Mister Spex to improve usability, reduce support tickets, and limit development overhead by using a third-party provider (Auth0).\n\nI led the UX exploration of all user scenarios—from simple sign-ins to session timeouts mid-flow—aiming to create a clean, consistent, and efficient authentication experience.",
-    introImage: "/src/assets/login-hero.png",
+    image:
+      "https://res.cloudinary.com/jumaber/image/upload/v1749127677/card_geuudp.png",
+    githubUrl: "",
+    liveUrl: "https://accounts.misterspex.de/u/login",
+
     hero: "/src/assets/login-hero-full.png",
     challenges: [
       "How can we modernize the login & sign-up experience without creating ongoing development overhead?",
@@ -160,10 +166,12 @@ export const projects = {
     subtitle: "Mister Spex",
     location: "Berlin, Germany",
     period: "2022",
-    link: "https://www.misterspex.de",
     description:
       "Redesign the company’s marketing emails to match the visual language of the MSX product, improve consistency and accessibility, and build a flexible, documented component system for future scalability.",
-    introImage: "/src/assets/email-hero.png",
+    image:
+      "https://res.cloudinary.com/jumaber/image/upload/v1749132214/Clay_ojxib6.png",
+    githubUrl: "",
+    liveUrl: "https://www.misterspex.de/newsletter/register",
     hero: "/src/assets/email-hero-full.png",
     challenges: [
       "How can we modernize the look and feel of our marketing emails without increasing complexity for the marketing team?",
@@ -352,13 +360,7 @@ export const projects = {
       "Creating proto-personas aids in understanding diverse user needs and tailoring the design accordingly.",
       "Developing a Design System facilitates consistent implementation and scalability.",
     ],
-    wireframes: [
-      "/src/assets/setting-wire-1.png",
-      "/src/assets/setting-wire-2.png",
-      "/src/assets/setting-wire-3.png",
-      "/src/assets/setting-wire-4.png",
-      "/src/assets/setting-wire-5.png",
-    ],
+    wireframes: [],
   },
   designFriends: {
     slug: "design-friends",
@@ -387,12 +389,214 @@ export const projects = {
       "Community building benefits from clear communication, visibility, and regular rhythm.",
       "Usability testing—even on small personal projects—makes a big difference in clarity and trust.",
     ],
-    wireframes: [
-      "/src/assets/dfriends-wire-1.png",
-      "/src/assets/dfriends-wire-2.png",
-      "/src/assets/dfriends-wire-3.png",
-      "/src/assets/dfriends-wire-4.png",
+    wireframes: [],
+  },
+  plantPal: {
+    slug: "plant-pal",
+    title: "A Watering Plants React App",
+    subtitle: "Plant Pal",
+    location: "Berlin, Germany",
+    period: "2025",
+    description:
+      "During the Corona Pandemic, I realized most designer meetups in Berlin had gone quiet. Bringing my event management and community-building background, I decided to start a local designer community: Design+Friends.\n\nSince August 2020, I’ve organized monthly meetups and talks for designers in Berlin—on Zoom during the colder months, and in-person when safe. Our communication runs via Slack, Mailchimp newsletters, and our own website.\n\nThe result is a responsive, Bootstrap-powered website that works across all major viewports and browsers, hosted securely and for free using Github and Netlify.",
+    image:
+      "https://res.cloudinary.com/jumaber/image/upload/v1749133561/Clay_wlrqvb.png",
+    githubUrl: "https://github.com/jumaber/plant-pal",
+    liveUrl: "https://plant-pal-app.netlify.app/",
+    hero: "/src/assets/dfriends-hero-full.png",
+    challenges: [
+      "How to evaluate existing plant care apps and identify gaps or opportunities for a more personal, engaging tool?",
+      "How to build a dynamic watering logic based on date differences and customizable plant frequencies?",
+      "How to implement photo uploads using Cloudinary in a React form, with live preview and fallback behavior?",
+      "How to structure a backend with full CRUD functionality and deploy it on Render.com?",
+      "How to create a responsive, reusable UI system using Tailwind CSS and custom variables?",
     ],
+    process: [
+      {
+        highlights: [
+          "Designed and built a React front-end from scratch, using component-based architecture for scalability.",
+          "Created a JSON-based backend and deployed it using Render, with RESTful routes for full CRUD operations.",
+          "Integrated Cloudinary to allow users to upload custom plant photos securely and preview them live.",
+          "Developed custom UI elements like emoji-based thirst levels, a watering bar, and animated status messages.",
+          "Used Tailwind utility classes and custom CSS variables for consistent theming and responsiveness.",
+        ],
+      },
+    ],
+    outcomes: [
+      "Launched a fun, fully responsive plant tracker with live image upload and detailed care data.",
+      "Built deeper understanding of backend integration and fetch-based data flow in React.",
+      "Refined skills in working with Tailwind CSS and conditionally styled components.",
+    ],
+    learnings: [
+      "Even small projects benefit from thoughtful UX and microinteractions like emoji feedback and animations.",
+      "RESTful architecture and good state management make feature scaling much easier.",
+      "It's worth investing in reusable components like buttons, status overlays, and pill filters.",
+      "Pair programming is fun and rewarding - and you can learn too!",
+    ],
+    wireframes: [],
+  },
+
+  recipeBook: {
+    slug: "recipe-book",
+    title: "Recipe Book React App",
+    subtitle: "Peachy",
+    location: "Berlin, Germany",
+    period: "2025",
+    description:
+      "Peachy is a playful, client-side recipe book app built with React, Vite, and TailwindCSS as part of Ironhack’s Full-Stack Web Development Bootcamp. It allows users to browse, add, and delete recipes, all saved in the browser via localStorage.\n\nThe app uses animated transitions, reusable UI components, and a clean layout to offer a joyful cooking companion experience. Recipes are stored in a JSON file and editable through a form-based interface with live feedback.\n\nFrom the sneaky 404 broccoli to the custom mobile nav and Tailwind-powered design system, Peachy is both functional and delightful.",
+    image:
+      "https://res.cloudinary.com/jumaber/image/upload/v1749139452/Artboard_gwgcvm.png",
+    githubUrl: "https://github.com/jumaber/react-recipe-book",
+    liveUrl: "https://peachy-app.netlify.app/",
+    hero: "/src/assets/dfriends-hero-full.png",
+    challenges: [
+      "How to structure a component-based front-end without any backend logic or authentication?",
+      "How to manage user-added recipes using only localStorage without a server?",
+      "How to create smooth transitions and animations for forms, page views, and buttons?",
+      "How to make a fully responsive layout that adapts across viewports using Tailwind?",
+      "How to design a delightful UI that balances fun and clarity?",
+    ],
+    process: [
+      {
+        highlights: [
+          "Sketched and designed the app layout and flow in Figma before coding.",
+          "Built a basic, component-based UI in React, focusing on clarity and usability.",
+          "Used Tailwind utility classes to keep styling consistent and responsive.",
+          "Implemented routing and state management using React Router and useState.",
+          "Collaborated with Fábio Miranda to divide work, solve bugs, and improve the app together.",
+        ],
+      },
+    ],
+    learnings: [
+      "UI polish matters: animations and microinteractions can greatly enhance perceived quality.",
+      "Tailwind can speed up layout and design implementation without sacrificing flexibility.",
+      "React Router is powerful for creating seamless navigation in small projects.",
+      "Good file structure and reusable components save time and improve collaboration.",
+      "Even without a backend, you can simulate real user interaction effectively.",
+    ],
+    wireframes: [],
+  },
+
+  happyCat: {
+    slug: "oop-game",
+    title: "OOP JavaScript Game",
+    subtitle: "Happy Cat",
+    location: "Berlin, Germany",
+    period: "2025",
+    description:
+      "Happy Cat is a playful arcade game built with vanilla JavaScript, HTML, and CSS using an object-oriented structure. Players choose between two pixel-style cats—Nit or Dia—and guide them to catch fish while avoiding falling bombs.\n\nCatch 5 fish to earn a heart. Fill all 5 hearts (50 fish total) to win. But beware: one bomb and it’s game over!\n\nThe game uses audio feedback, jump and movement animations, level progression with increasing speed, and clean class-based logic to deliver a charming yet challenging experience.",
+    image:
+      "https://res.cloudinary.com/jumaber/image/upload/v1749135273/Clay_gbaxzm.png",
+    githubUrl: "https://github.com/jumaber/happy-cat",
+    liveUrl: "https://happycatz.netlify.app/",
+    hero: "/src/assets/dfriends-hero-full.png",
+
+    challenges: [
+      "How to structure an object-oriented game using multiple classes (Game, Cat, Obstacle)?",
+      "How to implement falling items with randomized spawn, speed, and collision detection?",
+      "How to manage win/lose conditions using a heart and level system?",
+      "How to animate character movement and jump interactions with sounds?",
+      "How to design a fun and accessible arcade interface without any external libraries?",
+    ],
+
+    process: [
+      {
+        highlights: [
+          "Started by designing the game mechanics: what happens, when, and why.",
+          "Sketched and illustrated all game assets and screens in Figma, including cats, UI, and game states.",
+          "Mapped out the object-oriented structure before coding — deciding what classes (Game, Cat, Obstacles) and methods I would need.",
+          "Defined clear responsibilities for each class to keep the logic modular and easy to manage.",
+          "Focused on keeping it simple (KISS) while making room for future expansion (like more items or power-ups).",
+          "Only after the plan felt solid, I began implementing each class step-by-step.",
+        ],
+      },
+    ],
+
+    learnings: [
+      "Object-oriented programming makes code more modular and easy to scale.",
+      "Even simple DOM APIs (like `getBoundingClientRect`) are powerful for collision logic.",
+      "Game loops using `setInterval` need careful pause/restart logic.",
+      "Designing small wins (like hearts and levels) makes gameplay feel rewarding.",
+      "Polish matters: a meow sound and a sad cat at Game Over can make a big difference!",
+    ],
+    wireframes: [],
+  },
+
+  juliaCSS: {
+    slug: "oop-game",
+    title: "Study on CSS Animations from a UX perspective",
+    subtitle: "",
+    location: "Berlin, Germany",
+    period: "2023",
+    description:
+      "Happy Cat is a playful arcade game built with vanilla JavaScript, HTML, and CSS using an object-oriented structure. Players choose between two pixel-style cats—Nit or Dia—and guide them to catch fish while avoiding falling bombs.\n\nCatch 5 fish to earn a heart. Fill all 5 hearts (50 fish total) to win. But beware: one bomb and it’s game over!\n\nThe game uses audio feedback, jump and movement animations, level progression with increasing speed, and clean class-based logic to deliver a charming yet challenging experience.",
+    image:
+      "https://res.cloudinary.com/jumaber/image/upload/v1749135273/Clay_gbaxzm.png",
+    githubUrl: "https://github.com/jumaber/happy-cat",
+    liveUrl: "https://happycatz.netlify.app/",
+    hero: "/src/assets/dfriends-hero-full.png",
+
+    challenges: [
+      "How to structure an object-oriented game using multiple classes (Game, Cat, Obstacle)?",
+      "How to implement falling items with randomized spawn, speed, and collision detection?",
+      "How to manage win/lose conditions using a heart and level system?",
+      "How to animate character movement and jump interactions with sounds?",
+      "How to design a fun and accessible arcade interface without any external libraries?",
+    ],
+
+    process: [
+      {
+        highlights: [
+          "Started by designing the game mechanics: what happens, when, and why.",
+          "Sketched and illustrated all game assets and screens in Figma, including cats, UI, and game states.",
+          "Mapped out the object-oriented structure before coding — deciding what classes (Game, Cat, Obstacles) and methods I would need.",
+          "Defined clear responsibilities for each class to keep the logic modular and easy to manage.",
+          "Focused on keeping it simple (KISS) while making room for future expansion (like more items or power-ups).",
+          "Only after the plan felt solid, I began implementing each class step-by-step.",
+        ],
+      },
+    ],
+
+    learnings: [
+      "Object-oriented programming makes code more modular and easy to scale.",
+      "Even simple DOM APIs (like `getBoundingClientRect`) are powerful for collision logic.",
+      "Game loops using `setInterval` need careful pause/restart logic.",
+      "Designing small wins (like hearts and levels) makes gameplay feel rewarding.",
+      "Polish matters: a meow sound and a sad cat at Game Over can make a big difference!",
+    ],
+    wireframes: [],
+  },
+  juliaCss: {
+    slug: "julia-css-animation",
+    title: "Study on CSS Animations from a UX perspective",
+    subtitle: "Exploring Motion to Enhance User Experience",
+    location: "Berlin, Germany",
+    period: "2023",
+    description:
+      "This project delves into the intersection of CSS animations and user experience. Through a series of interactive experiments, it examines how motion can guide user attention, provide feedback, and create a more intuitive interface. The study emphasizes the importance of subtlety, performance, and accessibility in animation design.",
+
+    image:
+      "https://res.cloudinary.com/jumaber/image/upload/v1749138661/Clay_afrqha.png",
+    githubUrl: "https://github.com/jumaber/Animation",
+    liveUrl: "https://julia-css.netlify.app/",
+    hero: "/src/assets/dfriends-hero-full.png",
+    challenges: [
+      "How to utilize CSS animations to enhance user comprehension without causing distraction?",
+      "How to ensure animations are accessible to users with motion sensitivities?",
+      "How to maintain performance while implementing complex animations?",
+      "How to determine appropriate timing and easing functions for various interactions?",
+      "How to balance aesthetic appeal with functional clarity in motion design?",
+    ],
+    process: [],
+    outcomes: [],
+    learnings: [
+      "Subtle animations can significantly improve user comprehension and satisfaction.",
+      "Performance optimization is crucial; leveraging transform and opacity ensures smoother animations.",
+      "Accessibility must be considered; providing options to reduce motion caters to a wider audience.",
+      "Consistent timing and easing functions contribute to a cohesive user experience.",
+      "Iterative testing and feedback are essential in refining animation implementations.",
+    ],
+    wireframes: [],
   },
 };
 

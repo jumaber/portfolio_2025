@@ -26,8 +26,9 @@ export function Card({ slug }) {
         </div>
         <div>
           <div className="text-h3">{card.title}</div>
-          {/* <div className="subparagraph">{card.subtitle}</div> */}
-          {card.roles && (
+          <div className="subparagraph">{card.subtitle}</div>
+          
+          {/* {card.roles && (
             <div className="flex flex-wrap gap-0.5 pt-3">
               {card.roles.map((role, i) => (
                 <div key={i} className="tag blue pr-4 ">
@@ -35,17 +36,17 @@ export function Card({ slug }) {
                 </div>
               ))}
             </div>
-          )}
+          )} */}
 
-          {/* {card.tech && (
-          <div className="flex flex-wrap gap-3 pt-2">
-            {card.tech.map((item, i) => (
-              <div key={i} className="tag blue">
-                {item}
-              </div>
-            ))}
-          </div>
-        )} */}
+          {card.tech && (
+            <div className="flex flex-wrap gap-0.5 pt-3">
+              {card.tech.map((item, i) => (
+                <div key={i} className="tag blue pr-4 ">
+                  {item}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </Link>
