@@ -99,7 +99,7 @@ function MobileMenu({ handleNavClick }) {
         <button
           key={id}
           onClick={() => handleNavClick(id)}
-          className="text-h5 blue"
+          className="text-h4 blue"
         >
           {id.charAt(0).toUpperCase() + id.slice(1)}
         </button>
