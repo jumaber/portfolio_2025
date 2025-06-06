@@ -43,7 +43,7 @@ export function NavBar() {
         show ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="flex justify-between items-center py-4 ">
+      <div className="flex justify-between items-center py-4 w-full max-w-[800px] mx-auto">
         {/* Logo */}
         <Link to="/">
           <img src={logo} alt="JMB Design" className="w-8 h-8" />
