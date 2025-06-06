@@ -120,8 +120,9 @@ export function Home() {
           </section>
 
           {/* Experience */}
-          <section id="experience"></section>
-          <Experience />
+          <section id="experience">
+            <Experience />
+          </section>
 
           {/* Contact */}
           <section id="contact" className="py-4 md:py-10 lg:py-20">

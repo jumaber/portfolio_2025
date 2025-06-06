@@ -170,3 +170,13 @@ html {
   box-shadow: 10px 10px 0px 0px rgba(255, 167, 167, 0.4); 
   transform: translate(-1px, -1px);
 }
+
+
+/* Navbar anchoring */
+
+[id]::before {
+  content: '';
+  display: block;
+  height: 80px; /* same as your navbar height */
+  margin-top: -80px;
+}
