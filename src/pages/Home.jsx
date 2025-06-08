@@ -8,13 +8,15 @@ import Linkedin from "/src/assets/linkedin.svg";
 import Julia from "/src/assets/julia.png";
 import { Button } from "../components/Button";
 import { Link } from "react-router-dom";
+import { ScrollTracker } from "../components/ScrollTracker";
+
 
 export function Home() {
 
   return (
     <>
       <NavBar />
-
+      <ScrollTracker />
       <div className="h-full bg-[#FFF6F6] flex flex-col items-start px-4 md:px-8 lg:px-48 max-w-full overflow-x-hidden">
         <div className="w-full max-w-[800px] mx-auto">
           {/* Intro */}
