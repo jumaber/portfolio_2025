@@ -2,7 +2,7 @@ import { NavBar } from "../components/NavBar";
 import { Card } from "../components/home/Card";
 import { Footer } from "../components/Footer";
 import { Experience } from "../components/home/Experience";
-import { Contact } from "../components/home/contact";
+import { Contact } from "../components/home/Contact";
 
 import Github from "/src/assets/github.svg";
 import Linkedin from "/src/assets/linkedin.svg";
