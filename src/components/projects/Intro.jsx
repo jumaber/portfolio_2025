@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import LinkIcon from "/src/assets/link_pink.svg";
+import LinkIcon from "/src/assets/link.svg";
 import Github from "/src/assets/github.svg";
 import DefaultImage from "../DefaultImage";
 
@@ -27,20 +27,30 @@ export function Intro({
           </div>
 
           {/* Location & Period */}
-          <div className="flex flex-row items-center gap-3">
-            <div className="text-h5 gray">{location}</div>
-            <div className="text-h5 gray">–</div>
-            <div className="text-h5 gray">{period}</div>
-            {githubUrl && (
-              <Link to={githubUrl} target="_blank" rel="noopener noreferrer">
-                <img src={Github} alt="github icon" className="w-5 h-5" />
-              </Link>
-            )}
-            {liveUrl && (
-              <Link to={liveUrl} target="_blank" rel="noopener noreferrer">
-                <img src={LinkIcon} alt="link icon" className="w-5 h-5" />
-              </Link>
-            )}
+          <div className="flex flex-row flex-wrap justify-between items-center ">
+            <div className="flex flex-row gap-3 py-2 md:py-0 ">
+              <div className="text-h5 gray">{location}</div>
+              <div className="text-h5 gray">–</div>
+              <div className="text-h5 gray">{period}</div>
+            </div>
+            <div className="flex flex-row gap-3 py-2 md:py-0">
+              {githubUrl && (
+                <Link to={githubUrl} target="_blank" rel="noopener noreferrer">
+                  <button className="flex flex-row items-center gap-1 rounded-2xl  px-2  h-[28px] tag text-neutral-800 bg-neutral-200">
+                    Github
+                    <img src={Github} alt="github icon" className="w-4 h-4" />
+                  </button>
+                </Link>
+              )}
+              {liveUrl && (
+                <Link to={liveUrl} target="_blank" rel="noopener noreferrer">
+                  <button className="flex flex-row items-center align-middle gap-1 rounded-2xl px-2  h-[28px] tag  text-neutral-800 bg-neutral-200">
+                    Live
+                    <img src={LinkIcon} alt="link icon" className="w-4 h-4" />
+                  </button>
+                </Link>
+              )}
+            </div>
           </div>
 
           {/* Description & Image */}
