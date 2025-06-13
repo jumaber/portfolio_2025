@@ -2,14 +2,14 @@ import { Link } from "react-router-dom"
 import LinkIcon from "/src/assets/link_pink.svg";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Intro } from "../components/Intro";
-import { Challenge } from "../components/Challenge";
-import { Outcome } from "../components/Outcome";
-import { Learnings } from "../components/Learnings";
+import { Intro } from "../components/projects/Intro";
+import { Challenge } from "../components/projects/Challenge";
+import { Outcome } from "../components/projects/Outcome";
+import { Learnings } from "../components/projects/Learnings";
 import { Wireframes } from "../components/Wireframes";
 import { NavBar } from "../components/NavBar";
-import { Process } from "../components/Process";
-import { HeroImage } from "../components/HeroImage"
+import { Process } from "../components/projects/Process";
+import { HeroImage } from "../components/projects/HeroImage"
 
   export function SinglePage() {
     const { slug } = useParams();

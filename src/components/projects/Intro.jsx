@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import LinkIcon from "/src/assets/link_pink.svg";
 import Github from "/src/assets/github.svg";
-import DefaultImage from "./DefaultImage";
+import DefaultImage from "../DefaultImage";
 
 export function Intro({
   title,

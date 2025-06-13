@@ -1,7 +1,7 @@
 import { NavBar } from "../components/NavBar";
-import { Card } from "../components/Card";
+import { Card } from "../components/home/Card";
 import { Footer } from "../components/Footer";
-import { Experience } from "../components/Experience";
+import { Experience } from "../components/home/Experience";
 import { Contact } from "../components/home/contact";
 
 import Github from "/src/assets/github.svg";

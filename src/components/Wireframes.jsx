@@ -13,7 +13,7 @@ export function Wireframes({ wireframes = [] }) {
   return (
     <div className="flex flex-col items-center w-full h-full py-20 px-4 md:px-8 bg-[#333]">
         <div className="max-w-[800px]">      
-        <div className="text-h2 text-amber-200 white pb-2">Wireframes</div>
+        <div className="text-h2 text-amber-200 white pb-2 lg:pb-6">Wireframes</div>
       <div className="flex flex-wrap w-full gap-4 lg:gap-10 items-center">
         {wireframes.map((src, index) =>
           !errorIndexes.includes(index) && src ? (
