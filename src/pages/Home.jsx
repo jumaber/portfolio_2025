@@ -75,7 +75,7 @@ export function Home() {
                 <Card slug="plant-pal" />
               </div>
               <div className="md:w-1/2">
-                <Card slug="oop-game" />
+                <Card slug="happy-cat" />
               </div>
             </div>
 

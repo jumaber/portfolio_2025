@@ -14,6 +14,7 @@ export function Card({ slug }) {
 
   if (!card) return null; 
 
+  
   function handleClick() {
     if (window.gtag && card) {
       window.gtag("event", "project_click", {
