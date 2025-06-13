@@ -1,5 +1,7 @@
 // src/components/Learnings.jsx
 export function Learnings({ learnings }) {
+  if (!learnings || learnings.length === 0) return null; // Don't render if empty
+
   return (
     <div className="flex flex-col items-center w-full h-full py-20 px-4">
       <div className="max-w-[800px]">

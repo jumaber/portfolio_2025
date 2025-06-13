@@ -1,5 +1,6 @@
-// src/components/Outcome.jsx
 export function Outcome({ outcomes }) {
+  if (!outcomes || outcomes.length === 0) return null; // Don't render if empty
+
   return (
     <div className="flex flex-col items-center w-full h-full pt-20 px-4">
       <div className="max-w-[800px]">
