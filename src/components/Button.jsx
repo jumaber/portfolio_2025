@@ -11,6 +11,7 @@ export function Button({
     return (
       <a
         href={to}
+        target="blank"
         aria-label={ariaLabel}
         onClick={() => {
           if (window.gtag) {
