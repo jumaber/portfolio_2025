@@ -7,7 +7,7 @@ const experiences = [
     location: "Berlin, Germany",
     period: "Apr 2021 - Oct 2024",
     highlights: [
-      "Redesigned the Lens Configuration Page to eliminate legacy constraints and reduce maintenance risk. Aligned cross-functional stakeholders around a shared vision, delivered an optimized MVP, and improved consistency across the 6-step flow—resulting in a 2% increase in CVR.",
+      "Redesigned the Lens Configuration Page to eliminate legacy constraints and reduce maintenance risk. Despite the complexity and impact of the changes, CVR remained stable post-launch—an encouraging sign of product-market fit and a strong foundation for future optimization.",
       "Led up to 3 user research cycles per month using a mix of qualitative and quantitative methods to drive iterative design and support A/B testing. Informed product decisions for the Lens Configurator and other core journeys.",
       "Streamlined the login and registration experience by rearchitecting flows with Auth0, simplifying edge cases, and improving usability. Resulted in a 20% increase in sign-ups while lowering engineering overhead and security risks.",
       "Defined the early design direction for the Premium Private Lenses Label in close collaboration with developers, category managers, and brand teams—delivering launch-ready assets within two months and aligning digital and in-store touchpoints.",
