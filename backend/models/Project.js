@@ -13,7 +13,7 @@ const projectSchema = new mongoose.Schema({
   subtitle: String,
   location: String,
   period: String,
-  link: String,
+  liveUrl: String,
   description: String,
   introImage: String,
   image: String,
