@@ -16,6 +16,7 @@ const projectSchema = new mongoose.Schema({
   link: String,
   description: String,
   introImage: String,
+  image: String,
   hero: String,
   challenges: [String],
   process: [processSchema],
