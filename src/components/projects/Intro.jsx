@@ -36,7 +36,7 @@ export function Intro({
             <div className="flex flex-row gap-3 py-2 md:py-0">
               {githubUrl && (
                 <Link to={githubUrl} target="_blank" rel="noopener noreferrer">
-                  <button className="flex flex-row items-center gap-1 rounded-2xl  px-2  h-[28px] tag text-neutral-800 bg-neutral-200">
+                  <button className="flex flex-row items-center gap-1 rounded-2xl  px-2  h-[28px] tag text-[neutral-800] bg-neutral-200">
                     Github
                     <img src={Github} alt="github icon" className="w-4 h-4" />
                   </button>

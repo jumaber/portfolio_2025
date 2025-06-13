@@ -10,6 +10,7 @@ import { Wireframes } from "../components/Wireframes";
 import { NavBar } from "../components/NavBar";
 import { Process } from "../components/projects/Process";
 import { HeroImage } from "../components/projects/HeroImage"
+import { RelatedProjects } from "../components/projects/RelatedProjects";
 
   export function SinglePage() {
     const { slug } = useParams();
@@ -77,6 +78,7 @@ import { HeroImage } from "../components/projects/HeroImage"
 
         {/* Wireframes */}
         <Wireframes wireframes={wireframes} />
+        <RelatedProjects key={slug} currentSlug={slug} />
       </div>
     </>
   );
