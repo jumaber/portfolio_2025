@@ -54,7 +54,7 @@ import { HeroImage } from "../components/projects/HeroImage"
           subtitle={subtitle}
           location={location}
           period={period}
-          liveURL={liveUrl}
+          liveUrl={liveUrl}
           githubUrl={githubUrl}
           description={description}
           image={image}
