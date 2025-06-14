@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 export function Footer() {
   return (
     <>
-      <div className="flex flex-col-reverse md:flex-row justify-center p-4 md:px-8 lg:px-16 w-screen bg-[var(--color-cream)] ">
+      <div className="flex flex-col-reverse md:flex-row justify-center md:px-6 lg:px-16 w-full bg-[var(--color-cream)] ">
         <div className="text-h5 p-2 blue">
           © 2025 Júlia. All rights reserved.
         </div>
