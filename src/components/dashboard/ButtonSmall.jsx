@@ -10,7 +10,7 @@ export function ButtonSmall({
   const isExternal = to.startsWith("http");
 
   const baseClasses =
-    "inline-flex items-center gap-1 rounded-3xl bg-[#F5F5F5] px-2 py-1 w-fit font-semibold text-[#333] text-[13px] " +
+    "inline-flex items-center gap-1 rounded-3xl bg-[#F5F5F5] px-2 py-1 w-fit font-semibold text-[#656565] text-[13px] " +
     className;
 
   if (isExternal) {
