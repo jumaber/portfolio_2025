@@ -1,4 +1,3 @@
-import { use } from "react";
 import { Link } from "react-router-dom";
 
 export function ButtonSmall({
@@ -11,7 +10,7 @@ export function ButtonSmall({
   const isExternal = to.startsWith("http");
 
   const baseClasses =
-    "inline-flex items-center gap-1 rounded-3xl bg-neutral-200 px-2 py-1 w-fit font-semibold text-[#333]  " +
+    "inline-flex items-center gap-1 rounded-3xl bg-[#F5F5F5] px-2 py-1 w-fit font-semibold text-[#333] text-[13px] " +
     className;
 
   if (isExternal) {
@@ -37,7 +36,6 @@ export function ButtonSmall({
   );
 }
 
-
 // How to use
 
 // Internal Use
@@ -48,4 +46,3 @@ export function ButtonSmall({
 
 // No Icon
 // <ButtonSmall text="Edit" to="/edit" image={null} />
-
