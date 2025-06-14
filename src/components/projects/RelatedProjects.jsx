@@ -5,7 +5,7 @@ export function RelatedProjects({ currentSlug }) {
   const [slugs, setSlugs] = useState([]);
 
   useEffect(() => {
-    fetch("https://portfolio-2025-wyed.onrender.com/api/cards")
+    fetch("https://portfolio-2025-wyed.onrender.com/api/projects")
       .then((res) => res.json())
       .then((data) => {
         const featured = data.filter(

@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import { NavBar } from "../components/NavBar";
-import { Card } from "../components/home/Card";
 import { Footer } from "../components/Footer";
 import { Experience } from "../components/home/Experience";
 import { Contact } from "../components/home/Contact";
@@ -10,20 +8,10 @@ import Linkedin from "/src/assets/linkedin.svg";
 import Julia from "/src/assets/julia.png";
 import { Link } from "react-router-dom";
 import { ScrollTracker } from "../components/ScrollTracker";
+import { CardGrid } from "../components/home/CardGrid";
 
 
 export function Home() {
-
-  const [featuredProjects, setFeaturedProjects] = useState([]);
-
-  useEffect(() => {
-    fetch("https://portfolio-2025-wyed.onrender.com/api/projects")
-      .then((res) => res.json())
-      .then((data) => {
-        const featured = Object.values(data).filter((p) => p.featured);
-        setFeaturedProjects(featured);
-      });
-  }, []); 
 
   return (
     <>
@@ -61,14 +49,7 @@ export function Home() {
           </section>
 
           {/* Featured Projects */}
-          <section
-            id="work"
-            className="grid grid-cols-1 md:grid-cols-2 gap-5 py-4 md:py-10 lg:py-20"
-          >
-            {featuredProjects.map((proj) =>
-              proj.slug ? <Card key={proj.slug} slug={proj.slug} /> : null
-            )}
-          </section>
+          <CardGrid />
 
           {/* About Me */}
           <section
