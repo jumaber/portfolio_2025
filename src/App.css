@@ -180,3 +180,18 @@ html {
   height: 80px; /* same as your navbar height */
   margin-top: -80px;
 }
+
+
+/* Dashboard */
+
+.white-box {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem; /* 16px */
+  flex: 1 1 0%;
+  align-self: stretch;
+  border-radius: 0.5rem; /* 8px */
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); /* Tailwind's md shadow */
+  border: 1px solid #e5e7eb; /* Tailwind's neutral-200 */
+}
