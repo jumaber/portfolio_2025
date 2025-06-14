@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
-import cards from "./data/cardsData.js";
-import experience from "./data/experienceData.js";
+// import cards from "./data/cardsData.js";
+// import experience from "./data/experienceData.js";
 import rawProjects from "./data/projectsData.js";
 
 dotenv.config({ path: "./.env" });
@@ -23,13 +23,13 @@ async function seed() {
     const db = client.db("portfolio");
 
     // Optional: Clear collections
-    await db.collection("cards").deleteMany({});
-    await db.collection("experience").deleteMany({});
+    // await db.collection("cards").deleteMany({});
+    // await db.collection("experience").deleteMany({});
     await db.collection("projects").deleteMany({});
 
     // Insert updated data
-    await db.collection("cards").insertMany(cards);
-    await db.collection("experience").insertMany(experience);
+    // await db.collection("cards").insertMany(cards);
+    // await db.collection("experience").insertMany(experience);
     await db.collection("projects").insertMany(projects);
 
     console.log("✅ Data seeded successfully!");

@@ -393,7 +393,7 @@ export const projects = {
     tech: ["JavaScript", "CSS", "HTML"],
     cardImage:
       "https://res.cloudinary.com/jumaber/image/upload/v1749135273/Clay_gbaxzm.png",
-    featured: true,
+    featured: false,
     title: "JavaScript Arcade Game",
     subtitle: "Happy Cat",
     location: "Berlin, Germany",
@@ -664,4 +664,4 @@ export const projects = {
   },
 };
 
-export default projects;
+export default projects;  
