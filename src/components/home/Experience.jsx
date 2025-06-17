@@ -65,7 +65,7 @@ export function Experience() {
                 className={`text-h5 text-left w-full px-4 py-4 lg:py-8 transition-all duration-300 ${
                   activeCompany === company
                     ? "bg-[#e5dcf9] text-[#0C0093] font-semibold"
-                    : "text-[#656565] hover:text-black"
+                    : "text-[#656565] hover:bg-[#f0eaff] hover:text-[#0C0093]"
                 }`}
                 onClick={() => setActiveCompany(company)}
               >
