@@ -30,7 +30,7 @@ export function Login() {
         onSubmit={handleLogin}
         className="flex flex-col w-full max-w-sm bg-white shadow-md p-6 rounded-lg"
       >
-        <h1 className="text-h2 mb-2">Oh hey 👋</h1>
+        <h1 className="text-h2 mb-2">Hi there 👋</h1>
         <p className="text-h4 blue mb-4">This page is for me, myself, and I.</p>
         <p className="text-[14px] text-gray mb-6">
           If you’re not me, kindly hit the back button and pretend you never saw
@@ -39,7 +39,7 @@ export function Login() {
         <label className="text-left text-sm font-semibold mb-1">Email</label>
         <input
           type="email"
-          placeholder="Enter your email"
+          placeholder="Enter my email"
           className="p-3 border rounded bg-white mb-4"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -49,7 +49,7 @@ export function Login() {
         <label className="text-left text-sm font-semibold mb-1">Password</label>
         <input
           type="password"
-          placeholder="Enter your password"
+          placeholder="Enter my password"
           className="p-3 border rounded bg-white mb-4"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
