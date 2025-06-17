@@ -1,10 +1,22 @@
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 import { ButtonSmall } from "../components/dashboard/ButtonSmall";
 import { GAReport } from "../components/dashboard/GAReport";
 import { ListItem } from "../components/dashboard/ListItem";
-import { useEffect, useState } from "react";
 
 export function Dashboard({ user = "Júlia" }) {
+  const navigate = useNavigate();
+
   const [projects, setProjects] = useState([]);
+
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => navigate("/login"))
+      .catch((error) => console.error("Logout failed:", error));
+  };
 
   useEffect(() => {
     fetch("https://portfolio-2025-wyed.onrender.com/api/projects/")
@@ -17,7 +29,9 @@ export function Dashboard({ user = "Júlia" }) {
     <div className="bg-[#f5f5f5] flex flex-col h-screen w-screen items-start p-4 md:p-8 lg:p-16 overflow-x-hidden">
       <div className="flex flex-row w-full justify-between">
         <div className="dashboard-title">Welcome back, {user}! </div>
-        <div className="text-h5 blue">Log out</div>
+        <div className="text-h5 blue" onClick={handleLogout}>
+          Log out
+        </div>
       </div>
       <div className="flex flex-col lg:flex-row w-full lg:gap-18">
         <div className="flex flex-col lg:w-3/5 gap-10">
