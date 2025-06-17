@@ -6,7 +6,7 @@ import { Intro } from "../components/projects/Intro";
 import { Challenge } from "../components/projects/Challenge";
 import { Outcome } from "../components/projects/Outcome";
 import { Learnings } from "../components/projects/Learnings";
-import { Wireframes } from "../components/Wireframes";
+import { Wireframes } from "../components/projects/Wireframes";
 import { NavBar } from "../components/NavBar";
 import { Process } from "../components/projects/Process";
 import { HeroImage } from "../components/projects/HeroImage"

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import DefaultImage from "./DefaultImage";
+import DefaultImage from "../DefaultImage";
 
 export function Wireframes({ wireframes = [] }) {
   if (!wireframes.length) return null;
