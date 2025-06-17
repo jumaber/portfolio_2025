@@ -25,22 +25,21 @@ function App() {
     return () => unsubscribe();
   }, []);
 
+  const name = user.email === "hi@juliamaribernaus.com" ? "Júlia" : "Stranger";
+
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/project/:slug" element={<SinglePage />} />
       <Route
         path="/project/:slug/edit"
-        element={
-          user ? <EditProject user={user.email} /> : <Navigate to="/login" />
-        }
+        element={user ? <EditProject user={name} /> : <Navigate to="/login" />}
       />
       <Route path="/imprint" element={<ImprintPage />} />
       <Route
         path="/dashboard"
-        element={
-          user ? <Dashboard user={user.email} /> : <Navigate to="/login" />
-        }
+        element={user ? <Dashboard user={name} /> : <Navigate to="/login" />}
       />
       <Route path="/login" element={<Login />} />
       <Route path="/*" element={<PageNotFound />} />

@@ -7,7 +7,7 @@ const firebaseConfig = {
   projectId: "ju-portfolio-2025",
   storageBucket: "ju-portfolio-2025.appspot.com",
   messagingSenderId: "511071297374",
-  appId: "1:511071297374:web:YOUR_APP_ID", // fill this in if needed
+  appId: "1:511071297374:web:i67JburFKwRSWgKaXpraD9DWioD3",
 };
 
 const app = initializeApp(firebaseConfig);

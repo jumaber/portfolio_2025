@@ -8,6 +8,7 @@ import { GAReport } from "../components/dashboard/GAReport";
 import { ListItem } from "../components/dashboard/ListItem";
 
 export function Dashboard({ user = "Júlia" }) {
+
   const navigate = useNavigate();
 
   const [projects, setProjects] = useState([]);
