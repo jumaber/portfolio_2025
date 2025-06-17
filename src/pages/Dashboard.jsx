@@ -1,8 +1,6 @@
-import { ButtonDrag } from "../components/dashboard/ButtonDrag";
 import { ButtonSmall } from "../components/dashboard/ButtonSmall";
 import { GAReport } from "../components/dashboard/GAReport";
 import { ListItem } from "../components/dashboard/ListItem";
-import { Switch } from "../components/dashboard/Switch";
 import { useEffect, useState } from "react";
 
 export function Dashboard({ user = "Júlia" }) {
@@ -61,9 +59,18 @@ export function Dashboard({ user = "Júlia" }) {
                 className="bg-[#FFA7A7] text-white"
               />
             </div>
-            <div className="py-4">
-              <div>item 1</div>
-            </div>
+            {projects.map((project, index) => (
+              <div
+                key={project.slug}
+                className={`py-2 ${
+                  index !== projects.length - 1
+                    ? "border-b border-gray-200"
+                    : ""
+                }`}
+              >
+                <ListItem title={project.cardTitle} slug={project.slug} />
+              </div>
+            ))}
           </div>
 
           {/* Projects */}
@@ -97,14 +104,14 @@ export function Dashboard({ user = "Júlia" }) {
             <div className="white-box">
               <div className="flex flex-row justify-between items-center pb-4">
                 <h2 className="box-title">📊 Google Analytics</h2>
-                <ButtonSmall />
+                <ButtonSmall className={"bg-[#F5F5F5] text-[#656565]"} />
               </div>
               <GAReport />
             </div>
             <div className="white-box">
               <div className="flex flex-row justify-between items-center">
                 <h2 className="box-title">🔥 Hotjar</h2>
-                <ButtonSmall />
+                <ButtonSmall className={"bg-[#F5F5F5] text-[#656565]"} />
               </div>
             </div>
           </div>

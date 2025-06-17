@@ -213,3 +213,24 @@ font-style: normal;
 font-weight: 700;
 line-height: normal;
 }
+
+
+/* Edit Project Pages */
+
+.back-button{
+color: var(--medium-grey, #656565);
+font-family: 'Inter', sans-serif;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.project-title{
+  color: var(--blue, #0C0093);
+font-family: Inter;
+font-size: 32px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
