@@ -10,9 +10,7 @@ import { Link } from "react-router-dom";
 import { ScrollTracker } from "../components/ScrollTracker";
 import { CardGrid } from "../components/home/CardGrid";
 
-
 export function Home() {
-
   return (
     <>
       <NavBar />
@@ -35,16 +33,21 @@ export function Home() {
               user insights into thoughtful, feasible solutions that feel good
               to use—and realistic to build.
             </div>
-            <div className="flex flex-row w-full items-start gap-4 py-12">
-              <Link to="https://github.com/jumaber/" target="_blank">
-                <img src={Github} alt="GitHub icon" className="w-6 h-6" />
-              </Link>
-              <Link
-                to="https://www.linkedin.com/in/juliamaribernaus/"
+            <div className="flex flex-row w-full items-start gap-4 pt-8 pb-12">
+              <a
+                href="https://github.com/jumaber"
                 target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={Github} alt="GitHub icon" className="w-6 h-6" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/juliamaribernaus"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <img src={Linkedin} alt="LinkedIn icon" className="w-6 h-6" />
-              </Link>
+              </a>
             </div>
           </section>
 

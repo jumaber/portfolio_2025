@@ -30,7 +30,11 @@ export function Dashboard({ user = "Júlia" }) {
     <div className="bg-[#f5f5f5] flex flex-col h-screen w-screen items-start p-4 md:p-8 lg:p-16 overflow-x-hidden">
       <div className="flex flex-row w-full justify-between">
         <div className="dashboard-title">Welcome back, {user}! </div>
-        <div className="text-h5 blue" onClick={handleLogout}>
+        <div
+          className="text-h5 blue hover:text-h3 cursor-pointer
+"
+          onClick={handleLogout}
+        >
           Log out
         </div>
       </div>

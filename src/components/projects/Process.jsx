@@ -21,7 +21,7 @@ export function Process({ process }) {
                     className={`text-h5 text-left w-full px-4 py-4 lg:py-8 transition-all duration-300 ${
                       activePhase === phase
                         ? "bg-[#e5dcf9] text-[#0C0093] font-semibold"
-                        : "text-[#333] hover:bg-[#f0eaff] hover:text-[#0C0093]"
+                        : "text-[#333] hover:bg-[#f0eaff] hover:text-[#0C0093] cursor-pointer"
                     }`}
                     onClick={() => setActivePhase(phase)}
                   >

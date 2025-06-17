@@ -83,7 +83,7 @@ function DesktopMenu({ handleNavClick }) {
         <button
           key={id}
           onClick={() => handleNavClick(id)}
-          className="text-h5 blue"
+          className="text-h5 blue cursor-pointer"
         >
           {id.charAt(0).toUpperCase() + id.slice(1)}
         </button>
@@ -99,7 +99,7 @@ function MobileMenu({ handleNavClick }) {
         <button
           key={id}
           onClick={() => handleNavClick(id)}
-          className="text-h2 blue"
+          className="text-h2 blue cursor-pointer"
         >
           {id.charAt(0).toUpperCase() + id.slice(1)}
         </button>

@@ -31,7 +31,7 @@ export function Card({ slug }) {
   }
 
   return (
-    <Link to={`/project/${card.slug}`} onClick={handleClick}>
+    <Link to={`/project/${card.slug}`} onClick={handleClick} className="cursor-pointer">
       <div className="group flex flex-col h-full bg-white p-4 rounded-sm shadow-soft transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
         <div className="overflow-hidden rounded-sm">
           <img
