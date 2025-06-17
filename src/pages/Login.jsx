@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 export function Login() {
@@ -34,7 +34,7 @@ export function Login() {
         <p className="text-h4 blue mb-4">This page is for me, myself, and I.</p>
         <p className="text-[14px] text-gray mb-6">
           If you’re not me, kindly hit the back button and pretend you never saw
-          this.
+          this and <Link to="/" className="font-bold">go back to admire my portfolio. 😉</Link>
         </p>
         <label className="text-left text-sm font-semibold mb-1">Email</label>
         <input
