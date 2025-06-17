@@ -14,7 +14,7 @@ export function Login() {
     e.preventDefault();
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
-      if (res.user.uid === "KrsDPbHcY6WTa3k7XRl6hLjCQ1G3") {
+      if (res.user.uid === "i67JburFKwRSWgKaXpraD9DWioD3") {
         navigate("/dashboard");
       } else {
         setError("Nice try. You're not me.");
@@ -34,7 +34,10 @@ export function Login() {
         <p className="text-h4 blue mb-4">This page is for me, myself, and I.</p>
         <p className="text-[14px] text-gray mb-6">
           If you’re not me, kindly hit the back button and pretend you never saw
-          this and <Link to="/" className="font-bold">go back to admire my portfolio. 😉</Link>
+          this and{" "}
+          <Link to="/" className="font-bold">
+            go back to admire my portfolio. 😉
+          </Link>
         </p>
         <label className="text-left text-sm font-semibold mb-1">Email</label>
         <input
@@ -58,7 +61,7 @@ export function Login() {
 
         <button
           type="submit"
-          className="bg-[#0C0093] text-white p-3 rounded hover:opacity-90"
+          className="bg-[#0C0093] text-white text-h5 px-4 py-3 rounded-sm transition-all duration-200 ease-in-out hover:shadow-[8px_8px_0_0_var(--color-pink)] hover:translate-x-[-2px] hover:translate-y-[-2px]"
         >
           Prove you're me
         </button>
@@ -66,7 +69,6 @@ export function Login() {
         {error && (
           <div className="text-red-600 mt-4 text-sm italic">{error}</div>
         )}
-
       </form>
     </div>
   );

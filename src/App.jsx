@@ -18,7 +18,7 @@ function App() {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-      if (firebaseUser?.uid === "KrsDPbHcY6WTa3k7XRl6hLjCQ1G3") {
+      if (firebaseUser?.uid === "i67JburFKwRSWgKaXpraD9DWioD3") {
         setUser(firebaseUser);
       } else {
         setUser(null);
