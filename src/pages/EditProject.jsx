@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import { ButtonSmall } from "../components/dashboard/ButtonSmall";
+import { EditIntro } from "../components/edit/EditIntro";
 
-export function EditProject(
-  projectName="Project Name",
-) {
+
+export function EditProject() {
 
   return (
     <div className="bg-[#f5f5f5] flex flex-col h-screen w-screen items-start p-4 md:p-8 lg:p-16 overflow-x-hidden">
       {/* Header*/}
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full pb-10">
         <div className="flex flex-row w-full justify-between items-center">
           <Link to="/dashboard">
             <div className="back-button">← Back to Dashboard</div>
@@ -28,9 +28,17 @@ export function EditProject(
       </div>
 
       {/* Content */}
-      <div className="flex flex-row w-full justify-between">
-        <div className="flex flex-row w-full">Col Left</div>
-        <div>Col Right</div>
+      <div className="flex flex-row w-full justify-between gap-10">
+        <div className="flex flex-row w-2/3">
+          <div className="white-box">
+            <div className="text-h3 blue pb-4">Content</div>
+           <EditIntro />
+          </div>
+        </div>
+        <div className="white-box">
+          <div className="text-h3 blue">Components</div>
+          <div>Project Components</div>
+        </div>
       </div>
     </div>
   );
