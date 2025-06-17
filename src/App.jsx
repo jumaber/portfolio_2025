@@ -14,6 +14,8 @@ import { Login } from "./pages/Login"; // ✅ Add your login page import
 function App() {
   const [user, setUser] = useState(null);
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
       if (firebaseUser?.uid === "KrsDPbHcY6WTa3k7XRl6hLjCQ1G3") {
@@ -21,11 +23,13 @@ function App() {
       } else {
         setUser(null);
       }
+      setLoading(false);
     });
     return () => unsubscribe();
   }, []);
 
-  const name = user.email === "hi@juliamaribernaus.com" ? "Júlia" : "Stranger";
+  const name = user?.email === "hi@juliamaribernaus.com" ? "Júlia" : "Stranger";
+  if (loading) return <div className="p-4">Loading your magic...</div>;
 
 
   return (
