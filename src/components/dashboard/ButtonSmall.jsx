@@ -6,6 +6,7 @@ export function ButtonSmall({
   ariaLabel = "Visit link",
   image = "/src/assets/link.svg",
   className = "",
+  onClick = null,
 }) {
   const isExternal = to.startsWith("http");
 
@@ -29,10 +30,15 @@ export function ButtonSmall({
   }
 
   return (
-    <Link to={to} aria-label={ariaLabel} className={baseClasses}>
+    <button
+      type="button"
+      onClick={onClick}
+      className={baseClasses}
+      aria-label={ariaLabel}
+    >
       <span>{text}</span>
       {image && <img src={image} alt="" />}
-    </Link>
+    </button>
   );
 }
 

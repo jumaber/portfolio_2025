@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ButtonSmall } from "../components/dashboard/ButtonSmall";
 import { EditIntro } from "../components/edit/EditIntro";
@@ -7,7 +7,9 @@ import { EditIntro } from "../components/edit/EditIntro";
 export function EditProject() {
   const { slug } = useParams();
   const [project, setProject] = useState(null);
+  const editorRef = useRef(null);
 
+  
   // Fetch the project from backend
   useEffect(() => {
     fetch(`https://portfolio-2025-wyed.onrender.com/api/projects/${slug}`)
@@ -16,11 +18,45 @@ export function EditProject() {
       .catch((err) => console.error("Failed to fetch project:", err));
   }, [slug]);
 
-  function handleChange(updatedIntro) {
+  function handleIntroChange(updatedIntro) {
     setProject((prev) => ({ ...prev, ...updatedIntro }));
   }
 
   if (!project) return <div className="p-10">Loading...</div>;
+
+
+  // Save Project
+  async function handleSave() {
+    try {
+      const { _id, __v, ...safeProject } = project;
+
+      const res = await fetch(
+        `https://portfolio-2025-wyed.onrender.com/api/projects/${slug}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(safeProject),
+        }
+      );
+
+      const data = await res.json();
+
+      if (res.ok) {
+        console.log("✅ Project saved!", data);
+        alert("Saved!");
+      } else {
+        console.error("❌ Save failed:", data.error);
+        alert("Error: " + data.error);
+      }
+    } catch (err) {
+      console.error("❌ Save error:", err);
+      alert("An error occurred while saving.");
+    }
+  }
+  
+  
   return (
     <div className="bg-[#f5f5f5] flex flex-col h-screen w-screen items-start p-4 md:p-8 lg:p-16 overflow-x-hidden">
       {/* Header*/}
@@ -30,16 +66,23 @@ export function EditProject() {
             <div className="back-button">← Back to Dashboard</div>
           </Link>
           <div className="flex flex-row gap-2">
-            <ButtonSmall text={"Visit"} className={"bg-[#0C0093] text-white"} />
+            <ButtonSmall
+              text={"Visit"}
+              to={`/project/${project.slug}`}
+              className={"bg-[#0C0093] text-white"}
+            />
             <ButtonSmall
               text={"Save"}
               className={"bg-[#FFA7A7] text-white"}
               image={null}
+              onClick={handleSave}
             />
           </div>
         </div>
         <div>
-          <div className="project-title pt-6">Project Name</div>
+          <div className="project-title pt-6">
+            {project.cardTitle || "Untitled Project"}
+          </div>
         </div>
       </div>
 
@@ -57,13 +100,15 @@ export function EditProject() {
                 liveUrl: project.liveUrl,
                 githubUrl: project.githubUrl,
                 description: project.description,
+                image: project.image,
               }}
-              onChange={handleChange}
+              onChange={handleIntroChange}
+              editorRef={editorRef}
             />
           </div>
         </div>
         <div className="white-box">
-          <div className="text-h3 blue w-full lg:w-1/3">Components</div>
+          <div className="text-h3 blue w-full lg:w-1/3">Card</div>
           <div>Project Components</div>
         </div>
       </div>
