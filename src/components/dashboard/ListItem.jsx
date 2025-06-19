@@ -10,14 +10,11 @@ export function ListItem({
  }) {
 
   return (
-    <div className="flex flex-col md:flex-row items-start gap-4 justify-between bg-white p-2 rounded-md w-full">
+    <div className="flex flex-col md:flex-row items-start gap-4 justify-between bg-white p-2 rounded-md w-full hover:bg-[#e8eaf1] transition-colors duration-200">
       {/* Left: Image + Title */}
       <div className="flex items-center gap-4">
         {/* Placeholder Image */}
-        <img
-          src={image}
-          className="w-12 h-12 border-1 border-neutral-200 rounded-lg"
-        />
+        <img src={image} className="w-16 h-auto rounded-lg" />
         {/* Title */}
         <div className="font-semibold text-[16px] text-[#333]">{title}</div>
       </div>

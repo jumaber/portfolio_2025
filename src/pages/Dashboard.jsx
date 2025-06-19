@@ -8,7 +8,6 @@ import { GAReport } from "../components/dashboard/GAReport";
 import { ListItem } from "../components/dashboard/ListItem";
 
 export function Dashboard({ user = "Júlia" }) {
-
   const navigate = useNavigate();
 
   const [projects, setProjects] = useState([]);
@@ -25,6 +24,13 @@ export function Dashboard({ user = "Júlia" }) {
       .then((data) => setProjects(data))
       .catch((err) => console.error("Failed to fetch projects:", err));
   }, []);
+
+  const totalProjects = projects.length;
+  const featuredProjects = projects.filter(
+    (project) => project.featured
+  ).length;
+  // const totalPages = pages.length;
+
 
   return (
     <div className="bg-[#f5f5f5] flex flex-col h-screen w-screen items-start p-4 md:p-8 lg:p-16 overflow-x-hidden">
@@ -44,7 +50,15 @@ export function Dashboard({ user = "Júlia" }) {
           <div className="flex flex-row justify-between gap-4 pt-10">
             <div className="white-box">
               <h2 className="text-[var(--dark-grey,#333)] text-center font-bold text-[24px] leading-none pb-2">
-                9
+                2 {/* {totalPages} */}
+              </h2>
+              <p className="text-[var(--dark-grey,#333)] text-center font-normal text-[14px] leading-none font-sans">
+                Pages
+              </p>
+            </div>
+            <div className="white-box ">
+              <h2 className="text-[var(--dark-grey,#333)] text-center font-bold text-[24px] leading-none pb-2">
+                {totalProjects}
               </h2>
               <p className="text-[var(--dark-grey,#333)] text-center font-normal text-[14px] leading-none font-sans">
                 Projects
@@ -52,18 +66,10 @@ export function Dashboard({ user = "Júlia" }) {
             </div>
             <div className="white-box ">
               <h2 className="text-[var(--dark-grey,#333)] text-center font-bold text-[24px] leading-none pb-2">
-                9
+                {featuredProjects}
               </h2>
               <p className="text-[var(--dark-grey,#333)] text-center font-normal text-[14px] leading-none font-sans">
-                Projects
-              </p>
-            </div>
-            <div className="white-box ">
-              <h2 className="text-[var(--dark-grey,#333)] text-center font-bold text-[24px] leading-none pb-2">
-                9
-              </h2>
-              <p className="text-[var(--dark-grey,#333)] text-center font-normal text-[14px] leading-none font-sans">
-                Projects
+                Featured Projects
               </p>
             </div>
           </div>
@@ -87,7 +93,11 @@ export function Dashboard({ user = "Júlia" }) {
                     : ""
                 }`}
               >
-                <ListItem title={project.cardTitle} slug={project.slug} />
+                <ListItem
+                  image={project.image}
+                  title={project.cardTitle}
+                  slug={project.slug}
+                />
               </div>
             ))}
           </div>
