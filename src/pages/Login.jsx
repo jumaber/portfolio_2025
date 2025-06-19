@@ -33,7 +33,7 @@ export function Login() {
         <h1 className="text-h2 mb-2">Hi there 👋</h1>
         <p className="text-h4 blue mb-4">This page is for me, myself, and I.</p>
         <p className="text-[14px] text-gray mb-6">
-          If you’re not me, kindly hit the back button and pretend you never saw
+          If you’re not me, just kindly hit the back button, pretend you never saw
           this and{" "}
           <Link to="/" className="font-bold">
             go back to admire my portfolio. 😉
