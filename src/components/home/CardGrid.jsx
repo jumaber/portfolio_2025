@@ -23,18 +23,12 @@ export function CardGrid() {
         setFeaturedProjects(featured);
       })
       .catch((err) => console.error("Failed to fetch projects:", err));
-      setError("Loading work projects is currently troubleshooting. Please check back soon or try refreshing the page. Thank you.");
   }, []);
 
   const rows = chunkArray(featuredProjects, 2);
 
   return (
     <section id="work" className="flex flex-col gap-5">
-      {error && (
-        <div className="white-box text-[#0C0093] font-semibold py-4">
-          {error}
-        </div>
-      )}
       {rows.map((row, rowIndex) => (
         <div key={rowIndex} className="flex flex-col md:flex-row gap-5">
           {row.map((proj) => (
