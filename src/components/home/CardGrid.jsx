@@ -30,7 +30,11 @@ export function CardGrid() {
 
   return (
     <section id="work" className="flex flex-col gap-5">
-      {error && <div className="white-box text-red-500 font-semibold py-4">{error}</div>}
+      {error && (
+        <div className="white-box text-[#0C0093] font-semibold py-4">
+          {error}
+        </div>
+      )}
       {rows.map((row, rowIndex) => (
         <div key={rowIndex} className="flex flex-col md:flex-row gap-5">
           {row.map((proj) => (
