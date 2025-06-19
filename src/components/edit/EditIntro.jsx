@@ -10,6 +10,7 @@ export function EditIntro({ data, onChange }) {
     liveUrl: "",
     githubUrl: "",
     description: "",
+    
   });
 
   useEffect(() => {
@@ -22,6 +23,8 @@ export function EditIntro({ data, onChange }) {
     setForm(updatedForm);
     onChange(updatedForm);
   }
+
+
 
   return (
     <>

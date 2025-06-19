@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import DefaultImage from "../DefaultImage";
+import DefaultImage from "../other/DefaultImage";
 
 export function Card({ slug }) {
   const [card, setCard] = useState(null);

@@ -1,6 +1,6 @@
 import Github from "/src/assets/github.svg";
 import Linkedin from "/src/assets/linkedin.svg";
-import { Button } from "/src/components/Button"
+import { Button } from "../other/Button"
 
 export function Contact() {
   return (

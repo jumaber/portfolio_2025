@@ -7,7 +7,7 @@ import { Challenge } from "../components/projects/Challenge";
 import { Outcome } from "../components/projects/Outcome";
 import { Learnings } from "../components/projects/Learnings";
 import { Wireframes } from "../components/projects/Wireframes";
-import { NavBar } from "../components/NavBar";
+import { NavBar } from "../components/other/NavBar";
 import { Process } from "../components/projects/Process";
 import { HeroImage } from "../components/projects/HeroImage"
 import { RelatedProjects } from "../components/projects/RelatedProjects";
@@ -44,6 +44,8 @@ import { RelatedProjects } from "../components/projects/RelatedProjects";
       learnings,
       wireframes,
     } = project;
+    console.log({ title, subtitle, description, image, githubUrl });
+
   
   return (
     <>

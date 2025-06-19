@@ -1,5 +1,5 @@
-import { NavBar } from "../components/NavBar";
-import { Footer } from "../components/Footer";
+import { NavBar } from "../components/other/NavBar";
+import { Footer } from "../components/other/Footer";
 import { Experience } from "../components/home/Experience";
 import { Contact } from "../components/home/Contact";
 
@@ -7,7 +7,7 @@ import Github from "/src/assets/github.svg";
 import Linkedin from "/src/assets/linkedin.svg";
 import Julia from "/src/assets/julia.png";
 import { Link } from "react-router-dom";
-import { ScrollTracker } from "../components/ScrollTracker";
+import { ScrollTracker } from "../components/other/ScrollTracker";
 import { CardGrid } from "../components/home/CardGrid";
 
 export function Home() {

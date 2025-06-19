@@ -1,5 +1,5 @@
 import { useState } from "react";
-import DefaultImage from "../DefaultImage";
+import DefaultImage from "../other/DefaultImage";
 
 export function HeroImage({ hero }) {
   const [heroError, setHeroError] = useState(false);
