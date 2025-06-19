@@ -34,11 +34,10 @@ export function Dashboard({ user = "Júlia" }) {
 
   return (
     <div className="bg-[#f5f5f5] flex flex-col h-screen w-screen items-start p-4 md:p-8 lg:p-16 overflow-x-hidden">
-      <div className="flex flex-row w-full justify-between">
+      <div className="flex flex-col-reverse md:flex-row w-full justify-between">
         <div className="dashboard-title">Welcome back, {user}! </div>
         <div
-          className="text-h5 blue hover:text-h3 cursor-pointer
-"
+          className="flex flex-row justify-end text-h5 blue hover:text-h3 cursor-pointer"
           onClick={handleLogout}
         >
           Log out
@@ -121,7 +120,11 @@ export function Dashboard({ user = "Júlia" }) {
                     : ""
                 }`}
               >
-                <ListItem title={project.cardTitle} slug={project.slug} />
+                <ListItem
+                  image={project.image}
+                  title={project.cardTitle}
+                  slug={project.slug}
+                />{" "}
               </div>
             ))}
           </div>
