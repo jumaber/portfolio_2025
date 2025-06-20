@@ -80,6 +80,8 @@ import { RelatedProjects } from "../components/projects/RelatedProjects";
 
         {/* Wireframes */}
         <Wireframes wireframes={wireframes} />
+
+        {/* Related Projects */}
         <RelatedProjects key={slug} currentSlug={slug} />
       </div>
     </>

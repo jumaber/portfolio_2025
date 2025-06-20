@@ -4,6 +4,9 @@ export function Process({ process }) {
   const [activePhase, setActivePhase] = useState(process[0]?.phase);
   const activeContent = process.find((p) => p.phase === activePhase);
 
+  if (!process || process.length === 0) return null; // Don't render if empty
+
+
   const showTabs = process.length > 1;
 
   return (
