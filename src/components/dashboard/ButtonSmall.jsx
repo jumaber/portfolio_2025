@@ -7,7 +7,9 @@ export function ButtonSmall({
   image = "/src/assets/link.svg",
   className = "",
   onClick = null,
+  newTab = false,
 }) {
+  // External link
   const isExternal = to.startsWith("http");
 
   const baseClasses =
@@ -29,26 +31,32 @@ export function ButtonSmall({
     );
   }
 
+  // Internal link = open in same tab or new tab
+  if (newTab) {
+    return (
+      <a
+        href={to}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={ariaLabel}
+        className={baseClasses}
+      >
+        <span>{text}</span>
+        {image && <img src={image} alt="" />}
+      </a>
+    );
+  }
+
+  // Use Link for internal navigation
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={baseClasses}
+    <Link
+      to={to}
       aria-label={ariaLabel}
+      className={baseClasses}
+      onClick={onClick}
     >
       <span>{text}</span>
       {image && <img src={image} alt="" />}
-    </button>
+    </Link>
   );
 }
-
-// How to use
-
-// Internal Use
-// <ButtonSmall text="Edit Project" to="/project/edit" />
-
-// External Use
-// <ButtonSmall text="GitHub" to="https://github.com/jumaber" />
-
-// No Icon
-// <ButtonSmall text="Edit" to="/edit" image={null} />

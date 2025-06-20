@@ -5,8 +5,7 @@ import { ButtonSmall } from "./ButtonSmall";
 export function ListItem({ 
   title = "Lens Configuration",
   image = "/src/assets/image-1.png",
-  slug = "lens-configuration" 
-
+  slug = "lens-configuration",
  }) {
 
   return (
@@ -23,11 +22,13 @@ export function ListItem({
       <div className="flex items-center gap-4">
         <ButtonDrag />
         <Switch />
-        <ButtonSmall text="Edit" image={null} to={`/project/${slug}/edit`} />
+        <ButtonSmall text="Edit" image={null} to={`/project/${slug}/edit`} className="bg-[#f5f5f5]" />
         <ButtonSmall
           text="Visit"
           image="/src/assets/link.svg"
           to={`/project/${slug}`}
+          className="bg-[#f5f5f5]"
+          newTab
         />
       </div>
     </div>
