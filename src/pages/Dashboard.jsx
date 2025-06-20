@@ -1,6 +1,6 @@
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import { ButtonSmall } from "../components/dashboard/ButtonSmall";
@@ -35,7 +35,12 @@ export function Dashboard({ user = "Júlia" }) {
   return (
     <div className="bg-[#f5f5f5] flex flex-col h-screen w-screen items-start p-4 md:p-8 lg:p-16 overflow-x-hidden">
       <div className="flex flex-col-reverse md:flex-row w-full justify-between">
-        <div className="dashboard-title">Welcome back, {user}! </div>
+        <div className="flex flex-row gap-4 items-center">
+          <Link to="/">
+            <div className="dashboard-title">🏠</div>
+          </Link>
+          <div className="dashboard-title">Welcome back, Júlia! </div>
+        </div>
         <div
           className="flex flex-row justify-end text-h5 blue hover:text-h3 cursor-pointer"
           onClick={handleLogout}

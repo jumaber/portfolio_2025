@@ -32,7 +32,6 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  const name = user?.email === "hi@juliamaribernaus.com" ? "Júlia" : "Stranger";
   if (loading) return <div className="p-4">Loading...</div>;
 
 

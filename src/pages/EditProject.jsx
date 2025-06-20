@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ButtonSmall } from "../components/dashboard/ButtonSmall";
 import { EditIntro } from "../components/edit/EditIntro";
+import { EditHero } from "../components/edit/EditHero";
 
 
 export function EditProject() {
@@ -25,6 +26,10 @@ export function EditProject() {
   if (!project) return <div className="p-10">Loading...</div>;
 
 
+  function handleFormChange(updatedForm) {
+    setProject((prev) => ({ ...prev, ...updatedForm }));
+  }
+  
   // Save Project
   async function handleSave() {
     try {
@@ -91,20 +96,27 @@ export function EditProject() {
         <div className="flex flex-row w-full lg:w-2/3">
           <div className="white-box">
             <div className="text-h3 blue pb-4">Content</div>
-            <EditIntro
-              data={{
-                title: project.title,
-                subtitle: project.subtitle,
-                location: project.location,
-                period: project.period,
-                liveUrl: project.liveUrl,
-                githubUrl: project.githubUrl,
-                description: project.description,
-                image: project.image,
-              }}
-              onChange={handleIntroChange}
-              editorRef={editorRef}
-            />
+            <div className="flex flex-col gap-4">
+              <EditIntro
+                data={{
+                  title: project.title,
+                  subtitle: project.subtitle,
+                  location: project.location,
+                  period: project.period,
+                  liveUrl: project.liveUrl,
+                  githubUrl: project.githubUrl,
+                  description: project.description,
+                  image: project.image,
+                }}
+                onChange={handleIntroChange}
+                editorRef={editorRef}
+              />
+              <EditHero
+                form={project}
+                setForm={setProject}
+                onChange={handleFormChange}
+              />
+            </div>
           </div>
         </div>
         <div className="white-box">
