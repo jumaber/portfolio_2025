@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./firebase"; // ✅ Adjust path as needed
+import { auth } from "./firebase"; 
 
 import { Home } from "./pages/Home";
 import { SinglePage } from "./pages/SinglePage";
 import { ImprintPage } from "./pages/ImprintPage";
 import { PageNotFound } from "./pages/PageNotFound";
 import { Dashboard } from "./pages/Dashboard";
+import { Login } from "./pages/Login"; 
+import { EditHome } from "./pages/EditHome.jsx";
+import { EditImprint } from "./pages/EditImprint.jsx";
 import { EditProject } from "./pages/EditProject";
-import { Login } from "./pages/Login"; // ✅ Add your login page import
+
+
 
 function App() {
   const [user, setUser] = useState(null);
@@ -29,18 +33,26 @@ function App() {
   }, []);
 
   const name = user?.email === "hi@juliamaribernaus.com" ? "Júlia" : "Stranger";
-  if (loading) return <div className="p-4">Loading your magic...</div>;
+  if (loading) return <div className="p-4">Loading...</div>;
 
 
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route
+        path="/edit"
+        element={user ? <EditHome user={name} /> : <Navigate to="/login" />}
+      />
       <Route path="/project/:slug" element={<SinglePage />} />
       <Route
         path="/project/:slug/edit"
         element={user ? <EditProject user={name} /> : <Navigate to="/login" />}
       />
       <Route path="/imprint" element={<ImprintPage />} />
+      <Route
+        path="/imprint/edit"
+        element={user ? <EditImprint user={name} /> : <Navigate to="/login" />}
+      />
       <Route
         path="/dashboard"
         element={user ? <Dashboard user={name} /> : <Navigate to="/login" />}

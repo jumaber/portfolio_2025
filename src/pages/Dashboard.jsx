@@ -75,30 +75,32 @@ export function Dashboard({ user = "Júlia" }) {
 
           {/* Pages */}
           <div className="white-box">
-            <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row justify-between items-center mb-4">
               <h2 className="box-title">📜 Pages</h2>
               <ButtonSmall
                 image={null}
                 text="+ Add Page"
                 className="bg-[#FFA7A7] text-white"
               />
-            </div>
-            {projects.map((project, index) => (
-              <div
-                key={project.slug}
-                className={`py-2 ${
-                  index !== projects.length - 1
-                    ? "border-b border-gray-200"
-                    : ""
-                }`}
-              >
-                <ListItem
-                  image={project.image}
-                  title={project.cardTitle}
-                  slug={project.slug}
-                />
-              </div>
-            ))}
+            </div>{" "}
+            <ListItem
+              showDrag={false}
+              showSwitch={false}
+              title="Home"
+              image={
+                "https://res.cloudinary.com/jumaber/image/upload/v1750400425/Screenshot_2025-06-20_at_08.19.54_wdejp0.png"
+              }
+              to={"/"}
+            />
+            <ListItem
+              showDrag={false}
+              showSwitch={false}
+              title="Imprint"
+              image={
+                "https://res.cloudinary.com/jumaber/image/upload/v1750400425/Screenshot_2025-06-20_at_08.19.54_wdejp0.png"
+              }
+              to={"/imprint"}
+            />
           </div>
 
           {/* Projects */}
