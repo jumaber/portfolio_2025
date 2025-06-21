@@ -4,6 +4,8 @@ import { ButtonSmall } from "../components/dashboard/ButtonSmall";
 import { EditIntro } from "../components/edit/EditIntro";
 import { EditHero } from "../components/edit/EditHero";
 import { EditCard } from "../components/edit/EditCard";
+import { EditChallenges } from "../components/edit/EditChallenges.jsx";
+import { EditLearnings } from "../components/edit/EditLearnings.jsx";
 
 
 
@@ -118,11 +120,21 @@ export function EditProject() {
                 setForm={setProject}
                 onChange={handleFormChange}
               />
+              <EditChallenges
+                form={project}
+                setForm={setProject}
+                onChange={handleFormChange}
+              />
+              <EditLearnings
+                form={project}
+                setForm={setProject}
+                onChange={handleFormChange}
+              />
             </div>
           </div>
         </div>
-        <div className="white-box">
-          <div className="text-h3 blue w-full lg:w-1/3">Card</div>
+        <div className="white-box h-fit">
+          <div className="text-h3 blue w-full h-fit lg:w-1/3">Card</div>
           <EditCard
             form={project}
             setForm={setProject}

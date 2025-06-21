@@ -93,7 +93,7 @@ export function EditCard({ form, setForm, onChange }) {
         {form.tech?.map((item, index) => (
           <span
             key={index}
-            className="flex items-center gap-1 bg-white text-[#0C0093] hover:bg-red-100 px-2 py-1 rounded-full text-sm"
+            className="flex items-center gap-1 bg-white text-[#0C0093] hover:bg-red-100 px-2 py-1 rounded-full text-sm mono"
           >
             {item}
             <button
@@ -136,7 +136,7 @@ export function EditCard({ form, setForm, onChange }) {
         {form.roles?.map((item, index) => (
           <span
             key={index}
-            className="flex items-center gap-1 bg-white text-[#0C0093] hover:bg-red-100 px-2 py-1 rounded-full text-sm"
+            className="flex items-center gap-1 bg-white text-[#0C0093] hover:bg-red-100 px-2 py-1 rounded-full text-sm mono"
           >
             {item}
             <button
