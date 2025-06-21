@@ -4,8 +4,8 @@ export function ImprintPage() {
     return (
       <>
         <NavBar />
-        <div className="flex flex-col items-center py-20 p-4 md:p-8 lg:p-16 w-screen h-full bg-[var(--color-cream)]">
-          <div className="max-w-[1440px]">
+        <div className="h-full bg-[#FFF6F6] flex flex-col items-start py-20 px-4 md:px-8 lg:px-48 max-w-full overflow-x-hidden">
+          <div className="w-full max-w-[800px] mx-auto">
             <h1 className="text-h1 mb-10">Imprint</h1>
 
             <section className="mb-10">
