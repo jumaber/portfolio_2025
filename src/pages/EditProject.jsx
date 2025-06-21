@@ -6,7 +6,11 @@ import { EditHero } from "../components/edit/EditHero";
 import { EditCard } from "../components/edit/EditCard";
 import { EditChallenges } from "../components/edit/EditChallenges.jsx";
 import { EditLearnings } from "../components/edit/EditLearnings.jsx";
+import { EditOutcomes } from "../components/edit/EditOutcomes.jsx";
+import { EditProcess } from "../components/edit/EditProcess.jsx";
 
+
+import WhiteLinkIcon from "../assets/link_white.svg"
 
 
 export function EditProject() {
@@ -79,6 +83,8 @@ export function EditProject() {
               text={"Visit"}
               to={`/project/${project.slug}`}
               className={"bg-[#0C0093] text-white"}
+              newTab={true}
+              image={WhiteLinkIcon}
             />
             <ButtonSmall
               text={"Save"}
@@ -98,8 +104,8 @@ export function EditProject() {
       {/* Content */}
       <div className="flex flex-col lg:flex-row w-full justify-between gap-10">
         <div className="flex flex-row w-full lg:w-2/3">
-          <div className="white-box">
-            <div className="text-h3 blue pb-4">Content</div>
+          <div className="white-box  h-fit">
+            <div className="text-h3 blue pb-4 ">Content</div>
             <div className="flex flex-col gap-4">
               <EditIntro
                 data={{
@@ -125,6 +131,16 @@ export function EditProject() {
                 setForm={setProject}
                 onChange={handleFormChange}
               />
+              <EditProcess
+                form={project}
+                setForm={setProject}
+                onChange={handleFormChange}
+              />
+              <EditOutcomes
+                form={project}
+                setForm={setProject}
+                onChange={handleFormChange}
+              />
               <EditLearnings
                 form={project}
                 setForm={setProject}
@@ -134,7 +150,7 @@ export function EditProject() {
           </div>
         </div>
         <div className="white-box h-fit">
-          <div className="text-h3 blue w-full h-fit lg:w-1/3">Card</div>
+          <div className="text-h3 blue w-full h-fit lg:w-1/3 pb-4">Card</div>
           <EditCard
             form={project}
             setForm={setProject}

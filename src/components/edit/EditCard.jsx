@@ -156,7 +156,7 @@ export function EditCard({ form, setForm, onChange }) {
 
       <input
         type="text"
-        placeholder="Add a tool (e.g. Figma)"
+        placeholder="Add a role (e.g. UX Designer)"
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             e.preventDefault();
