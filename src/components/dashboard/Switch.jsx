@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function Switch({ checked = false, onChange }) {
   const [enabled, setEnabled] = useState(checked);
+
+  useEffect(() => {
+    setEnabled(checked);
+  }, [checked]);
 
   const toggle = () => {
     const newValue = !enabled;

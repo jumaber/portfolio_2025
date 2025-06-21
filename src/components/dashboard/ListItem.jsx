@@ -10,28 +10,12 @@ export function ListItem({
   to,
   showDrag = true,
   showSwitch = true,
+  onToggleFeatured,
 }) {
   let basePath = to || `/project/${slug}`;
   if (basePath.endsWith("/") && basePath !== "/") {
     basePath = basePath.slice(0, -1);
   }
-
-  const handleToggle = async (newValue) => {
-    try {
-      await fetch(
-        `https://portfolio-2025-wyed.onrender.com/api/projects/${slug}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ featured: newValue }),
-        }
-      );
-    } catch (error) {
-      console.error("Failed to update featured status:", error);
-    }
-  };
 
   return (
     <div className="flex flex-col md:flex-row items-start gap-4 justify-between bg-white p-2 rounded-md w-full hover:bg-[#e8eaf1] transition-colors duration-200">
@@ -42,7 +26,9 @@ export function ListItem({
 
       <div className="flex items-center gap-4">
         {showDrag && <ButtonDrag />}
-        {showSwitch && <Switch checked={featured} onChange={handleToggle} />}
+        {showSwitch && (
+          <Switch checked={featured} onChange={onToggleFeatured} />
+        )}
         <ButtonSmall
           text="Edit"
           image={null}

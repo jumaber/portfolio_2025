@@ -18,7 +18,6 @@ import {
 import {
   arrayMove,
   SortableContext,
-  useSortable,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 
@@ -57,18 +56,31 @@ export function Dashboard() {
   function handleDragEnd(event) {
     const { active, over } = event;
 
-    if (!over || active.id === over.id) return;
+    // safety check
+    if (!active?.id || !over?.id || active.id === over.id) return;
 
     const oldIndex = projects.findIndex((p) => p.slug === active.id);
     const newIndex = projects.findIndex((p) => p.slug === over.id);
 
-    const reordered = arrayMove(projects, oldIndex, newIndex);
+    if (oldIndex === -1 || newIndex === -1) {
+      console.warn("⚠️ Invalid drag result. IDs not found in project list.", {
+        active,
+        over,
+      });
+      return;
+    }
 
-    // Update local state
+    const reordered = arrayMove(projects, oldIndex, newIndex);
     setProjects(reordered);
 
-    // Update order in backend
     reordered.forEach((project, index) => {
+      if (!project.slug) {
+        console.warn("❗️ Missing slug for project:", project);
+        return;
+      }
+
+      console.log(`🔄 Updating ${project.slug} to order ${index + 1}`);
+
       fetch(
         `https://portfolio-2025-wyed.onrender.com/api/projects/${project.slug}`,
         {
@@ -76,15 +88,14 @@ export function Dashboard() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ order: index + 1 }), // assuming you want 1-based order
+          body: JSON.stringify({ order: index + 1 }),
         }
       ).catch((err) =>
         console.error(`Failed to update order for ${project.slug}:`, err)
       );
-      console.log(`Updating ${project.slug} to order ${index + 1}`);
-
     });
   }
+  
   
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -93,6 +104,7 @@ export function Dashboard() {
       },
     })
   );
+  
   return (
     <div className="bg-[#f5f5f5] flex flex-col h-screen w-screen items-start p-4 md:p-8 lg:p-16 overflow-x-hidden">
       <div className="flex flex-col-reverse md:flex-row w-full justify-between">
@@ -189,7 +201,11 @@ export function Dashboard() {
                 strategy={verticalListSortingStrategy}
               >
                 {projects.map((project) => (
-                  <SortableItem key={project.slug} project={project} />
+                  <SortableItem
+                    key={project.slug}
+                    project={project}
+                    setProjects={setProjects}
+                  />
                 ))}
               </SortableContext>
             </DndContext>
