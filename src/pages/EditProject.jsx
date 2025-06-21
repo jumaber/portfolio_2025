@@ -4,14 +4,12 @@ import { ButtonSmall } from "../components/dashboard/ButtonSmall";
 import { EditIntro } from "../components/edit/EditIntro";
 import { EditHero } from "../components/edit/EditHero";
 import { EditCard } from "../components/edit/EditCard";
-import { EditChallenges } from "../components/edit/EditChallenges.jsx";
-import { EditLearnings } from "../components/edit/EditLearnings.jsx";
-import { EditOutcomes } from "../components/edit/EditOutcomes.jsx";
 import { EditProcess } from "../components/edit/EditProcess.jsx";
-
-
 import WhiteLinkIcon from "../assets/link_white.svg"
 import { EditListField } from "../components/edit/EditListField.jsx";
+import { EditWireframes } from "../components/edit/EditWireframes.jsx";
+import { EditCustomHtml } from "../components/edit/EditCustomHtml.jsx";
+
 
 
 export function EditProject() {
@@ -154,6 +152,16 @@ export function EditProject() {
                 onChange={(updated) =>
                   setProject((prev) => ({ ...prev, learnings: updated }))
                 }
+              />
+              <EditWireframes
+                form={project}
+                setForm={setProject}
+                onChange={handleFormChange}
+              />
+              <EditCustomHtml
+                form={project}
+                setForm={setProject}
+                onChange={handleFormChange}
               />
             </div>
           </div>

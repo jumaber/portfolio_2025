@@ -11,6 +11,8 @@ import { NavBar } from "../components/other/NavBar";
 import { Process } from "../components/projects/Process";
 import { HeroImage } from "../components/projects/HeroImage"
 import { RelatedProjects } from "../components/projects/RelatedProjects";
+import { CustomHtml } from "../components/projects/CustomHtml";
+
 
   export function SinglePage() {
     const { slug } = useParams();
@@ -79,7 +81,13 @@ import { RelatedProjects } from "../components/projects/RelatedProjects";
         {learnings && <Learnings learnings={learnings} />}
 
         {/* Wireframes */}
-        <Wireframes wireframes={wireframes} />
+        <Wireframes
+          wireframes={project.wireframes}
+          title={project.wireframesTitle || "Wireframes"}
+        />
+
+        {/* Custom HTML */}
+        {project.customHtml && <CustomHtml html={project.customHtml} />}
 
         {/* Related Projects */}
         <RelatedProjects key={slug} currentSlug={slug} />

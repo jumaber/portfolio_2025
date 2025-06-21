@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Roboto+Mono:wght@100..700&display=swap');
 
 @import "tailwindcss";
 
@@ -312,3 +313,645 @@ line-height: normal;
 codex-editor__redactor{
   padding-bottom:16px;
 } */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;700;800&display=swap');
+
+/********** Linsenpate **********/
+/* Colors Used
+Black bg: #212121;
+Grey bg: #F8F8F8;
+
+/*********** Linsenpate Intro **********/
+
+#lp-intro{
+    display: flex;
+    align-content: center;
+    height: 100vh;
+}
+
+.lp-intro-flex-grid{
+    margin-top: 5%;
+    padding-bottom: 6%;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: row;
+    flex-wrap: wrap-reverse;
+    justify-content: space-between;
+}
+
+.lp-intro-left{
+    flex-grow: 3;     
+    flex-basis: 45%;
+ }
+
+.lp-intro-right{
+    flex-grow: 1;
+    flex-basis: 55%;
+}
+
+.project-cta {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 470px;
+}
+.project-cta .button{
+    max-width: 240px;
+    margin-bottom: 6px;
+    margin-top: 6px;
+}
+
+.project-cta .button-secondary{
+    max-width: 240px;
+}
+
+.subheader{
+    color: #0C0093;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+/*********** Linsenpate Challenge **********/
+
+#challenge{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color: #F8F8F8;
+}
+
+
+.table-flex-grid{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-basis: 20%;
+}
+
+.table-item{
+    max-width: 275px;
+    display: flex;
+    align-items: flex-start;
+}
+
+li{
+    list-style-type: none;
+}
+
+.nr{
+    font-size: 50px;
+    text-align: right;
+    font-weight: 700;
+    font-family: Montserrat, Arial, Helvetica, sans-serif;
+    color: #0C0093;
+    padding-right: 20px;
+    line-height: 50px;
+}
+
+li p{
+    text-align: left;
+}
+
+
+/**** hero ****/
+.lp-hero{
+    width:100%;
+}
+
+/********* Linsenpate Project Description *********/
+
+
+#prj-description{
+    margin-top: 5em;
+}
+
+.prj-flex-grid{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 6em;
+}
+
+.prj-left-col{
+    flex-grow: 3;     
+    flex-basis: 45%;
+    min-width: 300px;
+    padding-right: 5%;
+}
+
+.prj-right-col{
+    flex-grow: 1;
+    flex-basis: 55%;
+    min-width: 300px;
+}
+
+.prj-left-col-2{
+    margin-top: 48px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+.prj-left-col-2-left{
+    margin-right: 35%;
+}
+
+.prj-goal{
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+.prj-goal ul li{
+    list-style-type:disc;
+    margin-left:-20px; 
+}
+
+/********** Linsenpate Mockups **********/
+
+#mockups{
+    padding-right: 15%;
+    padding-left: 15%;
+}
+
+.lp-mockup-flex-grid-1{
+    padding-bottom: 5%;
+}
+
+.mockup-box{
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.mockup1{
+    flex: 0 1 25%;
+    min-width: 320px;
+}
+
+.mockup2{
+    flex: 1 1 50%;
+    min-width: 320px;  
+}
+
+.lp-mockup-flex-grid-2{
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-right: 15%;
+    padding-left: 15%;
+    background-color: #F8F8F8;
+    width: 100%;
+}
+.mockup{
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    flex: 1 1 40%;
+    min-width: 300px;
+}
+
+/********* Design System **********/
+
+#design-system, #design-system2{
+    background-color: #212121;
+    padding: 5% 0;
+
+}
+
+#design-system h3, #design-system h2, #design-system p, #design-system a {
+    color:#f1f1f1;
+    padding-bottom: 50px;
+}
+
+.ds-group{
+    margin-top: 50px;
+    margin-bottom:100px;
+}
+.colors-flex-grid{
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    align-items: flex-start;
+    flex-flow: row wrap;
+    padding-right: 5%;
+    padding-bottom: 5%;
+}
+.colors-flex-grid picture{
+    flex: 0 1 20%;
+}
+
+
+.h3-typo{
+    color: #BDBDBD!important;
+    margin-bottom: 24px;
+}
+
+.h4-typo{
+    color: #FEE46D;
+    margin-bottom: 24px;
+}
+
+/****** Horizontal Scroll *******/
+.scrolling-wrapper{
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    align-items: flex-end;
+    margin-bottom: 100px;
+}
+
+.typo{
+    flex: 0 0 auto;
+    padding-right: 4em;
+}
+
+.typo-container{
+    margin-left: 6%;
+}
+
+section::-webkit-scrollbar {
+    width: 3px;
+    height: 1px;
+}
+section::-webkit-scrollbar-track {
+  background: #5f5f5f; 
+}
+section::-webkit-scrollbar-thumb {
+  background: #FEE46D;
+}
+
+
+/****** LP Design Typography *******/
+
+h1{
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  font-size: 2.5rem; /*40px*/
+  font-weight: 700;
+  line-height: 49px;
+}
+
+h2{
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  font-size: 1.875rem; /*30px*/
+  line-height: 37px;
+}
+
+h3{
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  font-size: 1.5rem; /*24px*/
+  line-height: 29px;
+}
+
+h4{
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  font-size: 1.125rem; /*18px*/
+  line-height: 22px;
+}
+
+h5{
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  font-size: 1rem; /*16px*/
+  line-height: 20px;
+}
+
+h6{
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  font-size: 0.875rem; /* 14px; */
+  line-height: 17px;
+}
+
+.container{
+  padding-right: 20%;
+  padding-left: 20%
+}
+.lp-email-h1-desktop{
+    font-family: Karla, Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 72px;
+    line-height: 83px;
+}
+
+.lp-email-h1-mobile{
+    font-family: Karla, Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 54px;
+    line-height: 63px;
+}
+
+.lp-email-h2-desktop{
+    font-family: Karla, Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 58px;
+}
+.lp-email-h2-mobile{
+    font-family: Karla, Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 49px;   
+}
+.lp-email-h3-desktop{
+    font-family: Karla, Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 44px;
+    line-height: 51px;  
+}
+.lp-email-h3-mobile{
+    font-family: Karla, Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 58px;  
+}
+.lp-h1{
+    font-family: Karla, Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 40px;
+    letter-spacing: 0.6px;
+}
+.lp-h2{
+    font-family: Karla, Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 34px;
+    letter-spacing: 0.6px;
+}
+.lp-h3{
+    font-family: Karla, Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 28px;
+    letter-spacing: 0.6px;
+}
+.lp-h4{
+    font-family: Karla, Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.6px;
+}
+.lp-h5{
+    font-family: Karla, Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: 0.6px;
+}
+.lp-h6{
+    font-family: Karla, Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.6px;
+}
+.lp-h7{
+    font-family: Karla, Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.6px;
+}
+.lp-bodyxl-link{
+    font-family: Karla, Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0.6px;
+    text-decoration: underline;
+}
+.lp-bodyxl{
+    font-family: Karla, Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0.6px;
+}
+.lp-bodyl{
+    font-family: Karla, Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0.6px;
+}
+.lp-bodym{
+    font-family: Karla, Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.6px;
+}
+.lp-bodym-link{
+    font-family: Karla, Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.6px;
+    text-decoration: underline;
+
+}
+.lp-bodys{
+    font-family: Karla, Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.6px;
+}
+.lp-bodys-link{
+    font-family: Karla, Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.3px;
+    text-decoration: underline;
+}
+.lp-label{
+    font-family: Karla, Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.3px;
+}
+.lp-labelbold{
+    font-family: Karla, Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.3px;
+}
+.lp-labelcaps{
+    font-family: Karla, Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.3px;
+}
+
+/*********** Icons **********/
+.icons{
+    margin-bottom: 150px;
+}
+
+.buttons{
+    display: flex;
+    align-items: flex-start;
+}
+
+.pic {
+  width: 100%;
+}
+
+/********** Media Queries **********/
+
+
+/* ==============================
+Small devices // Smaller than iPad (768px and smaller)
+================================= */
+@media only screen and (max-width: 768px) {
+    .work-wrapper h3, .container-about h3, .container-contact h3, #contact h3, .slides-wrapper h3, #recommendation h3 {
+        padding-top:10%;
+        padding-bottom: 6%;
+    }
+
+    .project p, .container-about p, .slide p{
+        font-size: 1rem;
+        line-height: 28px;
+    }
+
+    #challenge{
+        min-width: 320px;
+        width: 100%;
+    }
+
+    .container-challenge{
+        width: 100%;
+    }
+
+    p.label-role{
+        font-size: 0.85rem;
+    }
+
+    #recommendation .container-slides {
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+
+    #lp-intro{
+        margin-top: 20%;
+    }
+    
+    .prj-left-col-2-left{
+        margin-right: 0;
+    }
+
+    .mockup{
+        min-width: 200px;
+    }
+
+    .prj-right-col, .prj-left-col{
+    width: 100%;
+    padding-right: 5%;
+    }
+
+    .prj-left-col-2-left{
+        padding-right: 20%;
+    }
+
+    #prj-description{
+        margin-top:3rem;
+    } 
+
+    .typo{
+        padding-right: 2em;
+    }
+
+    .table-item{
+        max-width: 250px;
+        }
+
+    .nr{
+    font-size: 40px;
+    }
+    .typo-container{
+        margin-left: 5%;
+        padding-right: 0;
+    } 
+    .container{
+      padding:32px;
+    }
+}
+/*********** Media Queries **********/
+
+/* ==============================
+Small devices // Smaller than iPad (768px and smaller)
+================================= */
+@media only screen and (max-width: 768px) {
+
+}   
+
+/* ==============================
+Large devices (smaller than 1024px)
+================================= */
+@media only screen and (max-width: 1024px) {
+    #lp-intro{
+        padding-top: 10%;
+        height: auto;
+        padding-bottom: 10%;
+        }
+
+    #challenge{
+        padding-top: 10%;
+        padding-bottom: 10%;
+    }
+
+
+    #design-system h2 {
+        color:#f1f1f1;
+        padding-top: 10%;
+        padding-bottom: 0%;
+    }
+    .ds-group h3{
+        margin-bottom: 0px;    
+    }  
+        .typo-container{
+        margin-left: 12%;
+    }
+    .container{
+      padding:16px;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .typo-container {
+        margin-left: 12%;
+    }
+}
+
+/* ==============================
+X-large devices (smaller than 1440px)
+================================= */
+@media only screen and (max-width: 1440px) {
+    .typo-container{
+    margin-left: 21%;
+    }
+}
+
+
+/* ==============================
+Extra-large devices (smaller than 1920px)
+================================= */
+@media only screen and (min-width: 1920px) {
+    .typo-container{
+    margin-left: 21%;
+}
+}
