@@ -807,9 +807,9 @@ h6{
     align-items: flex-start;
 }
 
-.pic {
+/* .pic {
   width: 100%;
-}
+} */
 
 /********** Media Queries **********/
 
@@ -882,6 +882,7 @@ Small devices // Smaller than iPad (768px and smaller)
     .nr{
     font-size: 40px;
     }
+
     .typo-container{
         margin-left: 5%;
         padding-right: 0;

@@ -214,20 +214,7 @@ export function Dashboard() {
 
         {/* Analytics */}
         <div className="flex flex-col w-full lg:w-2/5">
-          <div className="flex flex-col justify-between gap-4 py-10">
-            {/* Hotjar */}
-            <div className="white-box">
-              <div className="flex flex-row justify-between items-center">
-                <h2 className="box-title">🔥 Hotjar</h2>
-                <ButtonSmall
-                  className={"bg-[#F5F5F5] text-[#656565]"}
-                  to={
-                    "https://insights.hotjar.com/sites/2301909/dashboard/TXb4wU8wuWGckmibW9Qg4a-Site-overview"
-                  }
-                />
-              </div>
-            </div>
-
+          <div className="flex flex-col justify-between gap-10 py-10">
             {/* Google Analytics */}
             <div className="white-box">
               <div className="flex flex-row justify-between items-center pb-4">
@@ -241,6 +228,20 @@ export function Dashboard() {
               </div>
               <GAReport />
             </div>
+
+            {/* Hotjar */}
+            <div className="white-box">
+              <div className="flex flex-row justify-between items-center">
+                <h2 className="box-title">🔥 Hotjar</h2>
+                <ButtonSmall
+                  className={"bg-[#F5F5F5] text-[#656565]"}
+                  to={
+                    "https://insights.hotjar.com/sites/2301909/dashboard/TXb4wU8wuWGckmibW9Qg4a-Site-overview"
+                  }
+                />
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
