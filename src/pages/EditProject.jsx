@@ -3,6 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import { ButtonSmall } from "../components/dashboard/ButtonSmall";
 import { EditIntro } from "../components/edit/EditIntro";
 import { EditHero } from "../components/edit/EditHero";
+import { EditCard } from "../components/edit/EditCard";
+
 
 
 export function EditProject() {
@@ -121,7 +123,11 @@ export function EditProject() {
         </div>
         <div className="white-box">
           <div className="text-h3 blue w-full lg:w-1/3">Card</div>
-          <div>Project Components</div>
+          <EditCard
+            form={project}
+            setForm={setProject}
+            onChange={handleFormChange}
+          />
         </div>
       </div>
     </div>

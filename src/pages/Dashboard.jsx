@@ -7,7 +7,7 @@ import { ButtonSmall } from "../components/dashboard/ButtonSmall";
 import { GAReport } from "../components/dashboard/GAReport";
 import { ListItem } from "../components/dashboard/ListItem";
 
-export function Dashboard({ user = "Júlia" }) {
+export function Dashboard() {
   const navigate = useNavigate();
 
   const [projects, setProjects] = useState([]);
@@ -131,7 +131,8 @@ export function Dashboard({ user = "Júlia" }) {
                   image={project.image}
                   title={project.cardTitle}
                   slug={project.slug}
-                />{" "}
+                  featured={project.featured}
+                />
               </div>
             ))}
           </div>

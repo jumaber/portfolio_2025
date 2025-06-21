@@ -10,7 +10,7 @@ export function Switch({ checked = false, onChange }) {
   };
 
   return (
-    <div className="flex flex-row gap-1 items-center">
+    <div className="flex flex-row justify-between gap-1 items-center">
       <div className="font-semibold text-[#656565] text-[13px]">Featured</div>
       <button
         type="button"
