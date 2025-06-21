@@ -110,7 +110,7 @@ export function EditProcess({ form: initialForm, onChange }) {
               {item.highlights.map((highlight, highlightIndex) => (
                 <div
                   key={highlightIndex}
-                  className="flex justify-center items-center gap-2 mb-2 form-input-list"
+                  className="flex justify-center items-center gap-2 mb-2"
                 >
                   <input
                     type="text"
@@ -122,7 +122,7 @@ export function EditProcess({ form: initialForm, onChange }) {
                         e.target.value
                       )
                     }
-                    className="w-full"
+                    className="w-full form-input-list"
                     placeholder="Highlight"
                   />
                   <button
@@ -155,7 +155,7 @@ export function EditProcess({ form: initialForm, onChange }) {
                 placeholder="Phase title..."
                 className="form-input-list w-full"
               />
-              
+
               <button
                 onClick={handleAddPhase}
                 className="inline-flex items-center justify-center gap-1 rounded-3xl pl-3 pr-4 py-1 w-fit font-semibold text-[13px] bg-[#0C0093] text-white"
@@ -163,8 +163,6 @@ export function EditProcess({ form: initialForm, onChange }) {
                 <Plus className="w-4 h-4" />
                 Add
               </button>
-
-              
             </div>
           </div>
         </div>
