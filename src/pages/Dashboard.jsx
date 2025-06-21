@@ -7,8 +7,28 @@ import { ButtonSmall } from "../components/dashboard/ButtonSmall";
 import { GAReport } from "../components/dashboard/GAReport";
 import { ListItem } from "../components/dashboard/ListItem";
 
+import {
+  DndContext,
+  closestCenter,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+
+import {
+  arrayMove,
+  SortableContext,
+  useSortable,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+
+import { CSS } from "@dnd-kit/utilities";
+import { SortableItem } from "../components/dashboard/SortableItem";
+
+
+
 export function Dashboard() {
-  const navigate = useNavigate();
+  const navigate = useNavigate();  
 
   const [projects, setProjects] = useState([]);
 
@@ -21,7 +41,9 @@ export function Dashboard() {
   useEffect(() => {
     fetch("https://portfolio-2025-wyed.onrender.com/api/projects/")
       .then((res) => res.json())
-      .then((data) => setProjects(data))
+      .then((data) =>
+        setProjects([...data].sort((a, b) => (a.order || 0) - (b.order || 0)))
+      )
       .catch((err) => console.error("Failed to fetch projects:", err));
   }, []);
 
@@ -32,6 +54,45 @@ export function Dashboard() {
   // const totalPages = pages.length;
 
 
+  function handleDragEnd(event) {
+    const { active, over } = event;
+
+    if (!over || active.id === over.id) return;
+
+    const oldIndex = projects.findIndex((p) => p.slug === active.id);
+    const newIndex = projects.findIndex((p) => p.slug === over.id);
+
+    const reordered = arrayMove(projects, oldIndex, newIndex);
+
+    // Update local state
+    setProjects(reordered);
+
+    // Update order in backend
+    reordered.forEach((project, index) => {
+      fetch(
+        `https://portfolio-2025-wyed.onrender.com/api/projects/${project.slug}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ order: index + 1 }), // assuming you want 1-based order
+        }
+      ).catch((err) =>
+        console.error(`Failed to update order for ${project.slug}:`, err)
+      );
+      console.log(`Updating ${project.slug} to order ${index + 1}`);
+
+    });
+  }
+  
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 5,
+      },
+    })
+  );
   return (
     <div className="bg-[#f5f5f5] flex flex-col h-screen w-screen items-start p-4 md:p-8 lg:p-16 overflow-x-hidden">
       <div className="flex flex-col-reverse md:flex-row w-full justify-between">
@@ -118,41 +179,51 @@ export function Dashboard() {
                 className="bg-[#FFA7A7] text-white"
               />
             </div>
-            {projects.map((project, index) => (
-              <div
-                key={project.slug}
-                className={`py-2 ${
-                  index !== projects.length - 1
-                    ? "border-b border-gray-200"
-                    : ""
-                }`}
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
+            >
+              <SortableContext
+                items={projects.map((project) => project.slug)}
+                strategy={verticalListSortingStrategy}
               >
-                <ListItem
-                  image={project.image}
-                  title={project.cardTitle}
-                  slug={project.slug}
-                  featured={project.featured}
-                />
-              </div>
-            ))}
+                {projects.map((project) => (
+                  <SortableItem key={project.slug} project={project} />
+                ))}
+              </SortableContext>
+            </DndContext>
           </div>
         </div>
 
         {/* Analytics */}
         <div className="flex flex-col w-full lg:w-2/5">
           <div className="flex flex-col justify-between gap-4 py-10">
-            <div className="white-box">
-              <div className="flex flex-row justify-between items-center pb-4">
-                <h2 className="box-title">📊 Google Analytics</h2>
-                <ButtonSmall className={"bg-[#F5F5F5] text-[#656565]"} />
-              </div>
-              <GAReport />
-            </div>
+            {/* Hotjar */}
             <div className="white-box">
               <div className="flex flex-row justify-between items-center">
                 <h2 className="box-title">🔥 Hotjar</h2>
-                <ButtonSmall className={"bg-[#F5F5F5] text-[#656565]"} />
+                <ButtonSmall
+                  className={"bg-[#F5F5F5] text-[#656565]"}
+                  to={
+                    "https://insights.hotjar.com/sites/2301909/dashboard/TXb4wU8wuWGckmibW9Qg4a-Site-overview"
+                  }
+                />
               </div>
+            </div>
+
+            {/* Google Analytics */}
+            <div className="white-box">
+              <div className="flex flex-row justify-between items-center pb-4">
+                <h2 className="box-title">📊 Google Analytics</h2>
+                <ButtonSmall
+                  className={"bg-[#F5F5F5] text-[#656565]"}
+                  to={
+                    "https://lookerstudio.google.com/reporting/642c28cd-a396-4f16-b5f4-c4001416b33c"
+                  }
+                />
+              </div>
+              <GAReport />
             </div>
           </div>
         </div>

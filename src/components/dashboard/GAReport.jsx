@@ -1,6 +1,6 @@
 export function GAReport() {
   return (
-    <div className="w-full aspect-[4/3]">
+    <div className="w-full aspect-[3/4]">
       <iframe
         className="w-full h-full"
         src="https://lookerstudio.google.com/embed/reporting/642c28cd-a396-4f16-b5f4-c4001416b33c/page/saPNF"
