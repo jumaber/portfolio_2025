@@ -11,6 +11,7 @@ import { EditProcess } from "../components/edit/EditProcess.jsx";
 
 
 import WhiteLinkIcon from "../assets/link_white.svg"
+import { EditListField } from "../components/edit/EditListField.jsx";
 
 
 export function EditProject() {
@@ -126,25 +127,33 @@ export function EditProject() {
                 setForm={setProject}
                 onChange={handleFormChange}
               />
-              <EditChallenges
-                form={project}
-                setForm={setProject}
-                onChange={handleFormChange}
+              <EditListField
+                title="Challenges"
+                values={project.challenges}
+                onChange={(updated) =>
+                  setProject((prev) => ({ ...prev, challenges: updated }))
+                }
               />
+
               <EditProcess
                 form={project}
                 setForm={setProject}
                 onChange={handleFormChange}
               />
-              <EditOutcomes
-                form={project}
-                setForm={setProject}
-                onChange={handleFormChange}
+              <EditListField
+                title="Outcomes"
+                values={project.outcomes}
+                onChange={(updated) =>
+                  setProject((prev) => ({ ...prev, outcomes: updated }))
+                }
               />
-              <EditLearnings
-                form={project}
-                setForm={setProject}
-                onChange={handleFormChange}
+
+              <EditListField
+                title="Learnings"
+                values={project.learnings}
+                onChange={(updated) =>
+                  setProject((prev) => ({ ...prev, learnings: updated }))
+                }
               />
             </div>
           </div>

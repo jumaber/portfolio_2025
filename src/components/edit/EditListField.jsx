@@ -1,40 +1,39 @@
 import { useState, useEffect } from "react";
 import { ChevronDown, ChevronRight, Plus } from "lucide-react";
 
-export function EditOutcomes({ form: initialForm, onChange }) {
-  const [form, setForm] = useState({
-    outcomes: [],
-  });
-
-  const [newOutcome, setNewOutcome] = useState("");
+export function EditListField({
+  title = "List",
+  values = [],
+  onChange,
+  placeholder = "New item...",
+}) {
+  const [items, setItems] = useState([]);
+  const [newItem, setNewItem] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    if (initialForm) setForm(initialForm);
-  }, [initialForm]);
+    setItems(values || []);
+  }, [values]);
 
-  function handleAddOutcome() {
-    if (!newOutcome.trim()) return;
-    const updatedOutcomes = [...form.outcomes, newOutcome.trim()];
-    const updatedForm = { ...form, outcomes: updatedOutcomes };
-    setForm(updatedForm);
-    onChange(updatedForm);
-    setNewOutcome("");
+  function handleAdd() {
+    if (!newItem.trim()) return;
+    const updated = [...items, newItem.trim()];
+    setItems(updated);
+    onChange(updated);
+    setNewItem("");
   }
 
   function handleRemove(index) {
-    const updatedOutcomes = form.outcomes.filter((_, i) => i !== index);
-    const updatedForm = { ...form, outcomes: updatedOutcomes };
-    setForm(updatedForm);
-    onChange(updatedForm);
+    const updated = items.filter((_, i) => i !== index);
+    setItems(updated);
+    onChange(updated);
   }
 
   function handleEdit(index, value) {
-    const updated = [...form.outcomes];
+    const updated = [...items];
     updated[index] = value;
-    const updatedForm = { ...form, outcomes: updated };
-    setForm(updatedForm);
-    onChange(updatedForm);
+    setItems(updated);
+    onChange(updated);
   }
 
   return (
@@ -50,23 +49,23 @@ export function EditOutcomes({ form: initialForm, onChange }) {
           ) : (
             <ChevronRight className="w-4 h-4" />
           )}
-          <div className="component-title">Outcomes</div>
+          <div className="component-title">{title}</div>
         </div>
       </div>
 
       {/* Content */}
       {isOpen && (
         <div className="mt-4">
-          {/* Existing outcomes */}
+          {/* Existing items */}
           <div className="flex flex-col gap-2 mb-4">
-            {form.outcomes.map((item, index) => (
-              <div key={index} className="flex items-center gap-2 ">
+            {items.map((item, index) => (
+              <div key={index} className="flex items-center gap-2">
                 <input
                   type="text"
                   value={item}
                   onChange={(e) => handleEdit(index, e.target.value)}
                   className="w-full form-input-list"
-                  placeholder="Outcome"
+                  placeholder={placeholder}
                 />
                 <button
                   onClick={() => handleRemove(index)}
@@ -78,21 +77,21 @@ export function EditOutcomes({ form: initialForm, onChange }) {
             ))}
           </div>
 
-          {/* Input for new Outcome */}
-          <div className="form-header mt-4">Add New Outcome</div>
-          <div className="flex items-center gap-4 w-full ">
+          {/* Input for new item */}
+          <div className="form-header mt-4">Add New {title.slice(0, -1)}</div>
+          <div className="flex items-center gap-4 w-full">
             <input
               type="text"
-              value={newOutcome}
-              onChange={(e) => setNewOutcome(e.target.value)}
+              value={newItem}
+              onChange={(e) => setNewItem(e.target.value)}
               onKeyDown={(e) => {
-                if (e.key === "Enter") handleAddOutcome();
+                if (e.key === "Enter") handleAdd();
               }}
-              placeholder="Here your new outcome..."
-              className=" w-full form-input-list"
+              placeholder={placeholder}
+              className="w-full form-input-list"
             />
             <button
-              onClick={handleAddOutcome}
+              onClick={handleAdd}
               className="inline-flex items-center justify-center gap-1 rounded-3xl pl-3 pr-4 py-1 w-fit h-fit font-semibold text-[13px] bg-[#0C0093] text-white"
             >
               <Plus className="w-4 h-4" />
