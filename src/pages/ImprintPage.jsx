@@ -37,7 +37,7 @@ export function ImprintPage() {
             <section className="mb-10">
               <h2 className="text-h4 mb-2">Disclaimer</h2>
               <p className="paragraph">
-                Despite careful content control, we assume no liability for the
+                Despite careful content control, I assume no liability for the
                 content of external links. The operators of the linked pages are
                 solely responsible for their content.
               </p>

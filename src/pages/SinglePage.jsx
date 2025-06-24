@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom"
-import LinkIcon from "/src/assets/link_pink.svg";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Intro } from "../components/projects/Intro";
@@ -44,7 +42,6 @@ import { CustomHtml } from "../components/projects/CustomHtml";
       challenges,
       outcomes,
       learnings,
-      wireframes,
     } = project;
     console.log({ title, subtitle, description, image, githubUrl });
 

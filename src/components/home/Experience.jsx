@@ -3,7 +3,7 @@ import { useState } from "react";
 const experiences = [
   {
     company: "Mister Spex",
-    title: "Senior Product Experience Designer",
+    experienceTitle: "Senior Product Experience Designer",
     location: "Berlin, Germany",
     period: "Apr 2021 - Oct 2024",
     highlights: [
