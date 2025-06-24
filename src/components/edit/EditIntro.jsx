@@ -159,7 +159,7 @@ export function EditIntro({ data, onChange }) {
             <img
               src={form.image}
               alt="Intro"
-              className="max-w-[800px] h-auto my-4 rounded-md border border-neutral-200"
+              className="w-full h-auto my-4 rounded-md border border-neutral-200"
             />
           )}
 

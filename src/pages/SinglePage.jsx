@@ -63,6 +63,8 @@ import { CustomHtml } from "../components/projects/CustomHtml";
           githubUrl={githubUrl}
           description={description}
           image={image}
+          tech={project.tech}
+          roles={project.roles}
         />
 
         {/* Hero */}
