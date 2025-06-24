@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import { NavBar } from "../components/other/NavBar";
@@ -12,6 +11,7 @@ import { ScrollTracker } from "../components/other/ScrollTracker";
 import Github from "/src/assets/github.svg";
 import Linkedin from "/src/assets/linkedin.svg";
 import Julia from "/src/assets/julia.png";
+import { About } from "../components/home/About";
 
 
 
@@ -36,9 +36,23 @@ export function Home() {
     subtitle,
     description,
     githubURL,
-    linkedinURL
+    linkedinURL,
+    aboutTitle,
+    aboutDescription,
+    aboutPortrait,
   } = page;
-  console.log({ greet, title, subtitle, description, githubURL, linkedinURL });
+
+  console.log({
+    greet,
+    title,
+    subtitle,
+    description,
+    githubURL,
+    linkedinURL,
+    aboutTitle,
+    aboutDescription,
+    aboutPortrait,
+  });
 
   return (
     <>
@@ -57,35 +71,17 @@ export function Home() {
           />
 
           {/* Featured Projects */}
-          <CardGrid />
+          <section id="work">
+            <CardGrid />
+          </section>
 
           {/* About Me */}
-          <section
-            id="about"
-            className="flex flex-col w-full py-4 md:py-10 lg:py-20"
-          >
-            <div className="text-h2 blue pb-4 md:pb-6">About Me</div>
-            <div className="flex flex-col items-start w-full md:flex-row gap-10">
-              <div className="paragraph">
-                I'm a Senior Product Experience Designer with a strong track
-                record of driving design consistency, improving user
-                satisfaction, and contributing to business growth. <br />
-                I believe that great product design requires a solid
-                understanding of how things are built—especially when most
-                resources go into development. This perspective helps me bridge
-                the gap between design and engineering, contributing to
-                solutions that are both thoughtful and scalable. <br />
-                With a background in Fine Arts, entrepreneurial experience as
-                the founder of Artconnect.com, and a career spanning both
-                startups and larger companies, I bring a balance of creativity,
-                structure, and systems thinking to every project.
-              </div>
-              <img
-                src={Julia}
-                alt="Julia Mari Bernaus"
-                className="w-full md:max-w-2xs h-auto object-contain"
-              />
-            </div>
+          <section id="about">
+            <About
+              aboutTitle={aboutTitle}
+              aboutDescription={aboutDescription}
+              aboutPortrait={aboutPortrait}
+            />
           </section>
 
           {/* Experience */}
