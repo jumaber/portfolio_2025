@@ -116,6 +116,8 @@ export function EditProject() {
                   githubUrl: project.githubUrl,
                   description: project.description,
                   image: project.image,
+                  roles: project.roles,
+                  tech: project.tech,
                 }}
                 onChange={handleIntroChange}
                 editorRef={editorRef}

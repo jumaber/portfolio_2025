@@ -35,21 +35,6 @@ export function ImprintPage() {
             </section>
 
             <section className="mb-10">
-              <h2 className="text-h4 mb-2">
-                Responsible for content according to § 55 Abs. 2 RStV
-              </h2>
-              <p className="paragraph">
-                Júlia Marí Bernaus.
-                <br />
-                Geygerstrasse 8
-                <br />
-                12043, Berlin
-                <br />
-                Germany
-              </p>
-            </section>
-
-            <section className="mb-10">
               <h2 className="text-h4 mb-2">Disclaimer</h2>
               <p className="paragraph">
                 Despite careful content control, we assume no liability for the
