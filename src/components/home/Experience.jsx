@@ -14,7 +14,7 @@ export function Experience({ experience = [] }) {
   if (!experience.length || !activeContent) return null;
 
   return (
-    <div className="w-full py-20">
+    <div className="w-full pt-20">
       <div className="text-h2 blue pb-8">Working Experience</div>
 
       <div className="flex flex-col lg:flex-row gap-6">

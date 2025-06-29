@@ -4,7 +4,7 @@ export function About({
   aboutPortrait,
 }) {
   return (
-    <section id="about" className="flex flex-col w-full py-4 md:py-10 lg:py-20">
+    <section id="about" className="flex flex-col w-full pt-20 md:pt-02 ">
       <div className="text-h2 blue pb-4 md:pb-6">{aboutTitle}</div>
       <div className="flex flex-col items-start w-full md:flex-row gap-10">
         <div
