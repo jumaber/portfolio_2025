@@ -46,7 +46,11 @@ export function NavBar() {
       <div className="flex justify-between items-center py-4 w-full max-w-[800px] mx-auto">
         {/* Logo */}
         <Link to="/">
-          <img src={logo} alt="JMB Design" className="w-8 h-8" />
+          <img
+            src={logo}
+            alt="JMB Design"
+            className="w-8 h-8 transition-transform duration-200 hover:scale-105"
+          />
         </Link>
         {/* Hamburger Toggle */}
         <button
@@ -78,12 +82,12 @@ export function NavBar() {
 
 function DesktopMenu({ handleNavClick }) {
   return (
-    <div className="hidden md:flex gap-4">
+    <div className="hidden md:flex gap-4 ">
       {["work", "about", "experience", "contact"].map((id) => (
         <button
           key={id}
           onClick={() => handleNavClick(id)}
-          className="text-h5 blue cursor-pointer"
+          className="text-h5 blue cursor-pointer relative transition-all duration-200 hover:bg-[var(--color-yellow)] hover:text-white px-1 box-decoration-clone"
         >
           {id.charAt(0).toUpperCase() + id.slice(1)}
         </button>

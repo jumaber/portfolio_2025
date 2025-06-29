@@ -28,8 +28,8 @@ export function Experience({ experience = [] }) {
               <button
                 className={`text-h5 text-left w-full px-4 py-4 lg:py-8 transition-all duration-300 ${
                   activeCompany === experienceCompany
-                    ? "bg-[#e5dcf9] text-[#0C0093] font-semibold"
-                    : "text-[#333] hover:bg-[#f0eaff] hover:text-[#0C0093] cursor-pointer"
+                    ? "bg-[#e5dcf9] text-[var(--color-blue)] font-semibold"
+                    : "text-[#333] hover:bg-[#f0eaff] hover:text-[var(--color-blue)] cursor-pointer"
                 }`}
                 onClick={() => setActiveCompany(experienceCompany)}
               >

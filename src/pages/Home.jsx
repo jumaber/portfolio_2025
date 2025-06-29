@@ -59,6 +59,8 @@ export function Home() {
     contactButtonURL,
   });
 
+  
+
   return (
     <>
       <NavBar />
@@ -89,13 +91,13 @@ export function Home() {
             />
           </section>
 
-          {/* Experience - TO DO DYNAMICALLY */}
+          {/* Experience */}
           <section id="experience">
             <Experience
             experience={experience} />
           </section>
 
-          {/* Contact - TO DO DYNAMICALLY */}
+          {/* Contact */}
           <section id="contact">
             <Contact
               contactTitle={contactTitle}
