@@ -10,12 +10,12 @@
 } */
 
 :root {
-  --color-blue: #0C0093;
-  --color-yellow: #FDFF92;
-  --color-pink: #FFA7A7;
-  --color-cream: #FFF6F6;
-  --color-black: #333333;
-  --color-gray: #656565;
+  --color-blue: #0C0093;     /* [var(--color-blue)] */
+  --color-yellow: #FDFF92;   /* [var(--color-yellow)] */
+  --color-pink: #FFA7A7;     /* [var(--color-pink)] */
+  --color-cream: #FFF6F6;    /* [var(--color-cream)] */
+  --color-black: #333333;    /* [var(--color-black)] */
+  --color-gray: #656565;     /* [var(--color-gray)] */
 }
 
 /* 🌫️ Soft drop shadow */
@@ -198,21 +198,20 @@ html {
 }
 
 .box-title{
-color: var(--medium-grey, #656565);
-font-family: Inter;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .dashboard-title{
   color: var(--blue, #0C0093);
-font-family: Inter;
-font-size: 32px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
+  font-family: Inter;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
 

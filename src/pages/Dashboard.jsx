@@ -123,24 +123,25 @@ export function Dashboard() {
 
   return (
     <div className="bg-[#f5f5f5] flex flex-col h-screen w-screen items-start p-4 md:p-8 lg:p-16 overflow-x-hidden">
-      <div className="flex flex-col-reverse md:flex-row w-full justify-between">
-        <div className="flex flex-row gap-4 items-center">
+      <div className="flex flex-col w-full pb-10">
+        <div className="flex flex-row w-full justify-between items-center mb-4">
           <Link to="/">
             <div className="dashboard-title">🏠</div>
           </Link>
-          <div className="dashboard-title">Welcome back, Júlia! </div>
+          <div
+            className="flex flex-row justify-end text-h5 blue hover:text-h3 cursor-pointer"
+            onClick={handleLogout}
+          >
+            Log out
+          </div>
         </div>
-        <div
-          className="flex flex-row justify-end text-h5 blue hover:text-h3 cursor-pointer"
-          onClick={handleLogout}
-        >
-          Log out
-        </div>
+        <div className="dashboard-title">Welcome back, Júlia! </div>
       </div>
-      <div className="flex flex-col lg:flex-row w-full lg:gap-18">
-        <div className="flex flex-col lg:w-3/5 gap-10">
+
+      <div className="flex flex-col lg:flex-row w-full lg:gap-18 ">
+        <div className="flex flex-col lg:w-3/5 gap-4 lg:gap-10">
           {/* Summary */}
-          <div className="flex flex-row justify-between gap-4 pt-10">
+          <div className="flex flex-row justify-between gap-1 lg:gap-4">
             <div className="white-box">
               <h2 className="text-[var(--dark-grey,#333)] text-center font-bold text-[24px] leading-none pb-2">
                 {totalPages}
@@ -170,7 +171,12 @@ export function Dashboard() {
           {/* Pages */}
           <div className="white-box">
             <div className="flex flex-row justify-between items-center mb-4">
-              <h2 className="box-title">📜 Pages</h2>
+              <h2 className="box-title">
+                📜 Pages{" "}
+                {/* <span className="text-h5">
+                  ({totalPages})
+                </span> */}
+              </h2>
               <ButtonSmall
                 image={null}
                 text="+ Add Page"
@@ -194,7 +200,13 @@ export function Dashboard() {
           {/* Projects */}
           <div className="white-box">
             <div className="flex flex-row justify-between items-center mb-4">
-              <h2 className="box-title">👩🏻‍💻 Projects</h2>
+              <h2 className="box-title">
+                👩🏻‍💻 Projects{" "}
+                {/* <span className="text-h5">
+                  ({featuredProjects}
+                  /{totalProjects})
+                </span> */}
+              </h2>
               <ButtonSmall
                 image={null}
                 text="+ Add Project"
@@ -225,7 +237,7 @@ export function Dashboard() {
 
         {/* Analytics */}
         <div className="flex flex-col w-full lg:w-2/5">
-          <div className="flex flex-col justify-between gap-10 py-10">
+          <div className="flex flex-col justify-between gap-10">
             {/* Google Analytics */}
             <div className="white-box">
               <div className="flex flex-row justify-between items-center pb-4">
