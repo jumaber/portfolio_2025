@@ -7,10 +7,6 @@ import { Contact } from "../components/home/Contact";
 import { CardGrid } from "../components/home/CardGrid";
 import { HomeIntro } from "../components/home/HomeIntro";
 import { ScrollTracker } from "../components/other/ScrollTracker";
-
-import Github from "/src/assets/github.svg";
-import Linkedin from "/src/assets/linkedin.svg";
-import Julia from "/src/assets/julia.png";
 import { About } from "../components/home/About";
 
 
@@ -40,6 +36,11 @@ export function Home() {
     aboutTitle,
     aboutDescription,
     aboutPortrait,
+    contactTitle,
+    contactDescription,
+    contactButton,
+    contactButtonURL,
+    experience,
   } = page;
 
   console.log({
@@ -52,6 +53,10 @@ export function Home() {
     aboutTitle,
     aboutDescription,
     aboutPortrait,
+    contactTitle,
+    contactDescription,
+    contactButton,
+    contactButtonURL,
   });
 
   return (
@@ -86,12 +91,18 @@ export function Home() {
 
           {/* Experience - TO DO DYNAMICALLY */}
           <section id="experience">
-            <Experience />
+            <Experience
+            experience={experience} />
           </section>
 
           {/* Contact - TO DO DYNAMICALLY */}
           <section id="contact">
-            <Contact />
+            <Contact
+              contactTitle={contactTitle}
+              contactDescription={contactDescription}
+              contactButton={contactButton}
+              contactButtonURL={contactButtonURL}
+            />
           </section>
         </div>
         <Footer />
