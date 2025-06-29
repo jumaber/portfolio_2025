@@ -3,7 +3,7 @@ import { Switch } from "./Switch";
 import { ButtonSmall } from "./ButtonSmall";
 
 export function ListItem({
-  title = "Lens Configuration",
+  title = "",
   image = "/src/assets/image-1.png",
   slug,
   featured = false,
@@ -11,6 +11,7 @@ export function ListItem({
   showDrag = true,
   showSwitch = true,
   onToggleFeatured,
+  showBorder = true,
 }) {
   let basePath = to || `/project/${slug}`;
   if (basePath.endsWith("/") && basePath !== "/") {
@@ -18,7 +19,11 @@ export function ListItem({
   }
 
   return (
-    <div className="flex flex-col md:flex-row items-start gap-4 justify-between bg-white p-2 rounded-md w-full hover:bg-[#e8eaf1] transition-colors duration-200">
+    <div
+      className={`flex flex-col md:flex-row items-center gap-4 justify-between bg-white px-2 py-4 w-full hover:bg-[#e8eaf1] transition-colors duration-200 ${
+        showBorder ? "border-b border-gray-200" : ""
+      }`}
+    >
       <div className="flex items-center gap-4">
         <img src={image} className="w-16 h-auto rounded-lg" />
         <div className="font-semibold text-[16px] text-[#333]">{title}</div>

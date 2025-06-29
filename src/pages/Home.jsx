@@ -84,12 +84,12 @@ export function Home() {
             />
           </section>
 
-          {/* Experience */}
+          {/* Experience - TO DO DYNAMICALLY */}
           <section id="experience">
             <Experience />
           </section>
 
-          {/* Contact */}
+          {/* Contact - TO DO DYNAMICALLY */}
           <section id="contact">
             <Contact />
           </section>

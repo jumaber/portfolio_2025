@@ -27,16 +27,20 @@ import { SortableItem } from "../components/dashboard/SortableItem";
 
 
 export function Dashboard() {
-  const navigate = useNavigate();  
+  const navigate = useNavigate();
 
+  // Usestate for Projects & Pages
   const [projects, setProjects] = useState([]);
+  const [pages, setPages] = useState([]);
 
+  // Function to Log out
   const handleLogout = () => {
     signOut(auth)
       .then(() => navigate("/login"))
       .catch((error) => console.error("Logout failed:", error));
   };
 
+  // Get data for Projects
   useEffect(() => {
     fetch("https://portfolio-2025-wyed.onrender.com/api/projects/")
       .then((res) => res.json())
@@ -46,13 +50,26 @@ export function Dashboard() {
       .catch((err) => console.error("Failed to fetch projects:", err));
   }, []);
 
+  // Get data for Pages
+  useEffect(() => {
+    fetch("https://portfolio-2025-wyed.onrender.com/api/pages/")
+      .then((res) => res.json())
+      .then((data) =>
+        setPages([...data].sort((a, b) => (a.order || 0) - (b.order || 0)))
+      )
+      .catch((err) => console.error("Failed to fetch pages:", err));
+  }, []);
+
+
+  // Variables for display at top of Dashboard
   const totalProjects = projects.length;
   const featuredProjects = projects.filter(
     (project) => project.featured
   ).length;
-  // const totalPages = pages.length;
+  const totalPages = pages.length;
 
 
+  // Drag DND
   function handleDragEnd(event) {
     const { active, over } = event;
 
@@ -95,8 +112,7 @@ export function Dashboard() {
       );
     });
   }
-  
-  
+
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -104,7 +120,7 @@ export function Dashboard() {
       },
     })
   );
-  
+
   return (
     <div className="bg-[#f5f5f5] flex flex-col h-screen w-screen items-start p-4 md:p-8 lg:p-16 overflow-x-hidden">
       <div className="flex flex-col-reverse md:flex-row w-full justify-between">
@@ -127,7 +143,7 @@ export function Dashboard() {
           <div className="flex flex-row justify-between gap-4 pt-10">
             <div className="white-box">
               <h2 className="text-[var(--dark-grey,#333)] text-center font-bold text-[24px] leading-none pb-2">
-                2 {/* {totalPages} */}
+                {totalPages}
               </h2>
               <p className="text-[var(--dark-grey,#333)] text-center font-normal text-[14px] leading-none font-sans">
                 Pages
@@ -160,30 +176,24 @@ export function Dashboard() {
                 text="+ Add Page"
                 className="bg-[#FFA7A7] text-white"
               />
-            </div>{" "}
-            <ListItem
-              showDrag={false}
-              showSwitch={false}
-              title="Home"
-              image={
-                "https://res.cloudinary.com/jumaber/image/upload/v1750400425/Screenshot_2025-06-20_at_08.19.54_wdejp0.png"
-              }
-              to={"/"}
-            />
-            <ListItem
-              showDrag={false}
-              showSwitch={false}
-              title="Imprint"
-              image={
-                "https://res.cloudinary.com/jumaber/image/upload/v1750400425/Screenshot_2025-06-20_at_08.19.54_wdejp0.png"
-              }
-              to={"/imprint"}
-            />
+            </div>
+
+            {pages.map((page, index) => (
+              <ListItem
+                showDrag={false}
+                showSwitch={false}
+                title={page.slug}
+                image={page.cardImage}
+                to={page.slug === "home" ? "/" : `/${page.slug}`}
+                key={page.slug}
+                showBorder={index !== pages.length - 1}
+              />
+            ))}
           </div>
 
           {/* Projects */}
           <div className="white-box">
-            <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row justify-between items-center mb-4">
               <h2 className="box-title">👩🏻‍💻 Projects</h2>
               <ButtonSmall
                 image={null}
@@ -200,11 +210,12 @@ export function Dashboard() {
                 items={projects.map((project) => project.slug)}
                 strategy={verticalListSortingStrategy}
               >
-                {projects.map((project) => (
+                {projects.map((project, index) => (
                   <SortableItem
                     key={project.slug}
                     project={project}
                     setProjects={setProjects}
+                    showBorder={index !== projects.length - 1}
                   />
                 ))}
               </SortableContext>
@@ -241,7 +252,6 @@ export function Dashboard() {
                 />
               </div>
             </div>
-
           </div>
         </div>
       </div>
