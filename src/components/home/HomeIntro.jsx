@@ -1,4 +1,3 @@
-
 export function HomeIntro({
   greet,
   title,
@@ -8,9 +7,10 @@ export function HomeIntro({
   linkedinURL,
 }) {
   const GithubImage =
-    "https://res.cloudinary.com/jumaber/image/upload/v1751224205/github_qfexpj.png";
+    "https://res.cloudinary.com/jumaber/image/upload/v1751227206/github_qfexpj.svg";
+  
     const LinkedinImage =
-      "https://res.cloudinary.com/jumaber/image/upload/v1751224205/linkedin_e6cjxv.png";
+    "https://res.cloudinary.com/jumaber/image/upload/v1751227064/linkedin_e6cjxv.svg";
   
       return (
         <section
@@ -26,14 +26,14 @@ export function HomeIntro({
               <img
                 src={GithubImage}
                 alt="GitHub icon"
-                className="w-8 h-8 cursor-pointer"
+                className="w-8 h-8 cursor-pointer transition-transform duration-200 hover:scale-105 rounded-lg p-1 hover:bg-[var(--color-yellow)]"
               />
             </a>
             <a href={linkedinURL} target="_blank" rel="noopener noreferrer">
               <img
                 src={LinkedinImage}
                 alt="LinkedIn icon"
-                className="w-8 h-8 cursor-pointer"
+                className="w-8 h-8 cursor-pointer transition-transform duration-200 hover:scale-105 rounded-lg p-1 hover:bg-[var(--color-yellow)]"
               />
             </a>
           </div>

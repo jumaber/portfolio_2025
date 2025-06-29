@@ -4,13 +4,13 @@ export function ButtonSmall({
   text = "Visit",
   to = null,
   ariaLabel = "Visit link",
-  image = "/src/assets/link.svg",
+  image = "",
   className = "",
   onClick = null,
   newTab = false,
 }) {
   const baseClasses =
-    "inline-flex items-center gap-1 rounded-3xl px-2 py-1 w-fit font-semibold text-[13px] " +
+    "inline-flex items-center gap-1 rounded-3xl px-2 py-1 w-fit font-bold text-[13px] " +
     className;
 
   // Pure action button (no 'to' prop)

@@ -87,7 +87,7 @@ function DesktopMenu({ handleNavClick }) {
         <button
           key={id}
           onClick={() => handleNavClick(id)}
-          className="text-h5 blue cursor-pointer relative transition-all duration-200 hover:bg-[var(--color-yellow)] hover:text-white px-1 box-decoration-clone"
+          className="text-h5 blue cursor-pointer relative transition-all duration-200 hover:bg-[var(--color-yellow)] hover:scale-105 rounded-lg  hover:text-white px-2 box-decoration-clone"
         >
           {id.charAt(0).toUpperCase() + id.slice(1)}
         </button>

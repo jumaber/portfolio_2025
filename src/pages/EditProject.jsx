@@ -81,13 +81,15 @@ export function EditProject() {
             <ButtonSmall
               text={"Visit"}
               to={`/project/${project.slug}`}
-              className={"bg-[#0C0093] text-white"}
+              className="bg-[var(--color-blue)] text-white hover:bg-[var(--color-pink)] hover:font-bold"
               newTab={true}
               image={WhiteLinkIcon}
             />
             <ButtonSmall
               text={"Save"}
-              className={"bg-[#FFA7A7] text-white"}
+              className={
+                "bg-[var(--color-yellow)] text-[var(--color-blue)] font-bold hover:bg-[var(--color-pink)] hover:text-white "
+              }
               image={null}
               onClick={handleSave}
             />

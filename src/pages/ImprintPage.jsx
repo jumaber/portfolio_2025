@@ -27,7 +27,7 @@ export function ImprintPage() {
                 Email:{" "}
                 <a
                   href="mailto:hi@juliamaribernaus.com"
-                  className="text-[var(--color-blue)] underline hover:opacity-80"
+                  className="links links:hover"
                 >
                   hi@juliamaribernaus.com
                 </a>
@@ -53,7 +53,7 @@ export function ImprintPage() {
                   href="https://ec.europa.eu/consumers/odr/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[var(--color-blue)] underline hover:opacity-80"
+                  className="links links:hover"
                 >
                   ec.europa.eu/consumers/odr/
                 </a>

@@ -38,13 +38,13 @@ export function ListItem({
           text="Edit"
           image={null}
           to={basePath === "/" ? "/edit" : `${basePath}/edit`}
-          className="bg-[#f5f5f5] hover:bg-[var(--color-blue)] hover:text-white"
+          className="bg-[#f5f5f5] hover:bg-[var(--color-pink)] hover:text-white"
         />
         <ButtonSmall
           text="Visit"
           image="/src/assets/link.svg"
           to={basePath}
-          className="bg-[#f5f5f5] hover:bg-[var(--color-pink)]"
+          className="bg-[#f5f5f5] hover:bg-[var(--color-yellow)]"
           newTab={basePath !== "/"}
         />
       </div>

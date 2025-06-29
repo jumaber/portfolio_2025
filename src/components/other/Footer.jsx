@@ -10,7 +10,7 @@ export function Footer() {
         <NavLink
           to="/imprint"
           aria-label="Imprint page"
-          className="text-h5 blue cursor-pointer relative transition-all duration-200 hover:bg-[var(--color-yellow)] hover:text-white px-1 box-decoration-clone"
+          className="text-h5 blue cursor-pointer relative transition-all duration-200 hover:bg-[var(--color-yellow)] hover:text-white px-1 box-decoration-clone hover:scale-105 rounded-lg "
         >
           Imprint
         </NavLink>

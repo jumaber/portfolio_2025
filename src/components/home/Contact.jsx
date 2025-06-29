@@ -1,5 +1,3 @@
-import Github from "/src/assets/github.svg";
-import Linkedin from "/src/assets/linkedin.svg";
 import { Button } from "../other/Button"
 
 export function Contact({
@@ -8,6 +6,13 @@ export function Contact({
   contactButton,
   contactButtonURL
 }) {
+
+  const GithubImage =
+    "https://res.cloudinary.com/jumaber/image/upload/v1751227206/github_qfexpj.svg";
+
+  const LinkedinImage =
+    "https://res.cloudinary.com/jumaber/image/upload/v1751227064/linkedin_e6cjxv.svg";
+
   return (
     <>
       <div className="py-4 md:pt-20">
@@ -16,8 +21,7 @@ export function Contact({
         <div
           className="paragraph pb-10"
           dangerouslySetInnerHTML={{ __html: contactDescription }}
-        >
-        </div>
+        ></div>
 
         <div className="flex flex-row items-start gap-4 pb-10">
           <a
@@ -25,14 +29,22 @@ export function Contact({
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src={Github} alt="GitHub icon" className="w-6 h-6" />
+            <img
+              src={GithubImage}
+              alt="GitHub icon"
+              className="w-8 h-8 cursor-pointer transition-transform duration-200 hover:scale-105 rounded-lg p-1 hover:bg-[var(--color-yellow)]"
+            />
           </a>
           <a
             href="https://www.linkedin.com/in/juliamaribernaus"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src={Linkedin} alt="LinkedIn icon" className="w-6 h-6" />
+            <img
+              src={LinkedinImage}
+              alt="LinkedIn icon"
+              className="w-8 h-8 cursor-pointer transition-transform duration-200 hover:scale-105 rounded-lg p-1 hover:bg-[var(--color-yellow)]"
+            />
           </a>
         </div>
 

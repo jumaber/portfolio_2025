@@ -121,6 +121,8 @@ export function Dashboard() {
     })
   );
 
+  const ExternalLinkImage = "https://res.cloudinary.com/jumaber/image/upload/v1751228673/link_white_ws5ipy.svg";
+
   return (
     <div className="bg-[#f5f5f5] flex flex-col h-screen w-screen items-start p-4 md:p-8 lg:p-16 overflow-x-hidden">
       <div className="flex flex-col w-full pb-10">
@@ -180,7 +182,7 @@ export function Dashboard() {
               <ButtonSmall
                 image={null}
                 text="+ Add Page"
-                className="bg-[#FFA7A7] text-white"
+                className="add-button add-button:hover"
               />
             </div>
 
@@ -210,7 +212,7 @@ export function Dashboard() {
               <ButtonSmall
                 image={null}
                 text="+ Add Project"
-                className="bg-[#FFA7A7] text-white"
+                className="add-button add-button:hover"
               />
             </div>
             <DndContext
@@ -243,10 +245,11 @@ export function Dashboard() {
               <div className="flex flex-row justify-between items-center pb-4">
                 <h2 className="box-title">📊 Google Analytics</h2>
                 <ButtonSmall
-                  className={"bg-[#F5F5F5] text-[#656565]"}
+                  className="add-button add-button:hover"
                   to={
                     "https://lookerstudio.google.com/reporting/642c28cd-a396-4f16-b5f4-c4001416b33c"
                   }
+                  image={ExternalLinkImage}
                 />
               </div>
               <GAReport />
@@ -257,10 +260,11 @@ export function Dashboard() {
               <div className="flex flex-row justify-between items-center">
                 <h2 className="box-title">🔥 Hotjar</h2>
                 <ButtonSmall
-                  className={"bg-[#F5F5F5] text-[#656565]"}
+                  className="add-button add-button:hover"
                   to={
                     "https://insights.hotjar.com/sites/2301909/dashboard/TXb4wU8wuWGckmibW9Qg4a-Site-overview"
                   }
+                  image={ExternalLinkImage}
                 />
               </div>
             </div>
