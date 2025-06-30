@@ -4,10 +4,10 @@ import { ButtonSmall } from "./ButtonSmall";
 
 export function ListItem({
   title = "",
-  image = "/src/assets/image-1.png",
-  slug,
+  image = "",
+  slug = "",
   featured = false,
-  to,
+  to = "",
   showDrag = true,
   showSwitch = true,
   onToggleFeatured,

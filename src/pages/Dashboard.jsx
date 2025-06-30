@@ -190,8 +190,8 @@ export function Dashboard() {
               <ListItem
                 showDrag={false}
                 showSwitch={false}
-                title={page.slug}
-                image={page.cardImage}
+                title={page.title}
+                image={page.image}
                 to={page.slug === "home" ? "/" : `/${page.slug}`}
                 key={page.slug}
                 showBorder={index !== pages.length - 1}

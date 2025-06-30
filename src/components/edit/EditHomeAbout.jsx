@@ -27,7 +27,9 @@ export function EditHomeAbout({ data, onChange }) {
     onChange(updatedForm);
   }
 
-  async function handleHeroImageUpload(e) {
+  
+
+  async function handleImageUpload(e) {
     const file = e.target.files[0];
     if (!file) return;
 
@@ -45,7 +47,7 @@ export function EditHomeAbout({ data, onChange }) {
         }
       );
       const data = await res.json();
-      const updatedForm = { ...form, hero: data.secure_url };
+      const updatedForm = { ...form, aboutPortrait: data.secure_url };
       setForm(updatedForm);
       onChange(updatedForm);
     } catch (err) {
@@ -114,7 +116,7 @@ export function EditHomeAbout({ data, onChange }) {
             type="file"
             accept="image/*"
             ref={fileInputRef}
-            onChange={handleHeroImageUpload}
+            onChange={handleImageUpload}
             className="hidden"
           />
         </div>

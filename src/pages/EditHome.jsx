@@ -1,18 +1,19 @@
 import { useEffect, useState, useRef } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ButtonSmall } from "../components/dashboard/ButtonSmall";
-import { EditCard } from "../components/edit/EditCard";
 import WhiteLinkIcon from "../assets/link_white.svg";
 import { LoadingAnimation } from "../components/other/LoadingAnimation";
 import { EditHomeIntro } from "../components/edit/EditHomeIntro";
 import { EditHomeAbout } from "../components/edit/EditHomeAbout";
 import { EditHomeExperience } from "../components/edit/EditHomeExperience.jsx";
+import { EditHomeContact } from "../components/edit/EditHomeContact.jsx";
 
 
 export function EditHome() {
-  const { slug } = useParams();
   const [page, setPage] = useState(null);
   const editorRef = useRef(null);
+  const fileInputRef = useRef(null);
+
 
   // Fetch the project from backend
   useEffect(() => {
@@ -20,7 +21,7 @@ export function EditHome() {
       .then((res) => res.json())
       .then((data) => setPage(data))
       .catch((err) => console.error("Failed to fetch home page:", err));
-  }, [slug]);
+  }, []);
 
   function handleFormChange(updatedForm) {
     setPage((prev) => ({ ...prev, ...updatedForm }));
@@ -60,6 +61,43 @@ export function EditHome() {
     }
   }
 
+  async function handleImageUpload(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const pageData = new FormData();
+    pageData.append("file", file);
+    pageData.append("upload_preset", "portfolio_upload");
+    pageData.append("folder", "portfolio");
+
+    try {
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/jumaber/image/upload",
+        {
+          method: "POST",
+          body: pageData,
+        }
+      );
+      const data = await res.json();
+      const updatedForm = { ...page, image: data.secure_url };
+      setPage(updatedForm);
+      handleFormChange(updatedForm);
+      console.log("✅ Image uploaded:", data.secure_url);
+    } catch (err) {
+      console.error("Card image upload failed:", err);
+    }
+  }
+
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    const updatedForm = { ...page, [name]: value };
+    setPage(updatedForm);
+    handleFormChange(updatedForm);
+    console.log("✅ Image uploaded:", data.secure_url);
+  }
+
+
   return (
     <div className="bg-[#f5f5f5] flex flex-col h-screen w-screen items-start p-4 md:p-8 lg:p-16 overflow-x-hidden">
       {/* Header*/}
@@ -98,18 +136,20 @@ export function EditHome() {
 
       {/* Content */}
       <div className="flex flex-col lg:flex-row w-full justify-between gap-10">
-        <div className="flex flex-row w-full lg:w-1/2">
+        <div className="flex flex-row w-full lg:w-2/3">
           <div className="white-box  h-fit">
             <div className="text-h3 blue pb-4 ">Content</div>
             <div className="flex flex-col gap-4">
               <EditHomeIntro
                 data={{
                   greet: page.greet,
-                  title: page.title,
+                  introTitle: page.introTitle,
                   subtitle: page.subtitle,
                   description: page.description,
                   githubURL: page.githubURL,
                   linkedinURL: page.linkedinURL,
+                  githubImage: page.githubImage,
+                  linkedinImage: page.linkedinImage,
                 }}
                 onChange={handleFormChange}
                 editorRef={editorRef}
@@ -124,11 +164,56 @@ export function EditHome() {
                 editorRef={editorRef}
               />
               <EditHomeExperience
-                form={page}
-                setForm={setPage}
+                page={page}
+                setPage={setPage}
+                onChange={handleFormChange}
+              />
+              <EditHomeContact
+                page={page}
+                setPage={setPage}
                 onChange={handleFormChange}
               />
             </div>
+          </div>
+        </div>
+        <div className="white-box h-fit">
+          <div className="text-h3 blue w-full h-fit pb-4">List Preview</div>
+          <div className="grey-box">
+            <div className="form-header flex justify-between items-center mt-4">
+              <span>Image</span>
+              <ButtonSmall
+                text="Upload Image"
+                onClick={() => fileInputRef.current.click()}
+                className="bg-[#0C0093] text-white"
+                image={null}
+              />
+            </div>
+
+            {page.image && (
+              <img
+                src={page.image}
+                alt="Hero"
+                className="w-full h-auto my-4 rounded-md border border-neutral-200"
+              />
+            )}
+
+            <input
+              type="file"
+              accept="image/*"
+              ref={fileInputRef}
+              onChange={handleImageUpload}
+              className="hidden"
+            />
+
+            <div className="form-header">Dashboard List Title</div>
+            <input
+              type="text"
+              name="title"
+              value={page.title}
+              onChange={handleChange}
+              placeholder="Title"
+              className="form-input"
+            />
           </div>
         </div>
       </div>

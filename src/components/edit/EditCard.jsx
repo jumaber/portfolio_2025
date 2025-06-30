@@ -5,7 +5,7 @@ import { Switch } from "../dashboard/Switch";
 export function EditCard({ form, setForm, onChange }) {
   const fileInputRef = useRef();
 
-  async function handleHeroImageUpload(e) {
+  async function handleImageUpload(e) {
     const file = e.target.files[0];
     if (!file) return;
 
@@ -23,11 +23,11 @@ export function EditCard({ form, setForm, onChange }) {
         }
       );
       const data = await res.json();
-      const updatedForm = { ...form, hero: data.secure_url };
+      const updatedForm = { ...form, cardImage: data.secure_url };
       setForm(updatedForm);
       onChange(updatedForm);
     } catch (err) {
-      console.error("Hero image upload failed:", err);
+      console.error("Card image upload failed:", err);
     }
   }
 
@@ -63,7 +63,7 @@ export function EditCard({ form, setForm, onChange }) {
         type="file"
         accept="image/*"
         ref={fileInputRef}
-        onChange={handleHeroImageUpload}
+        onChange={handleImageUpload}
         className="hidden"
       />
 
@@ -86,7 +86,6 @@ export function EditCard({ form, setForm, onChange }) {
         placeholder="Card Subtitle"
         className="form-input"
       />
-
     </div>
   );
   
