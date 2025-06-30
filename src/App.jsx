@@ -12,6 +12,8 @@ import { Login } from "./pages/Login";
 import { EditHome } from "./pages/EditHome.jsx";
 import { EditImprint } from "./pages/EditImprint.jsx";
 import { EditProject } from "./pages/EditProject";
+import { LoadingAnimation } from "./components/other/LoadingAnimation.jsx";
+
 
 
 
@@ -32,7 +34,7 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  if (loading) return <div className="p-4">Loading...</div>;
+  if (loading) return <LoadingAnimation />
 
 
   return (

@@ -8,6 +8,7 @@ import { CardGrid } from "../components/home/CardGrid";
 import { HomeIntro } from "../components/home/HomeIntro";
 import { ScrollTracker } from "../components/other/ScrollTracker";
 import { About } from "../components/home/About";
+import { LoadingAnimation } from "../components/other/LoadingAnimation";
 
 
 
@@ -24,7 +25,7 @@ export function Home() {
       .catch((err) => console.error("Failed to fetch page:", err));
   }, []);
 
-  if (!page) return <div className="p-10">Loading...</div>;
+  if (!page) return <LoadingAnimation />;
 
   const {
     greet,
@@ -65,7 +66,6 @@ export function Home() {
     <>
       <NavBar />
       <ScrollTracker />
-
       <div className="h-full bg-[#FFF6F6] flex flex-col items-start px-4 md:px-8 lg:px-48 max-w-full overflow-x-hidden">
         <div className="w-full max-w-[800px] mx-auto">
           <HomeIntro
@@ -93,8 +93,7 @@ export function Home() {
 
           {/* Experience */}
           <section id="experience">
-            <Experience
-            experience={experience} />
+            <Experience experience={experience} />
           </section>
 
           {/* Contact */}

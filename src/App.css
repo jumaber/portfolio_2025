@@ -358,7 +358,27 @@ codex-editor__redactor{
 } */
 
 
-@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;700;800&display=swap');
+/********** Loading Animation **********/
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+
+  }
+  50% {
+    transform: scale(1.5);
+
+  }
+}
+
+.loading-pulse {
+  animation: pulse 2s ease-in-out infinite;
+  transform-origin: center;
+  display: inline-block;
+
+}
+
+
 
 /********** Linsenpate **********/
 /* Colors Used
@@ -366,6 +386,8 @@ Black bg: #212121;
 Grey bg: #F8F8F8;
 
 /*********** Linsenpate Intro **********/
+
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;700;800&display=swap');
 
 #lp-intro{
     display: flex;

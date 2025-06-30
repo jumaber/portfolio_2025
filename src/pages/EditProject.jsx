@@ -9,6 +9,7 @@ import WhiteLinkIcon from "../assets/link_white.svg"
 import { EditListField } from "../components/edit/EditListField.jsx";
 import { EditWireframes } from "../components/edit/EditWireframes.jsx";
 import { EditCustomHtml } from "../components/edit/EditCustomHtml.jsx";
+import { LoadingAnimation } from "../components/other/LoadingAnimation";
 
 
 
@@ -30,7 +31,7 @@ export function EditProject() {
     setProject((prev) => ({ ...prev, ...updatedIntro }));
   }
 
-  if (!project) return <div className="p-10">Loading...</div>;
+  if (!project) return <LoadingAnimation />;
 
 
   function handleFormChange(updatedForm) {

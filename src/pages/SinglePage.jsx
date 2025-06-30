@@ -10,6 +10,7 @@ import { Process } from "../components/projects/Process";
 import { HeroImage } from "../components/projects/HeroImage"
 import { RelatedProjects } from "../components/projects/RelatedProjects";
 import { CustomHtml } from "../components/projects/CustomHtml";
+import { LoadingAnimation } from "../components/other/LoadingAnimation";
 
 
   export function SinglePage() {
@@ -27,7 +28,7 @@ import { CustomHtml } from "../components/projects/CustomHtml";
     }, [slug]);
     
   
-    if (!project) return <div className="p-10">Loading...</div>;
+    if (!project) return <LoadingAnimation />;
   
     const {
       title,
