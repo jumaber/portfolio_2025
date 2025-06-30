@@ -10,7 +10,7 @@ import { PageNotFound } from "./pages/PageNotFound";
 import { Dashboard } from "./pages/Dashboard";
 import { Login } from "./pages/Login"; 
 import { EditHome } from "./pages/EditHome.jsx";
-import { EditImprint } from "./pages/EditImprint.jsx";
+import { EditImprint } from "./components/edit/EditImprint.jsx"
 import { EditProject } from "./pages/EditProject";
 import { LoadingAnimation } from "./components/other/LoadingAnimation.jsx";
 
@@ -42,21 +42,21 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route
         path="/edit"
-        element={user ? <EditHome user={name} /> : <Navigate to="/login" />}
+        element={user ? <EditHome user={user} /> : <Navigate to="/login" />}
       />
       <Route path="/project/:slug" element={<SinglePage />} />
       <Route
         path="/project/:slug/edit"
-        element={user ? <EditProject user={name} /> : <Navigate to="/login" />}
+        element={user ? <EditProject user={user} /> : <Navigate to="/login" />}
       />
       <Route path="/imprint" element={<ImprintPage />} />
       <Route
         path="/imprint/edit"
-        element={user ? <EditImprint user={name} /> : <Navigate to="/login" />}
+        element={user ? <EditImprint user={user} /> : <Navigate to="/login" />}
       />
       <Route
         path="/dashboard"
-        element={user ? <Dashboard user={name} /> : <Navigate to="/login" />}
+        element={user ? <Dashboard user={user} /> : <Navigate to="/login" />}
       />
       <Route path="/login" element={<Login />} />
       <Route path="/*" element={<PageNotFound />} />

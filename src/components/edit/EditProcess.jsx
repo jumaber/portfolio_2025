@@ -1,13 +1,24 @@
 import { useState, useEffect } from "react";
-import { ChevronDown, ChevronRight, Plus } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronRight,
+  Plus,
+  Trash2,
+  Pencil,
+  EyeOff,
+} from "lucide-react";
 import { X } from "lucide-react";
 import { ButtonSmall } from "../dashboard/ButtonSmall";
-
 
 export function EditProcess({ form: initialForm, onChange }) {
   const [form, setForm] = useState({ process: [] });
   const [isOpen, setIsOpen] = useState(false);
-  const [newPhase, setNewPhase] = useState("");
+  const [expandedIndex, setExpandedIndex] = useState(null);
+  const [newPhase, setNewPhase] = useState({
+    phase: "",
+    highlights: [],
+    hidden: false,
+  });
 
   useEffect(() => {
     if (initialForm) setForm(initialForm);
@@ -20,18 +31,23 @@ export function EditProcess({ form: initialForm, onChange }) {
   };
 
   function handleAddPhase() {
-    if (!newPhase.trim()) return;
-    const updated = [
-      ...form.process,
-      { phase: newPhase.trim(), highlights: [] },
-    ];
+    if (!newPhase.phase.trim()) return;
+    const updated = [...form.process, { ...newPhase }];
     handleFormUpdate(updated);
-    setNewPhase("");
+    setNewPhase({ phase: "", highlights: [], hidden: false });
   }
 
   function handleRemovePhase(index) {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this phase? This cannot be undone."
+    );
+    if (!confirmDelete) return;
     const updated = form.process.filter((_, i) => i !== index);
     handleFormUpdate(updated);
+  }
+
+  function toggleExpanded(index) {
+    setExpandedIndex(expandedIndex === index ? null : index);
   }
 
   function handlePhaseChange(index, value) {
@@ -61,7 +77,6 @@ export function EditProcess({ form: initialForm, onChange }) {
 
   return (
     <div className="grey-box">
-      {/* Header */}
       <div
         className="flex flex-row justify-between items-center cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
@@ -72,97 +87,97 @@ export function EditProcess({ form: initialForm, onChange }) {
           ) : (
             <ChevronRight className="w-4 h-4" />
           )}
-          <div className="component-title">Process</div>
+          <div className="component-title w-full">Process</div>
         </div>
       </div>
 
-      {/* Content */}
       {isOpen && (
         <div className="mt-4 flex flex-col gap-6">
-          {/* Each phase */}
-          {form.process.map((item, phaseIndex) => (
-            <div key={phaseIndex} className="mb-6">
-              {/* Phase title */}
-              <div className="flex flex-row justify-between items-center pb-4">
-                <div className="form-header-list">Phase</div>
-
-                <ButtonSmall
-                  onClick={() => handleRemovePhase(phaseIndex)}
-                  className="bg-[#0C0093] text-white"
-                  image={null}
-                  text="Remove Phase"
-                />
+          {form.process.map((item, index) => (
+            <div key={index} className="border border-gray-200">
+              <div
+                className="flex justify-between items-center p-3 gap-2 bg-white rounded-md cursor-pointer"
+                onClick={() => toggleExpanded(index)}
+              >
+                <div className="text-h5 font-semibold text-[var(--color-blue)]">
+                  {item.phase}{" "}
+                  {item.hidden && (
+                    <span className="text-sm text-gray-500 italic ml-2">
+                      (hidden)
+                    </span>
+                  )}
+                </div>
+                <div className="flex flex-row gap-2 bg-[var(--color-lightgray)] rounded-sm">
+                  <Trash2
+                    className="w-8 h-8 p-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleRemovePhase(index);
+                    }}
+                  />
+                  <Pencil
+                    className="w-8 h-8 p-2"
+                    onClick={() => toggleExpanded(index)}
+                  />
+                </div>
               </div>
-              <div className="flex flex-row items-center gap-2 mb-4">
-                <input
-                  type="text"
-                  value={item.phase}
-                  onChange={(e) =>
-                    handlePhaseChange(phaseIndex, e.target.value)
-                  }
-                  className="form-input-list w-full font-bold text-lg"
-                  placeholder="Phase title"
-                />
-              </div>
 
-              {/* Highlights */}
-              <div className="form-header">Highlights</div>
-              {item.highlights.map((highlight, highlightIndex) => (
-                <div
-                  key={highlightIndex}
-                  className="flex justify-center items-center gap-2 mb-2"
-                >
+              {expandedIndex === index && (
+                <div className="p-4 flex flex-col gap-2">
+                  <div className="form-header">Phase Title</div>
                   <input
                     type="text"
-                    value={highlight}
-                    onChange={(e) =>
-                      handleHighlightChange(
-                        phaseIndex,
-                        highlightIndex,
-                        e.target.value
-                      )
-                    }
-                    className="w-full form-input-list"
-                    placeholder="Highlight"
+                    value={item.phase}
+                    onChange={(e) => handlePhaseChange(index, e.target.value)}
+                    className="form-input-list"
+                    placeholder="Phase title"
                   />
-                  <button
-                    onClick={() =>
-                      handleRemoveHighlight(phaseIndex, highlightIndex)
-                    }
-                    className="text-[#656565]"
-                  >
-                    <X className="w-4 h-4 hover:text-[var(--color-pink)]" />
-                  </button>
-                </div>
-              ))}
 
-              {/* Add highlight input */}
-              <AddHighlightInput
-                onAdd={(val) => handleAddHighlight(phaseIndex, val)}
-              />
+                  <div className="form-header pt-2">Highlights</div>
+                  {item.highlights.map((highlight, hIndex) => (
+                    <div key={hIndex} className="flex items-center gap-2 mb-2">
+                      <input
+                        type="text"
+                        value={highlight}
+                        onChange={(e) =>
+                          handleHighlightChange(index, hIndex, e.target.value)
+                        }
+                        className="w-full form-input-list"
+                        placeholder="Highlight"
+                      />
+                      <button
+                        onClick={() => handleRemoveHighlight(index, hIndex)}
+                        className="text-[#656565]"
+                      >
+                        <X className="w-4 h-4 hover:text-[var(--color-pink)]" />
+                      </button>
+                    </div>
+                  ))}
+                  <AddHighlightInput
+                    onAdd={(val) => handleAddHighlight(index, val)}
+                  />
+                </div>
+              )}
             </div>
           ))}
 
-          {/* Add new phase */}
           <div>
             <div className="form-header mt-4">Add New Phase</div>
-            <div className="flex items-center gap-4 mt-2">
+            <div className="flex flex-col gap-2 mt-2">
               <input
                 type="text"
-                value={newPhase}
-                onChange={(e) => setNewPhase(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleAddPhase()}
-                placeholder="Phase title..."
-                className="form-input-list w-full"
+                value={newPhase.phase}
+                onChange={(e) =>
+                  setNewPhase({ ...newPhase, phase: e.target.value })
+                }
+                placeholder="Phase Title"
+                className="form-input-list"
               />
-
-              <button
+              <ButtonSmall
+                text="Add New Phase"
                 onClick={handleAddPhase}
-                className="inline-flex items-center justify-center gap-1 rounded-3xl pl-3 pr-4 py-1 w-fit font-semibold text-[13px] bg-[#0C0093] text-white"
-              >
-                <Plus className="w-4 h-4" />
-                Add
-              </button>
+                image={null}
+              />
             </div>
           </div>
         </div>
@@ -171,10 +186,8 @@ export function EditProcess({ form: initialForm, onChange }) {
   );
 }
 
-// Input field and button for adding a new highlight
 function AddHighlightInput({ onAdd }) {
   const [value, setValue] = useState("");
-
   const submit = () => {
     onAdd(value);
     setValue("");
@@ -190,16 +203,13 @@ function AddHighlightInput({ onAdd }) {
         placeholder="Add new highlight..."
         className="form-input-list w-full"
       />
-
-      <button
+      <ButtonSmall
+        text="Add"
         onClick={submit}
-        className={
-          "inline-flex items-center justify-center gap-1 rounded-3xl pl-3 pr-4 py-1 min-w-fit h-fit font-semibold text-[13px] bg-[#FFA7A7] text-white"
-        }
-      >
-        <Plus className="w-4 h-4" />
-        Add
-      </button>
+        bgColor="bg-[#FFA7A7]"
+        paddingX="px-4"
+        image={null}
+      />
     </div>
   );
 }
