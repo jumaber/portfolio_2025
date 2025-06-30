@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { ChevronDown, ChevronRight, Plus } from "lucide-react";
+import { ButtonSmall } from "../dashboard/ButtonSmall";
 
 export function EditListField({
   title = "List",
@@ -69,7 +70,7 @@ export function EditListField({
                 />
                 <button
                   onClick={() => handleRemove(index)}
-                  className="text-[#656565]"
+                  className="text-[var(--color-gray)] hover:text-[var(--color-pink)]"
                 >
                   ✕
                 </button>
@@ -90,13 +91,7 @@ export function EditListField({
               placeholder={placeholder}
               className="w-full form-input-list"
             />
-            <button
-              onClick={handleAdd}
-              className="inline-flex items-center justify-center gap-1 rounded-3xl pl-3 pr-4 py-1 w-fit h-fit font-semibold text-[13px] bg-[#0C0093] text-white"
-            >
-              <Plus className="w-4 h-4" />
-              Add
-            </button>
+            <ButtonSmall onClick={handleAdd} text="Add" paddingX="px-4" />
           </div>
         </div>
       )}

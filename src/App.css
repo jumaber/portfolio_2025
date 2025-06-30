@@ -16,6 +16,8 @@
   --color-cream: #FFF6F6;    /* [var(--color-cream)] */
   --color-black: #333333;    /* [var(--color-black)] */
   --color-gray: #656565;     /* [var(--color-gray)] */
+  --color-lightgray: #f5f5f5;     /* [var(--color-gray)] */
+
 }
 
 /* 🌫️ Soft drop shadow */

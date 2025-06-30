@@ -8,10 +8,18 @@ export function ButtonSmall({
   className = "",
   onClick = null,
   newTab = false,
+  bgColor = "bg-[var(--color-blue)]",
+  textColor = "text-white",
+  hoverColor = "bg-[var(--color-pink)]",
+  hoverTextColor = "text-white",
+  paddingX = "px-2",
+  paddingY = "py-1",
+  textSize = "text-[13px]",
 }) {
-  const baseClasses =
-    "inline-flex items-center gap-1 rounded-3xl px-2 py-1 w-fit font-bold text-[13px] " +
-    className;
+  const baseClasses = `
+  inline-flex items-center gap-1 rounded-3xl w-fit h-fit font-bold ${textSize} ${paddingX} ${paddingY} 
+  ${bgColor} ${textColor} hover:${hoverColor} hover:${hoverTextColor} ${className} 
+`.trim();
 
   // Pure action button (no 'to' prop)
   if (!to && onClick) {

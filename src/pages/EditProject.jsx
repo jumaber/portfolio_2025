@@ -77,28 +77,33 @@ export function EditProject() {
           <Link to="/dashboard">
             <div className="back-button">← Back to Dashboard</div>
           </Link>
-          <div className="flex flex-row gap-2">
-            <ButtonSmall
-              text={"Visit"}
-              to={`/project/${project.slug}`}
-              className="bg-[var(--color-blue)] text-white hover:bg-[var(--color-pink)] hover:font-bold"
-              newTab={true}
-              image={WhiteLinkIcon}
-            />
+          <div className="flex flex-row items-center gap-4">
             <ButtonSmall
               text={"Save"}
-              className={
-                "bg-[var(--color-yellow)] text-[var(--color-blue)] font-bold hover:bg-[var(--color-pink)] hover:text-white "
-              }
+              bgColor="bg-[var(--color-yellow)]"
+              textColor="text-[var(--color-blue)] "
+              hoverColor="bg-[var(--color-pink)]"
+              hoverTextColor="text-white"
+              paddingX="px-4 lg:px-6"
+              paddingY="py-2 lg:py-3"
+              textSize="text-[14px] lg:text-[16px]"
+              className="border border-[var(--color-blue)]"
               image={null}
               onClick={handleSave}
             />
           </div>
         </div>
-        <div>
-          <div className="project-title pt-6">
+        <div className="flex flex-col lg:flex-row lg:items-center gap-4  pt-6">
+          <div className="project-title">
             {project.cardTitle || "Untitled Project"}
           </div>
+          <ButtonSmall
+            text={"Visit"}
+            to={`/project/${project.slug}`}
+            className="bg-[var(--color-blue)] text-white hover:bg-[var(--color-pink)] hover:font-bold"
+            newTab={true}
+            image={WhiteLinkIcon}
+          />
         </div>
       </div>
 

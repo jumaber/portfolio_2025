@@ -153,7 +153,6 @@ export function EditIntro({ data, onChange }) {
               onClick={() => fileInputRef.current.click()}
               image={null}
               to=""
-              className="bg-[#0C0093] text-white"
             />
           </div>
 
