@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { ChevronDown, ChevronRight, Plus } from "lucide-react";
 import { ButtonSmall } from "../dashboard/ButtonSmall";
+import { X } from "lucide-react";
+
 
 export function EditListField({
   title = "List",
@@ -70,9 +72,8 @@ export function EditListField({
                 />
                 <button
                   onClick={() => handleRemove(index)}
-                  className="text-[var(--color-gray)] hover:text-[var(--color-pink)]"
                 >
-                  ✕
+                  <X className="w-4 h-4 hover:text-[var(--color-pink)]" />
                 </button>
               </div>
             ))}

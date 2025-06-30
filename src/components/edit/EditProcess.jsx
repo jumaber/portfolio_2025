@@ -131,7 +131,7 @@ export function EditProcess({ form: initialForm, onChange }) {
                     }
                     className="text-[#656565]"
                   >
-                    <X className="w-4 h-4" />
+                    <X className="w-4 h-4 hover:text-[var(--color-pink)]" />
                   </button>
                 </div>
               ))}
