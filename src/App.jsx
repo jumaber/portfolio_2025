@@ -66,7 +66,7 @@ function App() {
         element={user ? <NewProject user={user} /> : <Navigate to="/login" />}
       />
       <Route
-        path="/new/project"
+        path="/new/page"
         element={user ? <NewPage user={user} /> : <Navigate to="/login" />}
       />
       <Route path="/login" element={<Login />} />

@@ -181,8 +181,9 @@ export function Dashboard() {
               </h2>
               <ButtonSmall
                 image={null}
-                text="+ Add Page"
+                text="+ New Page"
                 className="add-button add-button:hover"
+                to={`/new/page`}
               />
             </div>
 
@@ -211,7 +212,7 @@ export function Dashboard() {
               </h2>
               <ButtonSmall
                 image={null}
-                text="+ Add Project"
+                text="+ New Project"
                 className="add-button add-button:hover"
                 to={`/new/project`}
               />

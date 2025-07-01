@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ButtonSmall } from "../components/dashboard/ButtonSmall";
 import WhiteLinkIcon from "../assets/link_white.svg";
 import { LoadingAnimation } from "../components/other/LoadingAnimation";
@@ -8,8 +8,11 @@ import { EditHomeAbout } from "../components/edit/EditHomeAbout";
 import { EditHomeExperience } from "../components/edit/EditHomeExperience.jsx";
 import { EditHomeContact } from "../components/edit/EditHomeContact.jsx";
 import { EditImprintContent } from "../components/edit/EditImprintContent.jsx";
+import { Trash2, ExternalLink } from "lucide-react";
 
 export function EditImprint() {
+  const navigate = useNavigate();
+
   const [imprint, setPage] = useState(null);
   const editorRef = useRef(null);
   const fileInputRef = useRef(null);
@@ -93,6 +96,31 @@ export function EditImprint() {
     handleFormChange(updatedForm);
   }
 
+  // ❌ Delete the project (DELETE)
+  async function handleDeleteProject() {
+    try {
+      const res = await fetch(
+        `https://portfolio-2025-wyed.onrender.com/api/projects/${slug}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert("✅ Project deleted!");
+        navigate("/dashboard");
+      } else {
+        console.error("❌ Delete failed:", data.error);
+        alert("Error: " + data.error);
+      }
+    } catch (err) {
+      console.error("❌ Delete error:", err);
+      alert("An error occurred while deleting.");
+    }
+  }
+
   return (
     <div className="bg-[#f5f5f5] flex flex-col h-screen w-screen items-start p-4 md:p-8 lg:p-16 overflow-x-hidden">
       {/* Header*/}
@@ -104,14 +132,13 @@ export function EditImprint() {
           <div className="flex flex-row items-center gap-4">
             <ButtonSmall
               text={"Save"}
-              bgColor="bg-[var(--color-yellow)]"
-              textColor="text-[var(--color-blue)] "
+              bgColor="bg-[var(--color-blue)]"
+              textColor="text-[var(--color-white)] "
               hoverColor="bg-[var(--color-pink)]"
               hoverTextColor="text-white"
               paddingX="px-4 lg:px-6"
               paddingY="py-2 lg:py-3"
               textSize="text-[14px] lg:text-[16px]"
-              className="border border-[var(--color-blue)]"
               image={null}
               onClick={handleSave}
             />
