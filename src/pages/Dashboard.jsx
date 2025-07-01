@@ -213,6 +213,7 @@ export function Dashboard() {
                 image={null}
                 text="+ Add Project"
                 className="add-button add-button:hover"
+                to={`/new/project`}
               />
             </div>
             <DndContext

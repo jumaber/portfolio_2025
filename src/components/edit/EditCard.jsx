@@ -86,6 +86,16 @@ export function EditCard({ form, setForm, onChange }) {
         placeholder="Card Subtitle"
         className="form-input"
       />
+      <div className="form-header">Slug</div>
+      <input
+        type="text"
+        name="slug"
+        value={form.slug}
+        onChange={handleChange}
+        placeholder="Project Slug"
+        className="form-input"
+        required
+      />
     </div>
   );
   

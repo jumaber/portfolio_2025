@@ -13,6 +13,9 @@ import { EditHome } from "./pages/EditHome.jsx";
 import { EditProject } from "./pages/EditProject";
 import { EditImprint } from "./pages/EditImprint.jsx";
 import { LoadingAnimation } from "./components/other/LoadingAnimation.jsx";
+import { NewProject } from "./pages/NewProject.jsx";
+import { NewPage } from "./pages/NewPage.jsx";
+
 
 
 
@@ -57,6 +60,14 @@ function App() {
       <Route
         path="/dashboard"
         element={user ? <Dashboard user={user} /> : <Navigate to="/login" />}
+      />
+      <Route
+        path="/new/project"
+        element={user ? <NewProject user={user} /> : <Navigate to="/login" />}
+      />
+      <Route
+        path="/new/project"
+        element={user ? <NewPage user={user} /> : <Navigate to="/login" />}
       />
       <Route path="/login" element={<Login />} />
       <Route path="/*" element={<PageNotFound />} />
