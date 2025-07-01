@@ -10,8 +10,8 @@ import { PageNotFound } from "./pages/PageNotFound";
 import { Dashboard } from "./pages/Dashboard";
 import { Login } from "./pages/Login"; 
 import { EditHome } from "./pages/EditHome.jsx";
-import { EditImprint } from "./components/edit/EditImprint.jsx"
 import { EditProject } from "./pages/EditProject";
+import { EditImprint } from "./pages/EditImprint.jsx";
 import { LoadingAnimation } from "./components/other/LoadingAnimation.jsx";
 
 
