@@ -1,12 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ButtonSmall } from "../components/dashboard/ButtonSmall";
-import WhiteLinkIcon from "../assets/link_white.svg";
 import { LoadingAnimation } from "../components/other/LoadingAnimation";
-import { EditHomeIntro } from "../components/edit/EditHomeIntro";
-import { EditHomeAbout } from "../components/edit/EditHomeAbout";
-import { EditHomeExperience } from "../components/edit/EditHomeExperience.jsx";
-import { EditHomeContact } from "../components/edit/EditHomeContact.jsx";
 import { EditImprintContent } from "../components/edit/EditImprintContent.jsx";
 import { Trash2, ExternalLink } from "lucide-react";
 
@@ -17,7 +12,7 @@ export function EditImprint() {
   const editorRef = useRef(null);
   const fileInputRef = useRef(null);
 
-  // Fetch the project from backend
+  // Fetch the  Imprint Page from backend
   useEffect(() => {
     fetch(`https://portfolio-2025-wyed.onrender.com/api/pages/imprint`)
       .then((res) => res.json())
@@ -31,7 +26,7 @@ export function EditImprint() {
 
   if (!imprint) return <LoadingAnimation />;
 
-  // Save Project
+  // Save  Imprint Page
   async function handleSave() {
     try {
       const { _id, __v, ...safePage } = imprint;
@@ -50,7 +45,7 @@ export function EditImprint() {
       const data = await res.json();
 
       if (res.ok) {
-        console.log("✅ Project saved!", data);
+        console.log("✅ Imprint Page saved!", data);
         alert("Saved!");
       } else {
         console.error("❌ Save failed:", data.error);
@@ -96,11 +91,11 @@ export function EditImprint() {
     handleFormChange(updatedForm);
   }
 
-  // ❌ Delete the project (DELETE)
-  async function handleDeleteProject() {
+  // ❌ Delete the Imprint Page (DELETE)
+  async function handleDelete() {
     try {
       const res = await fetch(
-        `https://portfolio-2025-wyed.onrender.com/api/projects/${slug}`,
+        `https://portfolio-2025-wyed.onrender.com/api/pages/imprint`,
         {
           method: "DELETE",
         }
@@ -109,7 +104,7 @@ export function EditImprint() {
       const data = await res.json();
 
       if (res.ok) {
-        alert("✅ Project deleted!");
+        alert("✅ Imprint deleted!");
         navigate("/dashboard");
       } else {
         console.error("❌ Delete failed:", data.error);
@@ -145,14 +140,37 @@ export function EditImprint() {
           </div>
         </div>
         <div className="flex flex-col lg:flex-row lg:items-center gap-4  pt-6">
-          <div className="project-title">{imprint.title}</div>
-          <ButtonSmall
-            text={"Visit"}
-            to={`/`}
-            className="bg-[var(--color-blue)] text-white hover:bg-[var(--color-pink)] hover:font-bold"
-            newTab={true}
-            image={WhiteLinkIcon}
-          />
+          {/* 🔸  Imprint Page title + icons */}
+          <div className="flex flex-col lg:flex-row lg:items-center gap-4 w-full pt-10">
+            <div className="flex flex-row justify-between items-end w-full">
+              <div className="project-title w-full">
+                {imprint.title || "Home"}
+              </div>
+
+              {/* 🗑️ Trash + 🔗 Preview Link */}
+              <div className="flex flex-row gap-2 bg-white rounded-sm border border-gray-200">
+                <Trash2
+                  className="w-9 h-9 p-2 cursor-pointer hover:text-red-500"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    const confirmDelete = window.confirm(
+                      "Are you sure you want to delete this  Imprint Page? This cannot be undone."
+                    );
+                    if (confirmDelete) {
+                      handleDelete();
+                    }
+                  }}
+                />
+                <a
+                  href={`/${imprint.slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <ExternalLink className="w-9 h-9 p-2" />
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

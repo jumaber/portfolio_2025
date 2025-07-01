@@ -16,8 +16,7 @@ export function EditHome() {
   const editorRef = useRef(null);
   const fileInputRef = useRef(null);
 
-
-  // Fetch the project from backend
+  // Fetch the page from backend
   useEffect(() => {
     fetch(`https://portfolio-2025-wyed.onrender.com/api/pages/home`)
       .then((res) => res.json())
@@ -31,8 +30,7 @@ export function EditHome() {
 
   if (!page) return <LoadingAnimation />;
 
- 
-  // Save Project
+  // Save Home
   async function handleSave() {
     try {
       const { _id, __v, ...safePage } = page;
@@ -51,7 +49,7 @@ export function EditHome() {
       const data = await res.json();
 
       if (res.ok) {
-        console.log("✅ Project saved!", data);
+        console.log("✅ Home Page saved!", data);
         alert("Saved!");
       } else {
         console.error("❌ Save failed:", data.error);
@@ -90,7 +88,6 @@ export function EditHome() {
     }
   }
 
-
   function handleChange(e) {
     const { name, value } = e.target;
     const updatedForm = { ...page, [name]: value };
@@ -98,12 +95,11 @@ export function EditHome() {
     handleFormChange(updatedForm);
   }
 
-
-   // ❌ Delete the project (DELETE)
-   async function handleDeleteProject() {
+  // ❌ Delete the Home Page (DELETE)
+  async function handleDelete() {
     try {
       const res = await fetch(
-        `https://portfolio-2025-wyed.onrender.com/api/projects/${slug}`,
+        `https://portfolio-2025-wyed.onrender.com/api/pages/home}`,
         {
           method: "DELETE",
         }
@@ -112,7 +108,7 @@ export function EditHome() {
       const data = await res.json();
 
       if (res.ok) {
-        alert("✅ Project deleted!");
+        alert("✅ Home Page deleted!");
         navigate("/dashboard");
       } else {
         console.error("❌ Delete failed:", data.error);
@@ -148,12 +144,10 @@ export function EditHome() {
           </div>
         </div>
 
-        {/* 🔸 Project title + icons */}
+        {/* 🔸 Edit Home title + icons */}
         <div className="flex flex-col lg:flex-row lg:items-center gap-4 w-full pt-10">
           <div className="flex flex-row justify-between items-end w-full">
-            <div className="project-title w-full">
-              {page.title || "Home"}
-            </div>
+            <div className="project-title w-full">{page.title || "Home"}</div>
 
             {/* 🗑️ Trash + 🔗 Preview Link */}
             <div className="flex flex-row gap-2 bg-white rounded-sm border border-gray-200">
@@ -162,27 +156,20 @@ export function EditHome() {
                 onClick={(e) => {
                   e.stopPropagation();
                   const confirmDelete = window.confirm(
-                    "Are you sure you want to delete this project? This cannot be undone."
+                    "Are you sure you want to delete this page? This cannot be undone."
                   );
                   if (confirmDelete) {
-                    handleDeleteProject();
+                    handleDelete();
                   }
                 }}
               />
-              <a
-                href={`/home`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href={`/`} target="_blank" rel="noopener noreferrer">
                 <ExternalLink className="w-9 h-9 p-2" />
               </a>
             </div>
           </div>
         </div>
-    </div>
-            
-
-
+      </div>
 
       {/* Content */}
       <div className="flex flex-col lg:flex-row w-full justify-between gap-10">
