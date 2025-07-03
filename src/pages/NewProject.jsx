@@ -41,7 +41,7 @@ export function NewProject() {
   });
 
   // 🔁 Update only top-level intro fields like title, subtitle, etc.
-  function handleIntroChange(updatedIntro) {
+  function handleChange(updatedIntro) {
     setProject((prev) => ({ ...prev, ...updatedIntro }));
   }
 
@@ -72,13 +72,16 @@ export function NewProject() {
       const data = await res.json();
 
       if (res.ok) {
-        alert("✅ Project created!");
+        alert("✅ Project created successfully!");
         navigate("/dashboard");
+      } else if (res.status === 409) {
+        alert("❌ A project with this slug already exists.");
       } else {
-        alert("Error: " + data.error);
+        alert("❌ Error: " + (data.error || "Unknown error"));
       }
     } catch (err) {
-      alert("An error occurred while saving.");
+      alert("❌ Network error: could not save project.");
+      console.error(err);
     }
   }
 
@@ -123,7 +126,7 @@ export function NewProject() {
               {/* 🧱 Block-based editable sections */}
               <EditIntro
                 data={project}
-                onChange={handleIntroChange}
+                onChange={handleChange}
                 editorRef={editorRef}
               />
               <EditHero

@@ -1,52 +1,30 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { Intro } from "../components/projects/Intro";
-import { Challenge } from "../components/projects/Challenge";
-import { Outcome } from "../components/projects/Outcome";
-import { Learnings } from "../components/projects/Learnings";
-import { Wireframes } from "../components/projects/Wireframes";
 import { NavBar } from "../components/other/NavBar";
-import { Process } from "../components/projects/Process";
-import { HeroImage } from "../components/projects/HeroImage"
-import { RelatedProjects } from "../components/projects/RelatedProjects";
-import { CustomHtml } from "../components/projects/CustomHtml";
-import { LoadingAnimation } from "../components/other/LoadingAnimation";
+
+export function SinglePage() {
+
+  const { slug } = useParams();
+  const [page, setPage] = useState(null);
+
+  useEffect(() => {
+    fetch(`https://portfolio-2025-wyed.onrender.com/api/pages/${slug}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Fetched pages:", data); //
+        setPage(data);
+      })
+      .catch((err) => console.error("Failed to fetch page:", err));
+  }, [slug]);
+
+  if (!page) return <LoadingAnimation />;
+
+  const {
+    title,
+    customHTML,
+    image,
+  } = page;
+  console.log({ title, customHTML, image });
 
 
-  export function SinglePage() {
-    const { slug } = useParams();
-    const [project, setProject] = useState(null);
-  
-    useEffect(() => {
-      fetch(`https://portfolio-2025-wyed.onrender.com/api/projects/${slug}`)
-        .then((res) => res.json())
-        .then((data) => {
-          console.log("Fetched project:", data); // 
-          setProject(data);
-        })
-        .catch((err) => console.error("Failed to fetch project:", err));
-    }, [slug]);
-    
-  
-    if (!project) return <LoadingAnimation />;
-  
-    const {
-      title,
-      subtitle,
-      location,
-      period,
-      liveUrl,
-      githubUrl,
-      description,
-      image,
-      hero,
-      challenges,
-      outcomes,
-      learnings,
-    } = project;
-    console.log({ title, subtitle, description, image, githubUrl });
-
-  
   return (
     <>
       <NavBar />
@@ -65,32 +43,6 @@ import { LoadingAnimation } from "../components/other/LoadingAnimation";
           roles={project.roles}
         />
 
-        {/* Hero */}
-        <HeroImage hero={hero} />
-
-        {/* Challenge */}
-        {challenges && <Challenge challenges={challenges} />}
-
-        {/* The Process */}
-        {project.process && <Process process={project.process} />}
-
-        {/* Outcome */}
-        {outcomes && <Outcome outcomes={outcomes} />}
-
-        {/* Learnings */}
-        {learnings && <Learnings learnings={learnings} />}
-
-        {/* Wireframes */}
-        <Wireframes
-          wireframes={project.wireframes}
-          title={project.wireframesTitle || "Wireframes"}
-        />
-
-        {/* Custom HTML */}
-        {project.customHtml && <CustomHtml html={project.customHtml} />}
-
-        {/* Related Projects */}
-        <RelatedProjects key={slug} currentSlug={slug} />
       </div>
     </>
   );

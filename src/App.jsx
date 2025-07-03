@@ -2,21 +2,20 @@ import { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase"; 
-
 import { Home } from "./pages/Home";
-import { SinglePage } from "./pages/SinglePage";
 import { ImprintPage } from "./pages/ImprintPage";
 import { PageNotFound } from "./pages/PageNotFound";
 import { Dashboard } from "./pages/Dashboard";
 import { Login } from "./pages/Login"; 
 import { EditHome } from "./pages/EditHome.jsx";
-import { EditProject } from "./pages/EditProject";
+import { EditProject } from "./pages/EditProject.jsx";
+import { EditPage } from "./pages/EditPage.jsx"
 import { EditImprint } from "./pages/EditImprint.jsx";
 import { LoadingAnimation } from "./components/other/LoadingAnimation.jsx";
 import { NewProject } from "./pages/NewProject.jsx";
 import { NewPage } from "./pages/NewPage.jsx";
-
-
+import { SinglePage } from "./pages/SinglePage.jsx";
+import { SingleProject } from "./pages/SingleProject.jsx"
 
 
 
@@ -47,10 +46,23 @@ function App() {
         path="/edit"
         element={user ? <EditHome user={user} /> : <Navigate to="/login" />}
       />
-      <Route path="/project/:slug" element={<SinglePage />} />
+      <Route path="/project/:slug" element={<SingleProject />} />
+      <Route
+        path="/new/project"
+        element={user ? <NewProject user={user} /> : <Navigate to="/login" />}
+      />
       <Route
         path="/project/:slug/edit"
         element={user ? <EditProject user={user} /> : <Navigate to="/login" />}
+      />
+      <Route path="/:slug" element={<SinglePage />} />
+      <Route
+        path="/new/page"
+        element={user ? <NewPage user={user} /> : <Navigate to="/login" />}
+      />
+      <Route
+        path="/:slug/edit"
+        element={user ? <EditPage user={user} /> : <Navigate to="/login" />}
       />
       <Route path="/imprint" element={<ImprintPage />} />
       <Route
@@ -61,16 +73,10 @@ function App() {
         path="/dashboard"
         element={user ? <Dashboard user={user} /> : <Navigate to="/login" />}
       />
-      <Route
-        path="/new/project"
-        element={user ? <NewProject user={user} /> : <Navigate to="/login" />}
-      />
-      <Route
-        path="/new/page"
-        element={user ? <NewPage user={user} /> : <Navigate to="/login" />}
-      />
+
       <Route path="/login" element={<Login />} />
       <Route path="/*" element={<PageNotFound />} />
+      
     </Routes>
   );
 }

@@ -214,7 +214,7 @@ export function EditHome() {
           </div>
         </div>
         <div className="white-box h-fit">
-          <div className="text-h3 blue w-full h-fit pb-4">List Preview</div>
+          <div className="text-h3 blue w-full h-fit pb-4">Dashboard Preview</div>
           <div className="grey-box">
             <div className="form-header flex justify-between items-center mt-4">
               <span>Image</span>
