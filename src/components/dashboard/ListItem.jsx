@@ -1,6 +1,8 @@
 import { ButtonDrag } from "./ButtonDrag";
 import { Switch } from "./Switch";
 import { ButtonSmall } from "./ButtonSmall";
+import { Trash2, ExternalLink, Pencil } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export function ListItem({
   title = "",
@@ -34,24 +36,16 @@ export function ListItem({
         {showSwitch && (
           <Switch checked={featured} onChange={onToggleFeatured} />
         )}
-        <ButtonSmall
-          text="Edit"
-          image={null}
-          to={basePath === "/" ? "/edit" : `${basePath}/edit`}
-          bgColor="bg-[var(--color-lightgray)]"
-          textColor="bg-[var(--color-gray)]"
-        />
-        <ButtonSmall
-          text="Visit"
-          image="/src/assets/link.svg"
-          to={basePath}
-          className="bg-[#f5f5f5] hover:"
-          bgColor="bg-[var(--color-lightgray)]"
-          textColor="bg-[var(--color-gray)]"
-          hoverColor="bg-[var(--color-yellow)]"
-          hoverTextColor="text-[var(--color-gray)]"
-          newTab={basePath !== "/"}
-        />
+
+        {/* ✍️ Edit + 🔗 Preview Link */}
+        <div className="flex flex-row gap-2">
+          <Link to={basePath === "/" ? "/edit" : `${basePath}/edit`}>
+            <Pencil className="w-9 h-9 p-2 cursor-pointer text-[var(--color-black)] hover:text-[var(--color-pink)]" />
+          </Link>
+          <a href={basePath} target="_blank" rel="noopener noreferrer">
+            <ExternalLink className="w-9 h-9 p-2 cursor-pointer text-[var(--color-black)] hover:text-[var(--color-pink)]" />
+          </a>
+        </div>
       </div>
     </div>
   );
