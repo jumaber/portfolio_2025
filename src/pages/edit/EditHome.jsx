@@ -31,7 +31,12 @@ export function EditHome() {
   if (!page) return <LoadingAnimation />;
 
   // Save Home
+  
   async function handleSave() {
+    if (editorRef.current?.save) {
+      const updatedDescription = await editorRef.current.save();
+      page.description = updatedDescription;
+    }
     try {
       const { _id, __v, ...safePage } = page;
 
@@ -178,6 +183,7 @@ export function EditHome() {
             <div className="text-h3 blue pb-4 ">Content</div>
             <div className="flex flex-col gap-4">
               <EditHomeIntro
+                ref={editorRef}
                 data={{
                   greet: page.greet,
                   introTitle: page.introTitle,
@@ -202,10 +208,7 @@ export function EditHome() {
               />
               <EditHomeExperience form={page} onChange={handleFormChange} />
 
-              <EditHomeContact
-                data={page}
-                onChange={handleFormChange}
-              />
+              <EditHomeContact data={page} onChange={handleFormChange} />
             </div>
           </div>
         </div>

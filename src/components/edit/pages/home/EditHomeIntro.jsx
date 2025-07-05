@@ -1,17 +1,48 @@
-import { useState, useEffect, useRef } from "react";
+import {
+  forwardRef,
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  useImperativeHandle,
+} from "react";
 import { ChevronDown } from "lucide-react";
 import { ChevronRight } from "lucide-react";
 import { ButtonSmall } from "../../../dashboard/ButtonSmall";
+import { EditorJSBlock } from "../EditorJSBlock";
 
 
-export function EditHomeIntro({ data, onChange }) {
+export const EditHomeIntro = forwardRef(({ data, onChange }, ref) => {
   const fileInputRef = useRef();
+  const editorRef = useRef();
+
+  // expose save() through ref passed from EditHome
+  useImperativeHandle(ref, () => ({
+    async save() {
+      if (editorRef.current?.save) {
+        const content = await editorRef.current.save();
+        setForm((prev) => ({
+          ...prev,
+          description: content,
+        }));
+        onChange({
+          ...form,
+          description: content,
+        }); // ✅ send full updated form back to parent
+        return content;
+      }
+    },
+  }));
 
   const [form, setForm] = useState({
     greet: "",
     introTitle: "",
     subtitle: "",
-    description: "",
+    description: {
+      time: Date.now(),
+      blocks: [],
+      version: "2.28.2",
+    },
     githubURL: "",
     linkedinURL: "",
     githubImage: "", //https://res.cloudinary.com/jumaber/image/upload/v1751227206/github_qfexpj.svg"
@@ -21,13 +52,34 @@ export function EditHomeIntro({ data, onChange }) {
   const [isOpen, setIsOpen] = useState(false);
   console.log("👀 form state:", form);
 
-
   useEffect(() => {
     console.log("Received data:", data);
     if (data) setForm(data);
   }, [data]);
-  
-  
+
+  useEffect(() => {
+    if (!data) return;
+
+    const formatted = {
+      ...data,
+      description:
+        typeof data.description === "string"
+          ? {
+              time: Date.now(),
+              blocks: [
+                {
+                  type: "paragraph",
+                  data: { text: data.description },
+                },
+              ],
+              version: "2.28.2",
+            }
+          : data.description,
+    };
+
+    setForm(formatted);
+  }, [data]);
+
   function handleChange(e) {
     const { name, value } = e.target;
     const updatedForm = { ...form, [name]: value };
@@ -62,6 +114,13 @@ export function EditHomeIntro({ data, onChange }) {
       console.error("Hero image upload failed:", err);
     }
   }
+
+  const handleDescriptionChange = useCallback((newContent) => {
+    setForm((prev) => ({
+      ...prev,
+      description: newContent,
+    }));
+  }, []);
 
   return (
     <div className="grey-box">
@@ -114,12 +173,10 @@ export function EditHomeIntro({ data, onChange }) {
           />
 
           <div className="form-header">Description</div>
-          <textarea
-            name="description"
-            value={form.description}
-            onChange={handleChange}
-            placeholder="Description"
-            className="form-input"
+          <EditorJSBlock
+            ref={editorRef}
+            data={form.description}
+            onChange={handleDescriptionChange}
           />
 
           <div className="form-header">Github URL</div>
@@ -195,4 +252,4 @@ export function EditHomeIntro({ data, onChange }) {
       )}
     </div>
   );
-}
+});

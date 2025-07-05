@@ -1,15 +1,29 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useImperativeHandle, forwardRef, useRef } from "react";
 import EditorJS from "@editorjs/editorjs";
 import Paragraph from "@editorjs/paragraph";
 import Header from "@editorjs/header";
 
-
-export function EditorJSBlock({ data, onChange }) {
-  const holderId = "editor-js-text-block";
+export const EditorJSBlock = forwardRef(({ data, onChange }, ref) => {
+  const holderId = useRef(
+    `editor-js-${Math.random().toString(36).substr(2, 9)}`
+  ).current;
   const editorRef = useRef(null);
 
+  useImperativeHandle(ref, () => ({
+    async save() {
+      if (editorRef.current) {
+        const content = await editorRef.current.save();
+        onChange(content);
+        return content;
+      }
+    },
+  }));
+
   useEffect(() => {
-    if (editorRef.current) return;
+    if (editorRef.current) {
+      editorRef.current.destroy();
+      editorRef.current = null;
+    }
 
     const editor = new EditorJS({
       holder: holderId,
@@ -36,7 +50,7 @@ export function EditorJSBlock({ data, onChange }) {
       },
       onChange: async () => {
         const content = await editor.save();
-        onChange(content);
+        onChange(content); // auto update on blur/typing
       },
     });
 
@@ -46,9 +60,7 @@ export function EditorJSBlock({ data, onChange }) {
         editorRef.current = null;
       }
     };
-  }, []);
+  }, [data, onChange, holderId]);
 
-  return (
-      <div id={holderId} className="form-input" />
-  );
-}
+  return <div id={holderId} className="form-input" />;
+});
