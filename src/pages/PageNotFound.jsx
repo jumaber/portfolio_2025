@@ -23,7 +23,7 @@ export function PageNotFound() {
 
         {/* Text Content */}
         <h1 className="title pink">Oh no.</h1>
-        <h1 className="text-h1 blue mb-6">You weren’t supposed to see this.</h1>
+        <h1 className="text-h1 blue my-6">You weren’t supposed to see this.</h1>
 
         <p className="paragraph gray mb-6 lg:mb-16">
           It’s the digital equivalent of walking into the wrong Zoom room 😳
