@@ -1,6 +1,6 @@
 export function HomeIntro({
   greet,
-  title,
+  introTitle,
   subtitle,
   description,
   githubURL,
@@ -18,7 +18,7 @@ export function HomeIntro({
       className="flex flex-col w-full pt-20 gap-1 lg:max-w-[900px]"
     >
       <div className="text-h2 blue">{greet}</div>
-      <div className="title pink">{title}</div>
+      <div className="title pink">{introTitle}</div>
       <div className="subtitle">{subtitle}</div>
 
       <div className="paragraph lg:max-w-[600px] pt-4">

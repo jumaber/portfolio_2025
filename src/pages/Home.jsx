@@ -29,7 +29,7 @@ export function Home() {
 
   const {
     greet,
-    title,
+    introTitle,
     subtitle,
     description,
     githubURL,
@@ -46,7 +46,7 @@ export function Home() {
 
   console.log({
     greet,
-    title,
+    introTitle,
     subtitle,
     description,
     githubURL,
@@ -70,7 +70,7 @@ export function Home() {
         <div className="w-full max-w-[800px] mx-auto">
           <HomeIntro
             greet={greet}
-            title={title}
+            introTitle={introTitle}
             subtitle={subtitle}
             description={description}
             githubURL={githubURL}
