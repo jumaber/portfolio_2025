@@ -4,7 +4,6 @@ import { X } from "lucide-react";
 import { ButtonSmall } from "../../../dashboard/ButtonSmall";
 import { Trash2 } from "lucide-react";
 import { Pencil } from "lucide-react";
-import { EyeOff } from "lucide-react";
 
 
 
@@ -17,7 +16,7 @@ export function EditHomeExperience({ form: initialForm, onChange }) {
     experienceCompany: "",
     experienceLocation: "",
     experiencePeriod: "",
-    experienceHighlights: [],
+    highlights: [],
   });
 
   useEffect(() => {
@@ -39,7 +38,7 @@ export function EditHomeExperience({ form: initialForm, onChange }) {
       experienceCompany: "",
       experienceLocation: "",
       experiencePeriod: "",
-      experienceHighlights: [],
+      highlights: [],
     });
   }
 
@@ -56,20 +55,20 @@ export function EditHomeExperience({ form: initialForm, onChange }) {
 
   function handleHighlightChange(index, hIndex, value) {
     const updated = [...form.experience];
-    updated[index].experienceHighlights[hIndex] = value;
+    updated[index].highlights[hIndex] = value;
     handleFormUpdate(updated);
   }
 
   function handleAddHighlight(index, value) {
     if (!value.trim()) return;
     const updated = [...form.experience];
-    updated[index].experienceHighlights.push(value.trim());
+    updated[index].highlights.push(value.trim());
     handleFormUpdate(updated);
   }
 
   function handleRemoveHighlight(index, hIndex) {
     const updated = [...form.experience];
-    updated[index].experienceHighlights.splice(hIndex, 1);
+    updated[index].highlights.splice(hIndex, 1);
     handleFormUpdate(updated);
   }
 
@@ -189,7 +188,7 @@ export function EditHomeExperience({ form: initialForm, onChange }) {
                   />
 
                   <div className="form-header pt-2">Highlights</div>
-                  {item.experienceHighlights.map((highlight, hIndex) => (
+                  {item.highlights.map((highlight, hIndex) => (
                     <div key={hIndex} className="flex items-center gap-2 mb-2">
                       <input
                         type="text"
