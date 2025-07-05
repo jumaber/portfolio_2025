@@ -68,32 +68,27 @@ export function Intro({
               <DefaultImage className="md:min-w-md h-64" />
             )}
           </div>
-          <div className="paragraph mt-10">
-            {Array.isArray(description?.blocks) ? (
-              description.blocks.map((block, index) => {
-                if (block.type === "paragraph") {
-                  return (
-                    <p
-                      key={index}
-                      dangerouslySetInnerHTML={{ __html: block.data.text }}
-                    />
-                  );
-                }
-                if (block.type === "header") {
-                  const Tag = `h${block.data.level || 2}`;
-                  return (
-                    <Tag
-                      key={index}
-                      dangerouslySetInnerHTML={{ __html: block.data.text }}
-                    />
-                  );
-                }
-                return null;
-              })
-            ) : (
-              // fallback: old string style
-              <p dangerouslySetInnerHTML={{ __html: description }} />
-            )}
+          <div className="paragraph mt-10 space-y-6">
+            {description?.blocks?.map((block, index) => {
+              if (block.type === "paragraph") {
+                return (
+                  <p
+                    key={index}
+                    dangerouslySetInnerHTML={{ __html: block.data.text }}
+                  />
+                );
+              }
+              if (block.type === "header") {
+                const Tag = `h${block.data.level || 2}`;
+                return (
+                  <Tag
+                    key={index}
+                    dangerouslySetInnerHTML={{ __html: block.data.text }}
+                  />
+                );
+              }
+              return null;
+            })}
           </div>
 
           {/* Roles and Tools */}

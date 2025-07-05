@@ -20,18 +20,20 @@ export const EditIntro = forwardRef(({ data, onChange }, ref) => {
     async save() {
       if (editorRef.current?.save) {
         const content = await editorRef.current.save();
-        setForm((prev) => ({
-          ...prev,
-          description: content,
-        }));
-        onChange({
-          ...form,
-          description: content,
-        }); // ✅ send full updated form back to parent
+        setForm((prev) => {
+          const updatedForm = {
+            ...prev,
+            description: content,
+          };
+          onChange(updatedForm); 
+          return updatedForm;
+        });
         return content;
       }
     },
   }));
+  
+  
 
   const [form, setForm] = useState({
     title: "",
@@ -64,12 +66,16 @@ export const EditIntro = forwardRef(({ data, onChange }, ref) => {
     onChange(updatedForm);
   }
 
-  const handleDescriptionChange = useCallback((newContent) => {
-    setForm((prev) => ({
-      ...prev,
-      description: newContent,
-    }));
-  }, []);
+  
+  const handleDescriptionChange = useCallback(
+    (newContent) => {
+      const updated = { ...form, description: newContent };
+      setForm(updated);
+      onChange(updated); // push it up immediately
+    },
+    [form, onChange]
+  );
+  
 
   // upload to Cloudinary
   async function handleImageUpload(e) {

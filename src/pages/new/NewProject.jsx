@@ -23,7 +23,11 @@ export function NewProject() {
     period: "",
     liveUrl: "",
     githubUrl: "",
-    description: "",
+    description: {
+      time: Date.now(),
+      blocks: [],
+      version: "2.28.2",
+    },
     image: "",
     cardTitle: "",
     cardSubtitle: "",

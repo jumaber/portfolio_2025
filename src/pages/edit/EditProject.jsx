@@ -18,8 +18,8 @@ import { Trash2, ExternalLink } from "lucide-react";
 export function EditProject() {
   const navigate = useNavigate();
   const { slug } = useParams();
-  const [project, setProject] = useState(null);
   const editorRef = useRef(null);
+  const [project, setProject] = useState(null);
 
   // 🛰️ Fetch project data from backend when component mounts
   useEffect(() => {
@@ -45,19 +45,27 @@ export function EditProject() {
   // 💾 Save project updates (PATCH)
   async function handleSave() {
     try {
-      const { _id, __v, ...safeProject } = project; // Remove MongoDB metadata
+      // 1. First, pull the latest from your EditorJSBlock
+      let newDescription = project.description;
+      if (editorRef.current?.save) {
+        newDescription = await editorRef.current.save();
+        // merge it into your local state so UI stays in sync
+        setProject((prev) => ({ ...prev, description: newDescription }));
+      }
 
+      // 2. Remove Mongo internals and build your PATCH payload
+      const { _id, __v, ...rest } = project;
+      const safeProject = { ...rest, description: newDescription };
+
+      // 3. Fire off your PATCH
       const res = await fetch(
         `https://portfolio-2025-wyed.onrender.com/api/projects/${slug}`,
         {
           method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(safeProject),
         }
       );
-
       const data = await res.json();
 
       if (res.ok) {
