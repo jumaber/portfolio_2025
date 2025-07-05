@@ -162,6 +162,7 @@ export function EditProject() {
             <div className="text-h3 blue pb-4 ">Content</div>
             <div className="flex flex-col gap-4">
               <EditIntro
+                ref={editorRef}
                 data={{
                   title: project.title,
                   subtitle: project.subtitle,

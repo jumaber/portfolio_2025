@@ -88,6 +88,15 @@ export const EditHomeIntro = forwardRef(({ data, onChange }, ref) => {
     onChange(updatedForm);
   }
 
+
+  const handleDescriptionChange = useCallback((newContent) => {
+    setForm((prev) => ({
+      ...prev,
+      description: newContent,
+    }));
+  }, []);
+
+
   const [imageTarget, setImageTarget] = useState(null);
 
   async function handleImageUpload(e) {
@@ -116,12 +125,6 @@ export const EditHomeIntro = forwardRef(({ data, onChange }, ref) => {
     }
   }
 
-  const handleDescriptionChange = useCallback((newContent) => {
-    setForm((prev) => ({
-      ...prev,
-      description: newContent,
-    }));
-  }, []);
 
   return (
     <div className="grey-box">

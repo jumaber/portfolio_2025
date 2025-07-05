@@ -52,6 +52,8 @@ import { LoadingAnimation } from "../components/other/LoadingAnimation";
       <NavBar />
       <div className="h-screen bg-[#FFF6F6] flex flex-col items-start max-w-full overflow-x-hidden">
         {/* Intro Section */}
+        <div className="z-10 items-center w-full">
+
         <Intro
           title={title}
           subtitle={subtitle}
@@ -64,6 +66,7 @@ import { LoadingAnimation } from "../components/other/LoadingAnimation";
           tech={project.tech}
           roles={project.roles}
         />
+        </div>
 
         {/* Hero */}
         <HeroImage hero={hero} />

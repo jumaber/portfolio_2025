@@ -1,13 +1,37 @@
-import { useState, useEffect, useRef } from "react";
-import { Trash2 } from "lucide-react";
+import {
+  forwardRef,
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  useImperativeHandle,
+} from "react";
 import { ChevronDown } from "lucide-react";
 import { ChevronRight } from "lucide-react";
 import { ButtonSmall } from "../../dashboard/ButtonSmall";
+import { EditorJSBlock } from "../pages/EditorJSBlock";
 
-
-export function EditIntro({ data, onChange }) {
-
+export const EditIntro = forwardRef(({ data, onChange }, ref) => {
   const fileInputRef = useRef(null);
+  const editorRef = useRef();
+
+  // expose save() through ref passed from EditHome
+  useImperativeHandle(ref, () => ({
+    async save() {
+      if (editorRef.current?.save) {
+        const content = await editorRef.current.save();
+        setForm((prev) => ({
+          ...prev,
+          description: content,
+        }));
+        onChange({
+          ...form,
+          description: content,
+        }); // ✅ send full updated form back to parent
+        return content;
+      }
+    },
+  }));
 
   const [form, setForm] = useState({
     title: "",
@@ -16,15 +40,20 @@ export function EditIntro({ data, onChange }) {
     period: "",
     liveUrl: "",
     githubUrl: "",
-    description: "",
+    description: {
+      time: Date.now(),
+      blocks: [],
+      version: "2.28.2",
+    },
     image: "",
-    tech:[],
-    roles:[],
+    tech: [],
+    roles: [],
   });
 
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
+    console.log("Received data:", data);
     if (data) setForm(data);
   }, [data]);
 
@@ -35,6 +64,13 @@ export function EditIntro({ data, onChange }) {
     onChange(updatedForm);
   }
 
+  const handleDescriptionChange = useCallback((newContent) => {
+    setForm((prev) => ({
+      ...prev,
+      description: newContent,
+    }));
+  }, []);
+
   // upload to Cloudinary
   async function handleImageUpload(e) {
     const file = e.target.files[0];
@@ -44,7 +80,7 @@ export function EditIntro({ data, onChange }) {
     formData.append("file", file);
     formData.append("upload_preset", "portfolio_upload");
     formData.append("folder", "portfolio");
-    
+
     try {
       const res = await fetch(
         "https://api.cloudinary.com/v1_1/jumaber/image/upload",
@@ -64,7 +100,6 @@ export function EditIntro({ data, onChange }) {
       console.error("Image upload failed:", err);
     }
   }
-  
 
   return (
     <div className="grey-box">
@@ -173,13 +208,13 @@ export function EditIntro({ data, onChange }) {
           />
 
           <div className="form-header">Description</div>
-          <textarea
-            name="description"
-            value={form.description}
-            onChange={handleChange}
-            placeholder="Description"
-            className="form-input min-h-fit"
-          />
+          <div className="min-h-fit">
+            <EditorJSBlock
+              ref={editorRef}
+              data={form.description}
+              onChange={handleDescriptionChange}
+            />
+          </div>
 
           <div className="form-header">Tools</div>
           <div className="flex flex-wrap gap-2 mb-4">
@@ -270,5 +305,6 @@ export function EditIntro({ data, onChange }) {
         </div>
       )}
     </div>
-  );  
+  );
 }
+)
