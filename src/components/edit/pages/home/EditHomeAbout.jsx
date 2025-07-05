@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { ChevronDown } from "lucide-react";
 import { ChevronRight } from "lucide-react";
 import { ButtonSmall } from "../../../dashboard/ButtonSmall";
+import { EditorJSBlock } from "../EditorJSBlock";
 
 
 export function EditHomeAbout({ data, onChange }) {
@@ -10,7 +11,11 @@ export function EditHomeAbout({ data, onChange }) {
   
   const [form, setForm] = useState({
     aboutTitle: "",
-    aboutDescription: "",
+    aboutDescription: {
+      time: Date.now(),
+      blocks: [],
+      version: "2.28.2",
+    },
     aboutPortrait: "",
   });
 
@@ -18,6 +23,29 @@ export function EditHomeAbout({ data, onChange }) {
 
   useEffect(() => {
     if (data) setForm(data);
+  }, [data]);
+
+  useEffect(() => {
+    if (!data) return;
+
+    const formatted = {
+      ...data,
+      aboutDescription:
+        typeof data.aboutDescription === "string"
+          ? {
+              time: Date.now(),
+              blocks: [
+                {
+                  type: "paragraph",
+                  data: { text: data.aboutDescription },
+                },
+              ],
+              version: "2.28.2",
+            }
+          : data.aboutDescription,
+    };
+
+    setForm(formatted);
   }, [data]);
 
   function handleChange(e) {
@@ -86,12 +114,13 @@ export function EditHomeAbout({ data, onChange }) {
           />
 
           <div className="form-header">Description</div>
-          <textarea
-            name="aboutDescription"
-            value={form.aboutDescription}
-            onChange={handleChange}
-            placeholder="Description"
-            className="form-input"
+          <EditorJSBlock
+            data={form.aboutDescription}
+            onChange={(newContent) => {
+              const updatedForm = { ...form, aboutDescription: newContent };
+              setForm(updatedForm);
+              onChange(updatedForm);
+            }}
           />
 
           <div className="flex flex-row items-center justify-between  my-4 ">

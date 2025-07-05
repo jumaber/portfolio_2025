@@ -9,6 +9,7 @@ export const EditorJSBlock = forwardRef(({ data, onChange }, ref) => {
   ).current;
   const editorRef = useRef(null);
 
+  // Expose save() to parent
   useImperativeHandle(ref, () => ({
     async save() {
       if (editorRef.current) {
@@ -19,11 +20,9 @@ export const EditorJSBlock = forwardRef(({ data, onChange }, ref) => {
     },
   }));
 
+  // Initialize Editor.js once
   useEffect(() => {
-    if (editorRef.current) {
-      editorRef.current.destroy();
-      editorRef.current = null;
-    }
+    if (editorRef.current) return; // ✅ prevent double init
 
     const editor = new EditorJS({
       holder: holderId,
@@ -50,7 +49,7 @@ export const EditorJSBlock = forwardRef(({ data, onChange }, ref) => {
       },
       onChange: async () => {
         const content = await editor.save();
-        onChange(content); // auto update on blur/typing
+        onChange(content);
       },
     });
 
@@ -60,7 +59,7 @@ export const EditorJSBlock = forwardRef(({ data, onChange }, ref) => {
         editorRef.current = null;
       }
     };
-  }, [data, onChange, holderId]);
+  }, []);
 
   return <div id={holderId} className="form-input" />;
 });
