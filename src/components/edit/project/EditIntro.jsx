@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Trash2 } from "lucide-react";
 import { ChevronDown } from "lucide-react";
 import { ChevronRight } from "lucide-react";
-import { ButtonSmall } from "../dashboard/ButtonSmall";
+import { ButtonSmall } from "../../dashboard/ButtonSmall";
 
 
 export function EditIntro({ data, onChange }) {

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { ChevronDown } from "lucide-react";
 import { ChevronRight } from "lucide-react";
-import { ButtonSmall } from "../dashboard/ButtonSmall";
+import { ButtonSmall } from "../../../dashboard/ButtonSmall";
 
 
 export function EditHomeIntro({ data, onChange }) {

@@ -1,11 +1,11 @@
 // 📦 Imports: hooks, components, icons
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { ButtonSmall } from "../components/dashboard/ButtonSmall";
-import { LoadingAnimation } from "../components/other/LoadingAnimation";
+import { ButtonSmall } from "../../components/dashboard/ButtonSmall";
+import { LoadingAnimation } from "../../components/other/LoadingAnimation";
 import { Trash2, ExternalLink } from "lucide-react";
-import { EditTextBlock } from "../components/edit/EditTextBlock";
-import { EditCardPage } from "../components/edit/EditCardPage";
+import { EditTextBlock } from "../../components/edit/pages/EditTextBlock";
+import { EditCardPage } from "../../components/edit/pages/EditCardPage";
 
 // 🧩 Component: EditProject
 // This screen loads a project from the backend and lets you update or delete it.
@@ -133,7 +133,7 @@ export function EditPage() {
                 }}
               />
               <a
-                href={`/project/${slug}`}
+                href={`/${slug}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -151,7 +151,12 @@ export function EditPage() {
           <div className="white-box h-fit">
             <div className="text-h3 blue pb-4 ">Content</div>
             <div className="flex flex-col gap-4">
-              <EditTextBlock data={page} onChange={handleFormChange} />
+              <EditTextBlock
+                data={page.blocks}
+                onChange={(updatedBlocks) =>
+                  handleFormChange({ blocks: updatedBlocks })
+                }
+              />
             </div>
           </div>
         </div>

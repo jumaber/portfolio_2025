@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ButtonSmall } from "../components/dashboard/ButtonSmall";
-import { TextBlock } from "../components/pages/TextBlock";
-import { EditCardPage } from "../components/edit/EditCardPage";
+import { ButtonSmall } from "../../components/dashboard/ButtonSmall";
+import { TextBlock } from "../../components/pages/TextBlock";
+import { EditCardPage } from "../../components/edit/pages/EditCardPage";
+import { EditTextBlock } from "../../components/edit/pages/EditTextBlock";
 
 export function NewPage() {
   // 🧭 Navigation hook from React Router
@@ -95,7 +96,7 @@ export function NewPage() {
             <div className="text-h3 blue pb-4">Content</div>
             <div className="flex flex-col gap-4">
               {/* 🧱 Block-based editable sections */}
-              <TextBlock data={page} onChange={handleFormChange} />
+              <EditTextBlock data={page} onChange={handleFormChange} />
             </div>
           </div>
         </div>

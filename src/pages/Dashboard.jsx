@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { ButtonSmall } from "../components/dashboard/ButtonSmall";
 import { GAReport } from "../components/dashboard/GAReport";
 import { ListItem } from "../components/dashboard/ListItem";
+import { ExternalLink } from "lucide-react";
+
 
 import {
   DndContext,
@@ -246,13 +248,13 @@ export function Dashboard() {
             <div className="white-box">
               <div className="flex flex-row justify-between items-center pb-4">
                 <h2 className="box-title">📊 Google Analytics</h2>
-                <ButtonSmall
-                  className="add-button add-button:hover"
-                  to={
-                    "https://lookerstudio.google.com/reporting/642c28cd-a396-4f16-b5f4-c4001416b33c"
-                  }
-                  image={ExternalLinkImage}
-                />
+                <a
+                  href="https://lookerstudio.google.com/reporting/642c28cd-a396-4f16-b5f4-c4001416b33c"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <ExternalLink className="w-9 h-9 p-2" />
+                </a>
               </div>
               <GAReport />
             </div>
@@ -261,13 +263,13 @@ export function Dashboard() {
             <div className="white-box">
               <div className="flex flex-row justify-between items-center">
                 <h2 className="box-title">🔥 Hotjar</h2>
-                <ButtonSmall
-                  className="add-button add-button:hover"
-                  to={
-                    "https://insights.hotjar.com/sites/2301909/dashboard/TXb4wU8wuWGckmibW9Qg4a-Site-overview"
-                  }
-                  image={ExternalLinkImage}
-                />
+                <a
+                  href="https://insights.hotjar.com/sites/2301909/dashboard/TXb4wU8wuWGckmibW9Qg4a-Site-overview"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <ExternalLink className="w-9 h-9 p-2" />
+                </a>
               </div>
             </div>
           </div>

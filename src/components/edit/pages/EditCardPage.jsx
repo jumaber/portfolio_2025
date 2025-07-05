@@ -1,4 +1,4 @@
-import { ButtonSmall } from "../dashboard/ButtonSmall";
+import { ButtonSmall } from "../../dashboard/ButtonSmall";
 
 import { useRef } from "react";
 

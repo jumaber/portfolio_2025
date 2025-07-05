@@ -1,13 +1,13 @@
 import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ButtonSmall } from "../components/dashboard/ButtonSmall";
-import { EditIntro } from "../components/edit/EditIntro";
-import { EditHero } from "../components/edit/EditHero";
-import { EditCard } from "../components/edit/EditCard";
-import { EditProcess } from "../components/edit/EditProcess";
-import { EditListField } from "../components/edit/EditListField";
-import { EditWireframes } from "../components/edit/EditWireframes";
-import { EditCustomHtml } from "../components/edit/EditCustomHtml";
+import { ButtonSmall } from "../../components/dashboard/ButtonSmall";
+import { EditIntro } from "../../components/edit/project/EditIntro";
+import { EditHero } from "../../components/edit/project/EditHero";
+import { EditCard } from "../../components/edit/project/EditCard";
+import { EditProcess } from "../../components/edit/project/EditProcess";
+import { EditListField } from "../../components/edit/project/EditListField";
+import { EditWireframes } from "../../components/edit/project/EditWireframes";
+import { EditCustomHtml } from "../../components/edit/EditCustomHtml";
 
 
 export function NewProject() {

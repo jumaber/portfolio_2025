@@ -50,7 +50,7 @@ import { LoadingAnimation } from "../components/other/LoadingAnimation";
   return (
     <>
       <NavBar />
-      <div className="h-full bg-[#FFF6F6] flex flex-col items-start max-w-full overflow-x-hidden">
+      <div className="h-screen bg-[#FFF6F6] flex flex-col items-start max-w-full overflow-x-hidden">
         {/* Intro Section */}
         <Intro
           title={title}

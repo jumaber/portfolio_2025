@@ -7,13 +7,13 @@ import { ImprintPage } from "./pages/ImprintPage";
 import { PageNotFound } from "./pages/PageNotFound";
 import { Dashboard } from "./pages/Dashboard";
 import { Login } from "./pages/Login"; 
-import { EditHome } from "./pages/EditHome.jsx";
-import { EditProject } from "./pages/EditProject.jsx";
-import { EditPage } from "./pages/EditPage.jsx"
-import { EditImprint } from "./pages/EditImprint.jsx";
+import { EditHome } from "./pages/edit/EditHome.jsx";
+import { EditProject } from "./pages/edit/EditProject.jsx";
+import { EditPage } from "./pages/edit/EditPage.jsx"
+import { EditImprint } from "./pages/edit/EditImprint.jsx";
 import { LoadingAnimation } from "./components/other/LoadingAnimation.jsx";
-import { NewProject } from "./pages/NewProject.jsx";
-import { NewPage } from "./pages/NewPage.jsx";
+import { NewProject } from "./pages/new/NewProject.jsx";
+import { NewPage } from "./pages/new/NewPage.jsx";
 import { SinglePage } from "./pages/SinglePage.jsx";
 import { SingleProject } from "./pages/SingleProject.jsx"
 

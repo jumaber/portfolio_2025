@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { ChevronDown, ChevronRight } from "lucide-react";
-import { ButtonSmall } from "../dashboard/ButtonSmall";
+import { ButtonSmall } from "../../dashboard/ButtonSmall";
 
 export function EditWireframes({ form, setForm, onChange }) {
   const [isOpen, setIsOpen] = useState(false);

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { ChevronDown, ChevronRight, Plus } from "lucide-react";
 import { X } from "lucide-react";
-import { ButtonSmall } from "../dashboard/ButtonSmall";
+import { ButtonSmall } from "../../../dashboard/ButtonSmall";
 import { Trash2 } from "lucide-react";
 import { Pencil } from "lucide-react";
 import { EyeOff } from "lucide-react";

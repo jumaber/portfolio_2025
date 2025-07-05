@@ -1,6 +1,5 @@
 import { useRef } from "react";
-import { ButtonSmall } from "../dashboard/ButtonSmall";
-import { Switch } from "../dashboard/Switch";
+import { ButtonSmall } from "../../dashboard/ButtonSmall";
 
 export function EditCard({ form, setForm, onChange }) {
   const fileInputRef = useRef();

@@ -1,15 +1,15 @@
 // 📦 Imports: hooks, components, icons
 import { useEffect, useState, useRef } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { ButtonSmall } from "../components/dashboard/ButtonSmall";
-import { EditIntro } from "../components/edit/EditIntro";
-import { EditHero } from "../components/edit/EditHero";
-import { EditCard } from "../components/edit/EditCard";
-import { EditProcess } from "../components/edit/EditProcess.jsx";
-import { EditListField } from "../components/edit/EditListField.jsx";
-import { EditWireframes } from "../components/edit/EditWireframes.jsx";
-import { EditCustomHtml } from "../components/edit/EditCustomHtml.jsx";
-import { LoadingAnimation } from "../components/other/LoadingAnimation";
+import { ButtonSmall } from "../../components/dashboard/ButtonSmall.jsx";
+import { EditIntro } from "../../components/edit/project/EditIntro.jsx";
+import { EditHero } from "../../components/edit/project/EditHero.jsx";
+import { EditCard } from "../../components/edit/project/EditCard.jsx";
+import { EditProcess } from "../../components/edit/project/EditProcess.jsx";
+import { EditListField } from "../../components/edit/project/EditListField.jsx";
+import { EditWireframes } from "../../components/edit/project/EditWireframes.jsx";
+import { EditCustomHtml } from "../../components/edit/EditCustomHtml.jsx";
+import { LoadingAnimation } from "../../components/other/LoadingAnimation.jsx";
 import { Trash2, ExternalLink } from "lucide-react";
 
 // 🧩 Component: EditProject

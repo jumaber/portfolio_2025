@@ -8,7 +8,7 @@ import {
   EyeOff,
 } from "lucide-react";
 import { X } from "lucide-react";
-import { ButtonSmall } from "../dashboard/ButtonSmall";
+import { ButtonSmall } from "../../dashboard/ButtonSmall";
 
 export function EditProcess({ form: initialForm, onChange }) {
   const [form, setForm] = useState({ process: [] });
