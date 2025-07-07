@@ -190,8 +190,7 @@ export function EditHomeExperience({ form: initialForm, onChange }) {
                   <div className="form-header pt-2">Highlights</div>
                   {item.highlights.map((highlight, hIndex) => (
                     <div key={hIndex} className="flex items-center gap-2 mb-2">
-                      <input
-                        type="text"
+                      <textarea
                         value={highlight}
                         onChange={(e) =>
                           handleHighlightChange(index, hIndex, e.target.value)
@@ -283,8 +282,7 @@ function AddHighlightInput({ onAdd }) {
 
   return (
     <div className="flex items-center gap-2 mt-3">
-      <input
-        type="text"
+      <textarea
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && submit()}

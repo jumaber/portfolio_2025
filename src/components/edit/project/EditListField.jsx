@@ -63,8 +63,7 @@ export function EditListField({
           <div className="flex flex-col gap-2 mb-4">
             {items.map((item, index) => (
               <div key={index} className="flex items-center gap-2">
-                <input
-                  type="text"
+                <textarea
                   value={item}
                   onChange={(e) => handleEdit(index, e.target.value)}
                   className="w-full form-input-list"
@@ -82,8 +81,7 @@ export function EditListField({
           {/* Input for new item */}
           <div className="form-header mt-4">Add New {title.slice(0, -1)}</div>
           <div className="flex items-center gap-4 w-full">
-            <input
-              type="text"
+            <textarea
               value={newItem}
               onChange={(e) => setNewItem(e.target.value)}
               onKeyDown={(e) => {
