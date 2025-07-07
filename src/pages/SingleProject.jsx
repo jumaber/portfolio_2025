@@ -11,47 +11,23 @@ import { HeroImage } from "../components/projects/HeroImage"
 import { RelatedProjects } from "../components/projects/RelatedProjects";
 import { CustomHtml } from "../components/projects/CustomHtml";
 import { LoadingAnimation } from "../components/other/LoadingAnimation";
-import { PageNotFound } from "./PageNotFound";
 
 
   export function SingleProject() {
     const { slug } = useParams();
     const [project, setProject] = useState(null);
-    const [status, setStatus] = useState("loading");
-
   
     useEffect(() => {
-      fetch(`/api/projects/${slug}`)
-        .then((res) => {
-          if (res.status === 404) {
-            setStatus("notfound");
-            return null;
-          }
-          if (!res.ok) {
-            throw new Error("Network error");
-          }
-          return res.json();
-        })
+      fetch(`https://portfolio-2025-wyed.onrender.com/api/projects/${slug}`)
+        .then((res) => res.json())
         .then((data) => {
-          if (data) {
-            setProject(data);
-            setStatus("ok");
-          }
+          console.log("Fetched project:", data); // 
+          setProject(data);
         })
-        .catch((err) => {
-          console.error(err);
-          setStatus("error");
-        });
+        .catch((err) => console.error("Failed to fetch project:", err));
     }, [slug]);
-
-    if (status === "loading") {
-      return <p>Loading…</p>;
-    }
-
-    if (status === "notfound" || status === "error") {
-      return <PageNotFound />;
-    }
     
+  
     if (!project) return <LoadingAnimation />;
   
     const {
