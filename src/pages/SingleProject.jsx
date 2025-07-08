@@ -11,6 +11,8 @@ import { HeroImage } from "../components/projects/HeroImage"
 import { RelatedProjects } from "../components/projects/RelatedProjects";
 import { CustomHtml } from "../components/projects/CustomHtml";
 import { LoadingAnimation } from "../components/other/LoadingAnimation";
+import { ScrollTracker } from "../components/other/ScrollTracker";
+
 
 
   export function SingleProject() {
@@ -50,22 +52,22 @@ import { LoadingAnimation } from "../components/other/LoadingAnimation";
   return (
     <>
       <NavBar />
+      <ScrollTracker />
       <div className="h-screen bg-[#FFF6F6] flex flex-col items-start max-w-full overflow-x-hidden">
         {/* Intro Section */}
         <div className="z-10 items-center w-full">
-
-        <Intro
-          title={title}
-          subtitle={subtitle}
-          location={location}
-          period={period}
-          liveUrl={liveUrl}
-          githubUrl={githubUrl}
-          description={description}
-          image={image}
-          tech={project.tech}
-          roles={project.roles}
-        />
+          <Intro
+            title={title}
+            subtitle={subtitle}
+            location={location}
+            period={period}
+            liveUrl={liveUrl}
+            githubUrl={githubUrl}
+            description={description}
+            image={image}
+            tech={project.tech}
+            roles={project.roles}
+          />
         </div>
 
         {/* Hero */}

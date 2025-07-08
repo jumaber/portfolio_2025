@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { NavBar } from "../components/other/NavBar";
 import { TextBlock } from "../components/pages/TextBlock";
 import { LoadingAnimation } from "../components/other/LoadingAnimation";
+import { ScrollTracker } from "../components/other/ScrollTracker";
+
 
 export function SinglePage() {
   const { slug } = useParams();
@@ -20,6 +22,7 @@ export function SinglePage() {
   return (
     <>
       <NavBar />
+      <ScrollTracker />
       <div className="h-screen bg-[#FFF6F6] flex flex-col items-start w-screen overflow-x-hidden">
         <TextBlock data={page.blocks} />
       </div>
