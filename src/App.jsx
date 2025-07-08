@@ -11,7 +11,7 @@ import { EditHome } from "./pages/edit/EditHome.jsx";
 import { EditProject } from "./pages/edit/EditProject.jsx";
 import { EditPage } from "./pages/edit/EditPage.jsx"
 import { EditImprint } from "./pages/edit/EditImprint.jsx";
-import { LoadingAnimation } from "./components/other/LoadingAnimation.jsx";
+import { LoadingScreen } from "./components/other/LoadingScreen.jsx";
 import { NewProject } from "./pages/new/NewProject.jsx";
 import { NewPage } from "./pages/new/NewPage.jsx";
 import { SinglePage } from "./pages/SinglePage.jsx";
@@ -36,7 +36,7 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  if (loading) return <LoadingAnimation />
+  if (loading) return <LoadingScreen />;
 
 
   return (

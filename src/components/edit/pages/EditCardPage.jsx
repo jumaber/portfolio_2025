@@ -1,14 +1,14 @@
+import { useState, useRef } from "react";
 import { ButtonSmall } from "../../dashboard/ButtonSmall";
-
-import { useRef } from "react";
+import { LoadingAnimation } from "../../other/LoadingAnimation";
 
 export function EditCardPage({ page, onChange }) {
   const fileInputRef = useRef(null);
+  const [isUploading, setIsUploading] = useState(false);
 
   function handleChange(e) {
     const { name, value } = e.target;
-    const updated = { ...page, [name]: value };
-    onChange(updated);
+    onChange({ ...page, [name]: value });
   }
 
   async function handleImageUpload(e) {
@@ -20,6 +20,7 @@ export function EditCardPage({ page, onChange }) {
     pageData.append("upload_preset", "portfolio_upload");
     pageData.append("folder", "portfolio");
 
+    setIsUploading(true);
     try {
       const res = await fetch(
         "https://api.cloudinary.com/v1_1/jumaber/image/upload",
@@ -32,11 +33,14 @@ export function EditCardPage({ page, onChange }) {
       onChange({ ...page, image: data.secure_url });
     } catch (err) {
       console.error("Image upload failed:", err);
+    } finally {
+      setIsUploading(false);
     }
   }
 
   return (
     <div className="grey-box">
+      {/* Upload button */}
       <div className="form-header flex justify-between items-center mt-4">
         <span>Image</span>
         <ButtonSmall
@@ -47,14 +51,7 @@ export function EditCardPage({ page, onChange }) {
         />
       </div>
 
-      {page.image && (
-        <img
-          src={page.image}
-          alt="Hero"
-          className="w-full h-auto my-4 rounded-md border border-neutral-200"
-        />
-      )}
-
+      {/* Hidden file input */}
       <input
         type="file"
         accept="image/*"
@@ -63,6 +60,42 @@ export function EditCardPage({ page, onChange }) {
         className="hidden"
       />
 
+      {/* 🔑 Preview box */}
+      <div
+        className="
+          relative
+          w-full my-4
+          rounded-md border border-neutral-200
+          bg-white
+          min-h-[100px]
+          flex items-center justify-center
+        "
+      >
+        {/* 1) Placeholder */}
+        {!isUploading && !page.image && (
+          <p className="tag text-[var(--color-gray)]">
+            Upload an image to preview
+          </p>
+        )}
+
+        {/* 2) Spinner overlay */}
+        {isUploading && (
+          <div className="absolute inset-0 bg-white bg-opacity-70 flex items-center justify-center rounded-md z-10">
+            <LoadingAnimation classNameImage="w-16" classNameText="hidden" />
+          </div>
+        )}
+
+        {/* 3) Uploaded image */}
+        {!isUploading && page.image && (
+          <img
+            src={page.image}
+            alt="Preview"
+            className="w-full h-auto rounded-md"
+          />
+        )}
+      </div>
+
+      {/* Other fields */}
       <div className="form-header">Dashboard List Title</div>
       <input
         type="text"
@@ -72,6 +105,7 @@ export function EditCardPage({ page, onChange }) {
         placeholder="Title"
         className="form-input"
       />
+
       <div className="form-header">Slug (*)</div>
       <input
         type="text"

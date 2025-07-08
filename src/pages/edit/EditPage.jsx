@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { ButtonSmall } from "../../components/dashboard/ButtonSmall";
-import { LoadingAnimation } from "../../components/other/LoadingAnimation";
+import { LoadingScreen } from "../../components/other/LoadingScreen";
 import { Trash2, ExternalLink } from "lucide-react";
 import { EditTextBlock } from "../../components/edit/pages/EditTextBlock";
 import { EditCardPage } from "../../components/edit/pages/EditCardPage";
@@ -30,7 +30,7 @@ export function EditPage() {
   }
 
   // 🌀 Show loading animation while data loads
-  if (!page) return <LoadingAnimation />;
+  if (!page) return <LoadingScreen />;
 
   // 💾 Save project updates (PATCH)
   async function handleSave() {

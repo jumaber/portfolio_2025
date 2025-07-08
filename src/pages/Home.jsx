@@ -8,8 +8,7 @@ import { CardGrid } from "../components/home/CardGrid";
 import { HomeIntro } from "../components/home/HomeIntro";
 import { ScrollTracker } from "../components/other/ScrollTracker";
 import { About } from "../components/home/About";
-import { LoadingAnimation } from "../components/other/LoadingAnimation";
-
+import { LoadingScreen } from "../components/other/LoadingScreen";
 
 
 export function Home() {
@@ -25,7 +24,7 @@ export function Home() {
       .catch((err) => console.error("Failed to fetch page:", err));
   }, []);
 
-  if (!page) return <LoadingAnimation />;
+  if (!page) return <LoadingScreen />;
 
   const {
     greet,

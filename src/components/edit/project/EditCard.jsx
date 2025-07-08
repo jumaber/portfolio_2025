@@ -1,8 +1,10 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { ButtonSmall } from "../../dashboard/ButtonSmall";
+import { LoadingAnimation } from "../../other/LoadingAnimation";
 
 export function EditCard({ form, setForm, onChange }) {
   const fileInputRef = useRef();
+  const [isUploading, setIsUploading] = useState(false);
 
   async function handleImageUpload(e) {
     const file = e.target.files[0];
@@ -13,20 +15,21 @@ export function EditCard({ form, setForm, onChange }) {
     formData.append("upload_preset", "portfolio_upload");
     formData.append("folder", "portfolio");
 
+    setIsUploading(true);
     try {
       const res = await fetch(
         "https://api.cloudinary.com/v1_1/jumaber/image/upload",
-        {
-          method: "POST",
-          body: formData,
-        }
+        { method: "POST", body: formData }
       );
       const data = await res.json();
+
       const updatedForm = { ...form, cardImage: data.secure_url };
       setForm(updatedForm);
       onChange(updatedForm);
     } catch (err) {
       console.error("Card image upload failed:", err);
+    } finally {
+      setIsUploading(false);
     }
   }
 
@@ -37,9 +40,9 @@ export function EditCard({ form, setForm, onChange }) {
     onChange(updatedForm);
   }
 
-
   return (
     <div className="grey-box">
+      {/* Header with upload button */}
       <div className="form-header flex justify-between items-center mt-4">
         <span>Image</span>
         <ButtonSmall
@@ -50,14 +53,7 @@ export function EditCard({ form, setForm, onChange }) {
         />
       </div>
 
-      {form.cardImage && (
-        <img
-          src={form.cardImage}
-          alt="Hero"
-          className="w-full h-auto my-4 rounded-md border border-neutral-200"
-        />
-      )}
-
+      {/* Hidden file input */}
       <input
         type="file"
         accept="image/*"
@@ -66,6 +62,24 @@ export function EditCard({ form, setForm, onChange }) {
         className="hidden"
       />
 
+      {/* Image preview + uploading overlay */}
+      <div className="relative w-full my-4 rounded-md border border-neutral-200">
+        {isUploading && (
+          <div className="absolute inset-0 bg-white bg-opacity-70 flex items-center justify-center rounded-md z-10">
+            <LoadingAnimation classNameImage="w-16" classNameText="tag" />
+          </div>
+        )}
+
+        {form.cardImage && (
+          <img
+            src={form.cardImage}
+            alt="Card preview"
+            className="w-full h-auto rounded-md"
+          />
+        )}
+      </div>
+
+      {/* Card Title */}
       <div className="form-header">Card Title</div>
       <input
         type="text"
@@ -76,6 +90,7 @@ export function EditCard({ form, setForm, onChange }) {
         className="form-input"
       />
 
+      {/* Card Subtitle */}
       <div className="form-header">Card Subtitle</div>
       <input
         type="text"
@@ -85,6 +100,8 @@ export function EditCard({ form, setForm, onChange }) {
         placeholder="Card Subtitle"
         className="form-input"
       />
+
+      {/* Slug */}
       <div className="form-header">Slug</div>
       <input
         type="text"
@@ -97,5 +114,4 @@ export function EditCard({ form, setForm, onChange }) {
       />
     </div>
   );
-  
 }

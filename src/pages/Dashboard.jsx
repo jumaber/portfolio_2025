@@ -123,17 +123,18 @@ export function Dashboard() {
     })
   );
 
-  const ExternalLinkImage = "https://res.cloudinary.com/jumaber/image/upload/v1751228673/link_white_ws5ipy.svg";
 
   return (
     <div className="bg-[#f5f5f5] flex flex-col h-screen w-screen items-start p-4 md:p-8 lg:p-16 overflow-x-hidden">
       <div className="flex flex-col w-full pb-10">
         <div className="flex flex-row w-full justify-between items-center mb-4">
           <Link to="/">
-            <div className="dashboard-title">🏠</div>
+            <div className="dashboard-title hover:bg-[var(--color-yellow)] p-1 rounded-lg">
+              🏠
+            </div>
           </Link>
           <div
-            className="flex flex-row justify-end text-h5 blue hover:text-h3 cursor-pointer"
+            className="flex flex-row justify-end text-h5 text-[var(--color-blue)] cursor-pointer gap-1 items-center hover:text-[var(--color-pink)]"
             onClick={handleLogout}
           >
             Log out
@@ -142,31 +143,31 @@ export function Dashboard() {
         <div className="dashboard-title">Welcome back, Júlia! </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row w-full lg:gap-18 ">
+      <div className="flex flex-col lg:flex-row w-full lg:gap-12 ">
         <div className="flex flex-col lg:w-3/5 gap-4 lg:gap-10">
           {/* Summary */}
           <div className="flex flex-row justify-between gap-1 lg:gap-4">
-            <div className="white-box">
-              <h2 className="text-[var(--dark-grey,#333)] text-center font-bold text-[24px] leading-none pb-2">
+            <div className="white-box lg:max-h-[93px]">
+              <h2 className="text-[var(--color-black)] text-center font-bold text-[24px] leading-none pb-2">
                 {totalPages}
               </h2>
-              <p className="text-[var(--dark-grey,#333)] text-center font-normal text-[14px] leading-none font-sans">
+              <p className="text-[var(--color-black)] text-center font-normal text-[14px] leading-none">
                 Pages
               </p>
             </div>
-            <div className="white-box ">
-              <h2 className="text-[var(--dark-grey,#333)] text-center font-bold text-[24px] leading-none pb-2">
+            <div className="white-box lg:max-h-[93px]">
+              <h2 className="text-[var(--color-black)] text-center font-bold text-[24px] leading-none pb-2">
                 {totalProjects}
               </h2>
-              <p className="text-[var(--dark-grey,#333)] text-center font-normal text-[14px] leading-none font-sans">
+              <p className="text-[var(--color-black)] text-center font-normal text-[14px] leading-none">
                 Projects
               </p>
             </div>
-            <div className="white-box ">
-              <h2 className="text-[var(--dark-grey,#333)] text-center font-bold text-[24px] leading-none pb-2">
+            <div className="white-box lg:max-h-[93px]">
+              <h2 className="text-[var(--color-black)] text-center font-bold text-[24px] leading-none pb-2">
                 {featuredProjects}
               </h2>
-              <p className="text-[var(--dark-grey,#333)] text-center font-normal text-[14px] leading-none font-sans">
+              <p className="text-[var(--color-black)] text-center font-normal text-[14px] leading-none">
                 Featured Projects
               </p>
             </div>
@@ -244,33 +245,55 @@ export function Dashboard() {
         {/* Analytics */}
         <div className="flex flex-col w-full lg:w-2/5">
           <div className="flex flex-col justify-between gap-10">
-            {/* Google Analytics */}
-            <div className="white-box">
-              <div className="flex flex-row justify-between items-center pb-4">
-                <h2 className="box-title">📊 Google Analytics</h2>
-                <a
-                  href="https://lookerstudio.google.com/reporting/642c28cd-a396-4f16-b5f4-c4001416b33c"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <ExternalLink className="w-9 h-9 p-2" />
-                </a>
-              </div>
-              <GAReport />
-            </div>
+            {/* Analytics Summary */}
 
             {/* Hotjar */}
-            <div className="white-box">
-              <div className="flex flex-row justify-between items-center">
-                <h2 className="box-title">🔥 Hotjar</h2>
+            <div className="flex flex-row justify-between gap-1 lg:gap-4">
+              <div className="white-box-linked lg:max-h-[93px]">
                 <a
                   href="https://insights.hotjar.com/sites/2301909/dashboard/TXb4wU8wuWGckmibW9Qg4a-Site-overview"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <ExternalLink className="w-9 h-9 p-2" />
+                  <h2 className="text-[var(--color-black)] text-center font-bold text-[24px] leading-none pb-2">
+                    🔥
+                  </h2>
+                  <p className="flex flex-row justify-center items-center gap-1 text-[var(--color-black)] font-normal text-[14px]">
+                    Hotjar
+                  </p>
                 </a>
               </div>
+
+              <div className="white-box-linked lg:max-h-[93px] flex flex-col justify-between items-center">
+                <a
+                  href="https://analytics.google.com/analytics/web/#/p492466952/reports/intelligenthome?params=_u..nav%3Dmaui"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:bg-red"
+                >
+                  <h2 className="text-[var(--color-black)] text-center font-bold text-[24px] leading-none pb-2">
+                    📊
+                  </h2>
+                  <p className="flex flex-row justify-center items-center gap-1 text-[var(--color-black)] font-normal text-[14px]">
+                    GA
+                  </p>
+                </a>
+              </div>
+            </div>
+
+            {/* Looker Studio */}
+            <div className="white-box">
+              <div className="flex flex-row justify-between items-center pb-4">
+                <h2 className="box-title">📊 GA - Looker Studio</h2>
+                <a
+                  href="https://lookerstudio.google.com/reporting/642c28cd-a396-4f16-b5f4-c4001416b33c"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <ExternalLink className="w-9 h-9 p-2 cursor-pointer text-[var(--color-black)] hover:text-[var(--color-pink)]" />
+                </a>
+              </div>
+              <GAReport />
             </div>
           </div>
         </div>

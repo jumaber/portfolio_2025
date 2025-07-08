@@ -10,7 +10,7 @@ import { Process } from "../components/projects/Process";
 import { HeroImage } from "../components/projects/HeroImage"
 import { RelatedProjects } from "../components/projects/RelatedProjects";
 import { CustomHtml } from "../components/projects/CustomHtml";
-import { LoadingAnimation } from "../components/other/LoadingAnimation";
+import { LoadingScreen } from "../components/other/LoadingScreen";
 import { ScrollTracker } from "../components/other/ScrollTracker";
 
 
@@ -30,7 +30,7 @@ import { ScrollTracker } from "../components/other/ScrollTracker";
     }, [slug]);
     
   
-    if (!project) return <LoadingAnimation />;
+    if (!project) return <LoadingScreen />;
   
     const {
       title,

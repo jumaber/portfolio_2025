@@ -1,14 +1,13 @@
-import { useState, useEffect, useRef } from "react";
-import { ChevronDown } from "lucide-react";
-import { ChevronRight } from "lucide-react";
+import React, { useState, useEffect, useRef } from "react";
+import { ChevronDown, ChevronRight } from "lucide-react";
 import { ButtonSmall } from "../../../dashboard/ButtonSmall";
 import { EditorJSBlock } from "../EditorJSBlock";
-
+import { LoadingAnimation } from "../../../other/LoadingAnimation";
 
 export function EditHomeAbout({ data, onChange }) {
-
   const fileInputRef = useRef();
-  
+  const [isUploading, setIsUploading] = useState(false);
+
   const [form, setForm] = useState({
     aboutTitle: "",
     aboutDescription: {
@@ -18,16 +17,13 @@ export function EditHomeAbout({ data, onChange }) {
     },
     aboutPortrait: "",
   });
-
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    if (data) setForm(data);
-  }, [data]);
-
+  // initialize from parent
   useEffect(() => {
     if (!data) return;
 
+    // normalize description if it's a string
     const formatted = {
       ...data,
       aboutDescription:
@@ -44,65 +40,62 @@ export function EditHomeAbout({ data, onChange }) {
             }
           : data.aboutDescription,
     };
-
     setForm(formatted);
   }, [data]);
 
   function handleChange(e) {
     const { name, value } = e.target;
-    const updatedForm = { ...form, [name]: value };
-    setForm(updatedForm);
-    onChange(updatedForm);
+    const updated = { ...form, [name]: value };
+    setForm(updated);
+    onChange(updated);
   }
-
-  
 
   async function handleImageUpload(e) {
     const file = e.target.files[0];
     if (!file) return;
 
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("upload_preset", "portfolio_upload");
-    formData.append("folder", "portfolio");
+    const uploadData = new FormData();
+    uploadData.append("file", file);
+    uploadData.append("upload_preset", "portfolio_upload");
+    uploadData.append("folder", "portfolio");
 
+    setIsUploading(true);
     try {
       const res = await fetch(
         "https://api.cloudinary.com/v1_1/jumaber/image/upload",
-        {
-          method: "POST",
-          body: formData,
-        }
+        { method: "POST", body: uploadData }
       );
-      const data = await res.json();
-      const updatedForm = { ...form, aboutPortrait: data.secure_url };
-      setForm(updatedForm);
-      onChange(updatedForm);
+      const result = await res.json();
+      const updated = { ...form, aboutPortrait: result.secure_url };
+      setForm(updated);
+      onChange(updated);
     } catch (err) {
-      console.error("Hero image upload failed:", err);
+      console.error("Portrait upload failed:", err);
+    } finally {
+      setIsUploading(false);
     }
   }
 
   return (
     <div className="grey-box">
+      {/* Accordion header */}
       <div
-        className="flex flex-row justify-between items-center cursor-pointer"
+        className="flex justify-between items-center cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
       >
         <div className="flex items-center gap-2 leading-none">
-          <div>
-            {isOpen ? (
-              <ChevronDown className="w-4 h-4" />
-            ) : (
-              <ChevronRight className="w-4 h-4" />
-            )}
-          </div>
-          <div className="component-title">About</div>
+          {isOpen ? (
+            <ChevronDown className="w-4 h-4" />
+          ) : (
+            <ChevronRight className="w-4 h-4" />
+          )}
+          <span className="component-title">About</span>
         </div>
       </div>
 
       {isOpen && (
         <div className="mt-4">
+          {/* Section Title */}
           <div className="form-header">Section Title</div>
           <input
             type="text"
@@ -113,18 +106,20 @@ export function EditHomeAbout({ data, onChange }) {
             className="form-input"
           />
 
+          {/* Description */}
           <div className="form-header">Description</div>
           <EditorJSBlock
             data={form.aboutDescription}
             onChange={(newContent) => {
-              const updatedForm = { ...form, aboutDescription: newContent };
-              setForm(updatedForm);
-              onChange(updatedForm);
+              const updated = { ...form, aboutDescription: newContent };
+              setForm(updated);
+              onChange(updated);
             }}
           />
 
-          <div className="flex flex-row items-center justify-between  my-4 ">
-            <div className="form-header">Image</div>
+          {/* Image upload */}
+          <div className="form-header flex justify-between items-center my-4">
+            <span>Image</span>
             <ButtonSmall
               text="Upload Image"
               onClick={() => fileInputRef.current.click()}
@@ -132,15 +127,6 @@ export function EditHomeAbout({ data, onChange }) {
               image={null}
             />
           </div>
-
-          {form.aboutPortrait && (
-            <img
-              src={form.aboutPortrait}
-              alt="Portrait"
-              className="w-full h-auto rounded-md border border-neutral-200"
-            />
-          )}
-
           <input
             type="file"
             accept="image/*"
@@ -148,6 +134,44 @@ export function EditHomeAbout({ data, onChange }) {
             onChange={handleImageUpload}
             className="hidden"
           />
+
+          {/* Preview box */}
+          <div
+            className="
+              relative
+              w-full my-4
+              rounded-md border border-neutral-200
+              bg-white
+              min-h-[100px]
+              flex items-center justify-center
+            "
+          >
+            {/* 1) Placeholder when empty */}
+            {!isUploading && !form.aboutPortrait && (
+              <p className="tag text-[var(--color-gray)]">
+                Upload an image to preview
+              </p>
+            )}
+
+            {/* 2) Spinner overlay while uploading */}
+            {isUploading && (
+              <div className="absolute inset-0 bg-white bg-opacity-70 flex items-center justify-center rounded-md z-10">
+                <LoadingAnimation
+                  classNameImage="w-16"
+                  classNameText="hidden"
+                />
+              </div>
+            )}
+
+            {/* 3) Show the uploaded portrait */}
+            {!isUploading && form.aboutPortrait && (
+              <img
+                src={form.aboutPortrait}
+                alt="Portrait preview"
+                className="w-full h-auto rounded-md"
+              />
+            )}
+          </div>
         </div>
       )}
     </div>

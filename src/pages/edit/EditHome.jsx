@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ButtonSmall } from "../../components/dashboard/ButtonSmall.jsx";
-import { LoadingAnimation } from "../../components/other/LoadingAnimation.jsx";
+import { LoadingScreen } from "../../components/other/LoadingScreen.jsx";
 import { EditHomeIntro } from "../../components/edit/pages/home/EditHomeIntro.jsx";
 import { EditHomeAbout } from "../../components/edit/pages/home/EditHomeAbout.jsx";
 import { EditHomeExperience } from "../../components/edit/pages/home/EditHomeExperience.jsx";
@@ -28,7 +28,7 @@ export function EditHome() {
     setPage((prev) => ({ ...prev, ...updatedForm }));
   }
 
-  if (!page) return <LoadingAnimation />;
+  if (!page) return <LoadingScreen />;
 
   // Save Home
   

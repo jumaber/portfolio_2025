@@ -9,7 +9,7 @@ import { EditProcess } from "../../components/edit/project/EditProcess.jsx";
 import { EditListField } from "../../components/edit/project/EditListField.jsx";
 import { EditWireframes } from "../../components/edit/project/EditWireframes.jsx";
 import { EditCustomHtml } from "../../components/edit/EditCustomHtml.jsx";
-import { LoadingAnimation } from "../../components/other/LoadingAnimation.jsx";
+import { LoadingScreen } from "../../components/other/LoadingScreen.jsx";
 import { Trash2, ExternalLink } from "lucide-react";
 
 // 🧩 Component: EditProject
@@ -40,7 +40,7 @@ export function EditProject() {
   }
 
   // 🌀 Show loading animation while data loads
-  if (!project) return <LoadingAnimation />;
+  if (!project) return <LoadingScreen />;
 
   // 💾 Save project updates (PATCH)
   async function handleSave() {

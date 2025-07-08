@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { NavBar } from "../components/other/NavBar";
 import { TextBlock } from "../components/pages/TextBlock";
-import { LoadingAnimation } from "../components/other/LoadingAnimation";
+import { LoadingScreen } from "../components/other/LoadingScreen";
 import { ScrollTracker } from "../components/other/ScrollTracker";
 
 
@@ -17,7 +17,7 @@ export function SinglePage() {
       .catch((err) => console.error("Failed to fetch page:", err));
   }, [slug]);
 
-  if (!page) return <LoadingAnimation />;
+  if (!page) return <LoadingScreen />;
 
   return (
     <>

@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ButtonSmall } from "../../components/dashboard/ButtonSmall.jsx";
-import { LoadingAnimation } from "../../components/other/LoadingAnimation.jsx";
+import { LoadingScreen } from "../../components/other/LoadingScreen.jsx";
 import { EditImprintContent } from "../../components/edit/pages/imprint/EditImprintContent.jsx";
 import { Trash2, ExternalLink } from "lucide-react";
 
@@ -24,7 +24,7 @@ export function EditImprint() {
     setPage((prev) => ({ ...prev, ...updatedForm }));
   }
 
-  if (!imprint) return <LoadingAnimation />;
+  if (!imprint) return <LoadingScreen />;
 
   // Save  Imprint Page
   async function handleSave() {

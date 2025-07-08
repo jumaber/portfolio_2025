@@ -1,4 +1,4 @@
-import {
+import React, {
   forwardRef,
   useState,
   useEffect,
@@ -6,34 +6,30 @@ import {
   useCallback,
   useImperativeHandle,
 } from "react";
-import { ChevronDown } from "lucide-react";
-import { ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronRight } from "lucide-react";
 import { ButtonSmall } from "../../dashboard/ButtonSmall";
 import { EditorJSBlock } from "../pages/EditorJSBlock";
+import { LoadingAnimation } from "../../other/LoadingAnimation";
 
 export const EditIntro = forwardRef(({ data, onChange }, ref) => {
   const fileInputRef = useRef(null);
   const editorRef = useRef();
+  const [isUploading, setIsUploading] = useState(false);
 
-  // expose save() through ref passed from EditHome
+  // expose save() through parent ref
   useImperativeHandle(ref, () => ({
     async save() {
       if (editorRef.current?.save) {
         const content = await editorRef.current.save();
         setForm((prev) => {
-          const updatedForm = {
-            ...prev,
-            description: content,
-          };
-          onChange(updatedForm); 
+          const updatedForm = { ...prev, description: content };
+          onChange(updatedForm);
           return updatedForm;
         });
         return content;
       }
     },
   }));
-  
-  
 
   const [form, setForm] = useState({
     title: "",
@@ -51,11 +47,10 @@ export const EditIntro = forwardRef(({ data, onChange }, ref) => {
     tech: [],
     roles: [],
   });
-
   const [isOpen, setIsOpen] = useState(false);
 
+  // initialize from parent
   useEffect(() => {
-    console.log("Received data:", data);
     if (data) setForm(data);
   }, [data]);
 
@@ -66,18 +61,15 @@ export const EditIntro = forwardRef(({ data, onChange }, ref) => {
     onChange(updatedForm);
   }
 
-  
   const handleDescriptionChange = useCallback(
     (newContent) => {
       const updated = { ...form, description: newContent };
       setForm(updated);
-      onChange(updated); // push it up immediately
+      onChange(updated);
     },
     [form, onChange]
   );
-  
 
-  // upload to Cloudinary
   async function handleImageUpload(e) {
     const file = e.target.files[0];
     if (!file) return;
@@ -87,49 +79,45 @@ export const EditIntro = forwardRef(({ data, onChange }, ref) => {
     formData.append("upload_preset", "portfolio_upload");
     formData.append("folder", "portfolio");
 
+    setIsUploading(true);
     try {
       const res = await fetch(
         "https://api.cloudinary.com/v1_1/jumaber/image/upload",
-        {
-          method: "POST",
-          body: formData,
-        }
+        { method: "POST", body: formData }
       );
-
       const data = await res.json();
-      console.log("Cloudinary response:", data);
-
       const updatedForm = { ...form, image: data.secure_url };
       setForm(updatedForm);
       onChange(updatedForm);
     } catch (err) {
       console.error("Image upload failed:", err);
+    } finally {
+      setIsUploading(false);
     }
   }
 
   return (
     <div className="grey-box">
+      {/* Accordion header */}
       <div
-        className="flex flex-row justify-between items-center cursor-pointer"
+        className="flex justify-between items-center cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <div className="flex items-center gap-2 leading-none">
-          <div className="">
-            {isOpen ? (
-              <ChevronDown className="w-4 h-4" />
-            ) : (
-              <ChevronRight className="w-4 h-4" />
-            )}
-          </div>
-          <div className="component-title">Intro</div>
+        <div className="flex items-center gap-2">
+          {isOpen ? (
+            <ChevronDown className="w-4 h-4" />
+          ) : (
+            <ChevronRight className="w-4 h-4" />
+          )}
+          <span className="component-title">Intro</span>
         </div>
       </div>
 
       {isOpen && (
         <div className="mt-4">
+          {/* text fields... */}
           <div className="form-header">Title</div>
           <input
-            type="text"
             name="title"
             value={form.title}
             onChange={handleChange}
@@ -139,7 +127,6 @@ export const EditIntro = forwardRef(({ data, onChange }, ref) => {
 
           <div className="form-header">Subtitle</div>
           <input
-            type="text"
             name="subtitle"
             value={form.subtitle}
             onChange={handleChange}
@@ -149,7 +136,6 @@ export const EditIntro = forwardRef(({ data, onChange }, ref) => {
 
           <div className="form-header">Location</div>
           <input
-            type="text"
             name="location"
             value={form.location}
             onChange={handleChange}
@@ -159,7 +145,6 @@ export const EditIntro = forwardRef(({ data, onChange }, ref) => {
 
           <div className="form-header">Working Period</div>
           <input
-            type="text"
             name="period"
             value={form.period}
             onChange={handleChange}
@@ -187,24 +172,18 @@ export const EditIntro = forwardRef(({ data, onChange }, ref) => {
             className="form-input"
           />
 
+          {/* Image upload header */}
           <div className="form-header flex justify-between items-center">
             <span>Image</span>
             <ButtonSmall
               text="Upload Image"
               onClick={() => fileInputRef.current.click()}
+              className="bg-[#0C0093] text-white"
               image={null}
-              to=""
             />
           </div>
 
-          {form.image && (
-            <img
-              src={form.image}
-              alt="Intro"
-              className="w-full h-auto my-4 rounded-md border border-neutral-200"
-            />
-          )}
-
+          {/* Hidden file input */}
           <input
             type="file"
             accept="image/*"
@@ -213,6 +192,44 @@ export const EditIntro = forwardRef(({ data, onChange }, ref) => {
             className="hidden"
           />
 
+          {/* 🔑 Single relative wrapper */}
+          <div
+            className="
+    relative
+    w-full
+    my-4
+    rounded-md
+    border border-neutral-200
+    bg-white
+    min-h-[100px]
+    flex items-center justify-center
+  "
+          >
+            {/* Placeholder when empty */}
+            {!isUploading && !form.image && (
+              <p className="tag text-[var(--color-gray)]">
+                Upload an image to preview
+              </p>
+            )}
+
+            {/* Spinner overlay while uploading */}
+            {isUploading && (
+              <div className="absolute inset-0 bg-white bg-opacity-70 flex items-center justify-center rounded-md z-10">
+                <LoadingAnimation classNameImage="w-16" classNameText="hidden" />
+              </div>
+            )}
+
+            {/* ③ Show the uploaded image in normal flow */}
+            {!isUploading && form.image && (
+              <img
+                src={form.image}
+                alt="Preview"
+                className="w-full h-auto rounded-md" // <- no absolute here
+              />
+            )}
+          </div>
+
+          {/* Rich-text editor */}
           <div className="form-header">Description</div>
           <div className="min-h-fit">
             <EditorJSBlock
@@ -222,20 +239,21 @@ export const EditIntro = forwardRef(({ data, onChange }, ref) => {
             />
           </div>
 
+          {/* tech tags */}
           <div className="form-header">Tools</div>
           <div className="flex flex-wrap gap-2 mb-4">
-            {form.tech?.map((item, index) => (
+            {form.tech.map((t, i) => (
               <span
-                key={index}
-                className="flex items-center gap-1 bg-white text-[#0C0093] hover:bg-red-100 px-2 py-1 rounded-full text-sm mono"
+                key={i}
+                className="flex items-center gap-1 bg-white text-[#0C0093] px-2 py-1 rounded-full text-sm mono"
               >
-                {item}
+                {t}
                 <button
                   onClick={() => {
-                    const updatedTech = form.tech.filter((_, i) => i !== index);
-                    const updatedForm = { ...form, tech: updatedTech };
-                    setForm(updatedForm);
-                    onChange(updatedForm);
+                    const updated = form.tech.filter((_, idx) => idx !== i);
+                    const newForm = { ...form, tech: updated };
+                    setForm(newForm);
+                    onChange(newForm);
                   }}
                   className="text-[#656565]"
                 >
@@ -244,43 +262,40 @@ export const EditIntro = forwardRef(({ data, onChange }, ref) => {
               </span>
             ))}
           </div>
-
           <input
             type="text"
             placeholder="Add a tool (e.g. Figma)"
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 e.preventDefault();
-                const value = e.target.value.trim();
-                if (value && !form.tech?.includes(value)) {
-                  const updatedTech = [...(form.tech || []), value];
-                  const updatedForm = { ...form, tech: updatedTech };
-                  setForm(updatedForm);
-                  onChange(updatedForm);
-                  e.target.value = "";
+                const val = e.currentTarget.value.trim();
+                if (val && !form.tech.includes(val)) {
+                  const updated = [...form.tech, val];
+                  const newForm = { ...form, tech: updated };
+                  setForm(newForm);
+                  onChange(newForm);
+                  e.currentTarget.value = "";
                 }
               }
             }}
             className="form-input"
           />
 
+          {/* role tags */}
           <div className="form-header">Roles</div>
-
           <div className="flex flex-wrap gap-2 mb-4">
-            {form.roles?.map((item, index) => (
+            {form.roles.map((r, i) => (
               <span
-                key={index}
-                className="flex items-center gap-1 bg-white text-[#0C0093] hover:bg-red-100 px-2 py-1 rounded-full text-sm mono"
+                key={i}
+                className="flex items-center gap-1 bg-white text-[#0C0093] px-2 py-1 rounded-full text-sm mono"
               >
-                {item}
+                {r}
                 <button
                   onClick={() => {
-                    const updatedTech = form.roles.filter(
-                      (_, i) => i !== index
-                    );
-                    const updatedForm = { ...form, roles: updatedTech };
-                    setForm(updatedForm);
-                    onChange(updatedForm);
+                    const updated = form.roles.filter((_, idx) => idx !== i);
+                    const newForm = { ...form, roles: updated };
+                    setForm(newForm);
+                    onChange(newForm);
                   }}
                   className="text-[#656565]"
                 >
@@ -289,20 +304,19 @@ export const EditIntro = forwardRef(({ data, onChange }, ref) => {
               </span>
             ))}
           </div>
-
           <input
             type="text"
             placeholder="Add a role (e.g. UX Designer)"
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 e.preventDefault();
-                const value = e.target.value.trim();
-                if (value && !form.roles?.includes(value)) {
-                  const updatedTech = [...(form.roles || []), value];
-                  const updatedForm = { ...form, roles: updatedTech };
-                  setForm(updatedForm);
-                  onChange(updatedForm);
-                  e.target.value = "";
+                const val = e.currentTarget.value.trim();
+                if (val && !form.roles.includes(val)) {
+                  const updated = [...form.roles, val];
+                  const newForm = { ...form, roles: updated };
+                  setForm(newForm);
+                  onChange(newForm);
+                  e.currentTarget.value = "";
                 }
               }
             }}
@@ -312,5 +326,4 @@ export const EditIntro = forwardRef(({ data, onChange }, ref) => {
       )}
     </div>
   );
-}
-)
+});
