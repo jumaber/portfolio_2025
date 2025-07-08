@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import {
   ChevronDown,
   ChevronRight,
-  Plus,
   Trash2,
   Pencil,
-  EyeOff,
 } from "lucide-react";
 import { X } from "lucide-react";
 import { ButtonSmall } from "../../dashboard/ButtonSmall";
+import toast from "react-hot-toast";
+
 
 export function EditProcess({ form: initialForm, onChange }) {
   const [form, setForm] = useState({ process: [] });
@@ -38,13 +38,42 @@ export function EditProcess({ form: initialForm, onChange }) {
   }
 
   function handleRemovePhase(index) {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this phase? This cannot be undone."
+    toast.custom(
+      (t) => (
+        <div
+          className={`
+          bg-white p-4 rounded shadow-lg max-w-sm
+          ${t.visible ? "animate-enter" : "animate-leave"}
+        `}
+        >
+          <p className="text-gray-800">
+            Are you sure you want to delete this phase?
+            <br />
+            <span className="italic">(This cannot be undone.)</span>
+          </p>
+          <div className="mt-3 flex justify-end gap-2">
+            <button
+              className="px-3 py-1 bg-red-500 text-white rounded"
+              onClick={() => {
+                handleFormUpdate(form.process.filter((_, i) => i !== index));
+                toast.dismiss(t.id);
+              }}
+            >
+              Yes
+            </button>
+            <button
+              className="px-3 py-1 bg-gray-200 rounded"
+              onClick={() => toast.dismiss(t.id)}
+            >
+              No
+            </button>
+          </div>
+        </div>
+      ),
+      { duration: Infinity }
     );
-    if (!confirmDelete) return;
-    const updated = form.process.filter((_, i) => i !== index);
-    handleFormUpdate(updated);
   }
+  
 
   function toggleExpanded(index) {
     setExpandedIndex(expandedIndex === index ? null : index);
@@ -70,10 +99,44 @@ export function EditProcess({ form: initialForm, onChange }) {
   }
 
   function handleRemoveHighlight(phaseIndex, highlightIndex) {
-    const updated = [...form.process];
-    updated[phaseIndex].highlights.splice(highlightIndex, 1);
-    handleFormUpdate(updated);
+    toast.custom(
+      (t) => (
+        <div
+          className={`
+          bg-white p-4 rounded shadow-lg max-w-sm
+          ${t.visible ? "animate-enter" : "animate-leave"}
+        `}
+        >
+          <p className="text-gray-800">
+            Delete this highlight?
+            <br />
+            <span className="italic">(This cannot be undone.)</span>
+          </p>
+          <div className="mt-3 flex justify-end gap-2">
+            <button
+              className="px-3 py-1 bg-red-500 text-white rounded"
+              onClick={() => {
+                const updated = [...form.process];
+                updated[phaseIndex].highlights.splice(highlightIndex, 1);
+                handleFormUpdate(updated);
+                toast.dismiss(t.id);
+              }}
+            >
+              Yes
+            </button>
+            <button
+              className="px-3 py-1 bg-gray-200 rounded"
+              onClick={() => toast.dismiss(t.id)}
+            >
+              No
+            </button>
+          </div>
+        </div>
+      ),
+      { duration: Infinity }
+    );
   }
+  
 
   return (
     <div className="grey-box">

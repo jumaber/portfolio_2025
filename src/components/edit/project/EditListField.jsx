@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { ChevronDown, ChevronRight, Plus } from "lucide-react";
 import { ButtonSmall } from "../../dashboard/ButtonSmall";
 import { X } from "lucide-react";
+import toast from "react-hot-toast";
 
 
 export function EditListField({
@@ -27,10 +28,44 @@ export function EditListField({
   }
 
   function handleRemove(index) {
-    const updated = items.filter((_, i) => i !== index);
-    setItems(updated);
-    onChange(updated);
+    toast.custom(
+      (t) => (
+        <div
+          className={`
+          bg-white p-4 rounded shadow-lg max-w-sm
+          ${t.visible ? "animate-enter" : "animate-leave"}
+        `}
+        >
+          <p className="text-gray-800">
+            Are you sure you want to delete this item?
+            <br />
+            <span className="italic">(This cannot be undone.)</span>
+          </p>
+          <div className="mt-3 flex justify-end gap-2">
+            <button
+              className="px-3 py-1 bg-red-500 text-white rounded"
+              onClick={() => {
+                const updated = items.filter((_, i) => i !== index);
+                setItems(updated);
+                onChange(updated);
+                toast.dismiss(t.id);
+              }}
+            >
+              Yes
+            </button>
+            <button
+              className="px-3 py-1 bg-gray-200 rounded"
+              onClick={() => toast.dismiss(t.id)}
+            >
+              No
+            </button>
+          </div>
+        </div>
+      ),
+      { duration: Infinity }
+    );
   }
+  
 
   function handleEdit(index, value) {
     const updated = [...items];
