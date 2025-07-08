@@ -57,8 +57,8 @@ export function EditHomeAbout({ data, onChange }) {
     const uploadData = new FormData();
     uploadData.append("file", file);
     uploadData.append("upload_preset", "portfolio_upload");
-    uploadData.append("folder", "portfolio");
-
+    uploadData.append("folder", "home");
+    
     setIsUploading(true);
     try {
       const res = await fetch(

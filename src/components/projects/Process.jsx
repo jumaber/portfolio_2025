@@ -10,7 +10,7 @@ export function Process({ process }) {
   const showTabs = process.length > 1;
 
   return (
-    <div className="flex items-center w-full h-full pt-20 px-4 md:px-8">
+    <div className="flex items-center w-screen h-full pt-20 px-4 md:px-8">
       <div className="w-full max-w-[800px] mx-auto">
         <div className="text-h2 blue pb-4 md:pb-6">Process</div>
 

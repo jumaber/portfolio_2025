@@ -2,7 +2,7 @@ export function Challenge({ challenges }) {
   if (!challenges || challenges.length === 0) return null; // Don't render if empty
 
   return (
-    <div className="flex flex-col items-center w-full h-full pt-20 px-4">
+    <div className="flex flex-col items-center w-screen bg-[var(--color-cream)] h-full pt-20 px-4">
       <div className="max-w-[800px]">
         <div className="text-h2 blue pb-2">Challenge</div>
         {challenges.map((challenge, index) => (

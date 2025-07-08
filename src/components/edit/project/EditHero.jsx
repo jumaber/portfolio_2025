@@ -15,8 +15,12 @@ export function EditHero({ form, setForm, onChange }) {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", "portfolio_upload");
-    formData.append("folder", "portfolio");
-
+    const { slug } = form;
+    if (!slug) {
+      return alert("Please enter a slug before uploading an image.");
+    }
+    formData.append("folder", `pages/${slug}`);
+    
     setIsUploading(true);
     try {
       const res = await fetch(
