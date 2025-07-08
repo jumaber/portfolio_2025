@@ -1,11 +1,10 @@
 import { useState } from "react";
 
 export function Experience({ experience = [] }) {
- 
-  const [activeCompany, setActiveCompany] = useState(() =>
+  // initialize to first company if any
+  const [activeCompany, setActiveCompany] = useState(
     experience.length ? experience[0].experienceCompany : null
   );
-  
 
   const activeContent = experience.find(
     (exp) => exp.experienceCompany === activeCompany
@@ -59,11 +58,11 @@ export function Experience({ experience = [] }) {
             </div>
           </div>
 
-          <ul className="space-y-4 list-none">
+          <ul className="space-y-4 list-none animate-fade-slide">
             {activeContent.highlights?.map((item, index) => (
               <li
                 key={index}
-                className="paragraph black relative md:ml-4 md:pl-4 before:absolute before:bg-[#333] before:left-0 before:top-[0.9rem] before:w-1 before:h-1 before:rounded-full"
+                className="paragraph relative pl-6 before:absolute before:bg-[#333] before:left-0 before:top-[1.1rem] before:w-1 before:h-1 before:rounded-full"
               >
                 {item}
               </li>
