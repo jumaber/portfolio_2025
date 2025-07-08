@@ -48,54 +48,87 @@ import { ScrollTracker } from "../components/other/ScrollTracker";
     } = project;
     console.log({ title, subtitle, description, image, githubUrl });
 
+    
   
   return (
     <>
       <NavBar />
-      <ScrollTracker />
+      <ScrollTracker
+        sectionIds={[
+          "intro",
+          "hero",
+          "challenge",
+          "process",
+          "outcome",
+          "learnings",
+          "wireframes",
+          "customHtml",
+          "relatedProjects",
+        ]}
+      />
       <div className="h-screen bg-[#FFF6F6] flex flex-col items-start max-w-full overflow-x-hidden">
         {/* Intro Section */}
         <div className="z-10 items-center w-full">
-          <Intro
-            title={title}
-            subtitle={subtitle}
-            location={location}
-            period={period}
-            liveUrl={liveUrl}
-            githubUrl={githubUrl}
-            description={description}
-            image={image}
-            tech={project.tech}
-            roles={project.roles}
-          />
+          <section id="intro">
+            <Intro
+              title={title}
+              subtitle={subtitle}
+              location={location}
+              period={period}
+              liveUrl={liveUrl}
+              githubUrl={githubUrl}
+              description={description}
+              image={image}
+              tech={project.tech}
+              roles={project.roles}
+            />
+          </section>
         </div>
 
         {/* Hero */}
-        <HeroImage hero={hero} />
+        <section id="hero">
+          <HeroImage hero={hero} />
+        </section>
 
         {/* Challenge */}
-        {challenges && <Challenge challenges={challenges} />}
+        <section id="challenge">
+          {challenges && <Challenge challenges={challenges} />}
+        </section>
 
         {/* The Process */}
-        {project.process && <Process process={project.process} />}
+        <section id="process">
+          {project.process && <Process process={project.process} />}
+        </section>
 
         {/* Outcome */}
-        {outcomes && <Outcome outcomes={outcomes} />}
+        <section id="outcome">
+          {outcomes && <Outcome outcomes={outcomes} />}
+        </section>
 
         {/* Learnings */}
-        {learnings && <Learnings learnings={learnings} />}
+        <section id="learnings">
+          {learnings && <Learnings learnings={learnings} />}
+        </section>
 
         {/* Wireframes */}
-        <Wireframes
-          wireframes={project.wireframes}
-          title={project.wireframesTitle || "Wireframes"}
-        />
+        <section id="wireframes">
+          <Wireframes
+            wireframes={project.wireframes}
+            title={project.wireframesTitle || "Wireframes"}
+          />
+        </section>
 
         {/* Custom HTML */}
-        {project.customHtml && <CustomHtml html={project.customHtml} />}
+        {project.customHtml && (
+          <section id="customHtml">
+            <CustomHtml html={project.customHtml} />
+          </section>
+        )}
 
         {/* Related Projects */}
-        <RelatedProjects key={slug} currentSlug={slug} />
+        <section id="relatedProjects">
+          <RelatedProjects key={slug} currentSlug={slug} />
+        </section>
       </div>
     </>
   );

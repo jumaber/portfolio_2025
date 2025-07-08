@@ -1,25 +1,30 @@
 import { useEffect } from "react";
 
-export function ScrollTracker() {
+/**
+ * Observes when specified sections enter the viewport
+ * and fires a `section_view` GA4 event once per section.
+ *
+ * @param {{ sectionIds?: string[] }} props
+ */
+export function ScrollTracker({
+  // default sections for Home.jsx
+  sectionIds = ["work", "about", "experience", "contact"],
+}) {
   useEffect(() => {
-    const sectionIds = ["work", "about", "experience", "contact"];
     const seen = new Set();
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !seen.has(entry.target.id)) {
-            const id = entry.target.id;
-            seen.add(id);
+            seen.add(entry.target.id);
             window.gtag?.("event", "section_view", {
-              section: id,
+              section: entry.target.id,
             });
-            // Stop tracking this section again
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.5 } // At least 50% of the section is visible
+      { threshold: 0.5 }
     );
 
     sectionIds.forEach((id) => {
@@ -28,7 +33,7 @@ export function ScrollTracker() {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [sectionIds]);
 
   return null;
 }
