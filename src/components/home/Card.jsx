@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DefaultImage from "../other/DefaultImage";
+import { useProjectClickTracker } from "../other/useProjectClickTracker";
+
 
 export function Card({ slug }) {
+  const { track } = useProjectClickTracker();
   const [card, setCard] = useState(null);
 
   const cloudinaryImage = (url, width) =>
@@ -21,13 +24,7 @@ export function Card({ slug }) {
   if (!card) return null;
 
   function handleClick() {
-    if (window.gtag && card) {
-      window.gtag("event", "project_click", {
-        project_title: card.title,
-        project_subtitle: card.subtitle,
-        project_slug: card.slug,
-      });
-    }
+    track(card.slug, { title: card.title, subtitle: card.subtitle });
   }
 
   return (
