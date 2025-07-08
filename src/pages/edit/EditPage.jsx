@@ -6,6 +6,7 @@ import { LoadingScreen } from "../../components/other/LoadingScreen";
 import { Trash2, ExternalLink } from "lucide-react";
 import { EditTextBlock } from "../../components/edit/pages/EditTextBlock";
 import { EditCardPage } from "../../components/edit/pages/EditCardPage";
+import toast from "react-hot-toast";
 
 // 🧩 Component: EditProject
 // This screen loads a project from the backend and lets you update or delete it.
@@ -34,6 +35,7 @@ export function EditPage() {
 
   // 💾 Save project updates (PATCH)
   async function handleSave() {
+    const toastId = toast.loading("Saving page…");
     try {
       const { _id, __v, ...safePage } = page; // Remove MongoDB metadata
 
@@ -51,20 +53,20 @@ export function EditPage() {
       const data = await res.json();
 
       if (res.ok) {
-        console.log("✅ Page saved!", data);
-        alert("Saved!");
-      } else {
-        console.error("❌ Save failed:", data.error);
-        alert("Error: " + data.error);
-      }
+                toast.success("Page saved!", { id: toastId });
+              } else {
+                console.error("Save failed:", data.error);
+                toast.error("Error: " + data.error, { id: toastId });
+              }
     } catch (err) {
-      console.error("❌ Save error:", err);
-      alert("An error occurred while saving.");
+      console.error("Save error:", err);
+      toast.error("An error occurred while saving.", { id: toastId });
     }
   }
 
   // ❌ Delete the project (DELETE)
   async function handleDeletePage() {
+    const toastId = toast.loading("Deleting page…");
     try {
       const res = await fetch(
         `https://portfolio-2025-wyed.onrender.com/api/pages/${slug}`,
@@ -76,15 +78,15 @@ export function EditPage() {
       const data = await res.json();
 
       if (res.ok) {
-        alert("✅ Page deleted!");
-        navigate("/dashboard");
-      } else {
-        console.error("❌ Delete failed:", data.error);
-        alert("Error: " + data.error);
-      }
+                toast.success("Page deleted!", { id: toastId });
+                navigate("/dashboard");
+              } else {
+                console.error("Delete failed:", data.error);
+                toast.error("Error: " + data.error, { id: toastId });
+              }
     } catch (err) {
-      console.error("❌ Delete error:", err);
-      alert("An error occurred while deleting.");
+      console.error("Delete error:", err);
+      toast.error("An error occurred while deleting.", { id: toastId });
     }
   }
 

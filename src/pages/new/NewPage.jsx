@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ButtonSmall } from "../../components/dashboard/ButtonSmall";
-import { TextBlock } from "../../components/pages/TextBlock";
 import { EditCardPage } from "../../components/edit/pages/EditCardPage";
 import { EditTextBlock } from "../../components/edit/pages/EditTextBlock";
+import toast from "react-hot-toast";
+
 
 export function NewPage() {
   // 🧭 Navigation hook from React Router
@@ -25,35 +26,35 @@ export function NewPage() {
   // 💾 Save project to MongoDB via backend POST
   async function handleSave() {
     if (!page.slug.trim()) {
-      alert("Slug is required.");
-      return;
+      return toast.error("Slug is required.");
+
     }
+
+    // show loading toast and get its ID
+    const toastId = toast.loading("Saving page…");
 
     try {
       const res = await fetch(
         "https://portfolio-2025-wyed.onrender.com/api/pages/",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(page),
         }
       );
-
       const data = await res.json();
 
       if (res.ok) {
-        alert("✅ Project created successfully!");
+        toast.success("Page created successfully!", { id: toastId });
         navigate("/dashboard");
       } else if (res.status === 409) {
-        alert("❌ A project with this slug already exists.");
+        toast.error("A page with this slug already exists.", { id: toastId });
       } else {
-        alert("❌ Error: " + (data.error || "Unknown error"));
+        toast.error(`Error: ${data.error || "Unknown error"}`, { id: toastId });
       }
     } catch (err) {
-      alert("❌ Network error: could not save project.");
       console.error(err);
+      toast.error("Network error: could not save page.", { id: toastId });
     }
   }
 

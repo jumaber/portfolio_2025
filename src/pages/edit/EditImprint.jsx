@@ -4,6 +4,7 @@ import { ButtonSmall } from "../../components/dashboard/ButtonSmall.jsx";
 import { LoadingScreen } from "../../components/other/LoadingScreen.jsx";
 import { EditImprintContent } from "../../components/edit/pages/imprint/EditImprintContent.jsx";
 import { Trash2, ExternalLink } from "lucide-react";
+import toast from "react-hot-toast";
 
 export function EditImprint() {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ export function EditImprint() {
 
   // Save  Imprint Page
   async function handleSave() {
+    const toastId = toast.loading("Saving imprint page…");
     try {
       const { _id, __v, ...safePage } = imprint;
 
@@ -45,15 +47,14 @@ export function EditImprint() {
       const data = await res.json();
 
       if (res.ok) {
-        console.log("✅ Imprint Page saved!", data);
-        alert("Saved!");
-      } else {
-        console.error("❌ Save failed:", data.error);
-        alert("Error: " + data.error);
-      }
+                toast.success("Imprint page saved!", { id: toastId });
+              } else {
+                console.error(" Save failed:", data.error);
+                toast.error("Error: " + data.error, { id: toastId });
+              }
     } catch (err) {
-      console.error("❌ Save error:", err);
-      alert("An error occurred while saving.");
+      console.error(" Save error:", err);
+      toast.error("An error occurred while saving.", { id: toastId });
     }
   }
 
@@ -93,6 +94,7 @@ export function EditImprint() {
 
   // ❌ Delete the Imprint Page (DELETE)
   async function handleDelete() {
+    const toastId = toast.loading("Deleting imprint page…");
     try {
       const res = await fetch(
         `https://portfolio-2025-wyed.onrender.com/api/pages/imprint`,
@@ -104,15 +106,15 @@ export function EditImprint() {
       const data = await res.json();
 
       if (res.ok) {
-        alert("✅ Imprint deleted!");
-        navigate("/dashboard");
-      } else {
-        console.error("❌ Delete failed:", data.error);
-        alert("Error: " + data.error);
-      }
+               toast.success("✅ Imprint page deleted!", { id: toastId });
+                navigate("/dashboard");
+              } else {
+                console.error(" Delete failed:", data.error);
+                toast.error("Error: " + data.error, { id: toastId });
+              }
     } catch (err) {
-      console.error("❌ Delete error:", err);
-      alert("An error occurred while deleting.");
+      console.error(" Delete error:", err);
+      toast.error("An error occurred while deleting.", { id: toastId });
     }
   }
 

@@ -7,6 +7,8 @@ import { EditHomeAbout } from "../../components/edit/pages/home/EditHomeAbout.js
 import { EditHomeExperience } from "../../components/edit/pages/home/EditHomeExperience.jsx";
 import { EditHomeContact } from "../../components/edit/pages/home/EditHomeContact.jsx";
 import { Trash2, ExternalLink } from "lucide-react";
+import toast from "react-hot-toast";
+
 
 
 export function EditHome() {
@@ -37,6 +39,7 @@ export function EditHome() {
       const updatedDescription = await editorRef.current.save();
       page.description = updatedDescription;
     }
+    const toastId = toast.loading("Saving home page…");
     try {
       const { _id, __v, ...safePage } = page;
 
@@ -54,15 +57,14 @@ export function EditHome() {
       const data = await res.json();
 
       if (res.ok) {
-        console.log("✅ Home Page saved!", data);
-        alert("Saved!");
-      } else {
-        console.error("❌ Save failed:", data.error);
-        alert("Error: " + data.error);
-      }
+             toast.success("Home page saved!", { id: toastId });
+              } else {
+                console.error("Save failed:", data.error);
+                toast.error("Error: " +  data.error, { id: toastId });
+              }
     } catch (err) {
-      console.error("❌ Save error:", err);
-      alert("An error occurred while saving.");
+      console.error("Save error:", err);
+      toast.error("An error occurred while saving.", { id: toastId });
     }
   }
 
@@ -102,6 +104,7 @@ export function EditHome() {
 
   // ❌ Delete the Home Page (DELETE)
   async function handleDelete() {
+    const toastId = toast.loading("Deleting home page…");
     try {
       const res = await fetch(
         `https://portfolio-2025-wyed.onrender.com/api/pages/home}`,
@@ -113,15 +116,15 @@ export function EditHome() {
       const data = await res.json();
 
       if (res.ok) {
-        alert("✅ Home Page deleted!");
-        navigate("/dashboard");
-      } else {
-        console.error("❌ Delete failed:", data.error);
-        alert("Error: " + data.error);
-      }
+                toast.success("✅ Home page deleted!", { id: toastId });
+                navigate("/dashboard");
+              } else {
+                console.error("❌ Delete failed:", data.error);
+                toast.error("Error: " + data.error, { id: toastId });
+              }
     } catch (err) {
       console.error("❌ Delete error:", err);
-      alert("An error occurred while deleting.");
+      toast.error("An error occurred while deleting.", { id: toastId });
     }
   }
 

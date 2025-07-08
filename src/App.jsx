@@ -19,6 +19,7 @@ import { SingleProject } from "./pages/SingleProject.jsx"
 
 
 
+
 function App() {
   const [user, setUser] = useState(null);
 
@@ -76,7 +77,6 @@ function App() {
 
       <Route path="/login" element={<Login />} />
       <Route path="/*" element={<PageNotFound />} />
-      
     </Routes>
   );
 }

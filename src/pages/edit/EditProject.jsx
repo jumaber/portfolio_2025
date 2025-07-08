@@ -11,6 +11,7 @@ import { EditWireframes } from "../../components/edit/project/EditWireframes.jsx
 import { EditCustomHtml } from "../../components/edit/EditCustomHtml.jsx";
 import { LoadingScreen } from "../../components/other/LoadingScreen.jsx";
 import { Trash2, ExternalLink } from "lucide-react";
+import toast from "react-hot-toast";
 
 // 🧩 Component: EditProject
 // This screen loads a project from the backend and lets you update or delete it.
@@ -44,6 +45,7 @@ export function EditProject() {
 
   // 💾 Save project updates (PATCH)
   async function handleSave() {
+    const toastId = toast.loading("Saving project…");
     try {
       // 1. First, pull the latest from your EditorJSBlock
       let newDescription = project.description;
@@ -69,20 +71,20 @@ export function EditProject() {
       const data = await res.json();
 
       if (res.ok) {
-        console.log("✅ Project saved!", data);
-        alert("Saved!");
-      } else {
-        console.error("❌ Save failed:", data.error);
-        alert("Error: " + data.error);
-      }
+                toast.success("Project saved!", { id: toastId });
+              } else {
+                console.error("Save failed:", data.error);
+                toast.error("Error: " + data.error, { id: toastId });
+              }
     } catch (err) {
-      console.error("❌ Save error:", err);
-      alert("An error occurred while saving.");
+      console.error("Save error:", err);
+      toast.error("An error occurred while saving.", { id: toastId });
     }
   }
 
   // ❌ Delete the project (DELETE)
   async function handleDeleteProject() {
+    const toastId = toast.loading("Deleting project…");
     try {
       const res = await fetch(
         `https://portfolio-2025-wyed.onrender.com/api/projects/${slug}`,
@@ -94,15 +96,15 @@ export function EditProject() {
       const data = await res.json();
 
       if (res.ok) {
-        alert("✅ Project deleted!");
-        navigate("/dashboard");
-      } else {
-        console.error("❌ Delete failed:", data.error);
-        alert("Error: " + data.error);
-      }
+                toast.success("Project deleted!", { id: toastId });
+                navigate("/dashboard");
+              } else {
+                console.error("Delete failed:", data.error);
+                toast.error("Error: " + data.error, { id: toastId });
+              }
     } catch (err) {
-      console.error("❌ Delete error:", err);
-      alert("An error occurred while deleting.");
+      console.error("Delete error:", err);
+      toast.error("An error occurred while deleting.", { id: toastId });
     }
   }
 
