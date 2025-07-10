@@ -4,7 +4,8 @@ export function Process({ process }) {
   const [activePhase, setActivePhase] = useState(process[0]?.phase);
   const activeContent = process.find((p) => p.phase === activePhase);
 
-  if (!process?.length) return null;
+  if (!process || process.length === 0) return null;
+
 
   const showTabs = process.length > 1;
 
