@@ -2,14 +2,13 @@ import { useState } from "react";
 import DefaultImage from "../other/DefaultImage";
 
 export function Wireframes({ wireframes = [], title = "Wireframes" }) {
-  if (!wireframes.length) return null;
-
   const [errorIndexes, setErrorIndexes] = useState([]);
+  if (!wireframes.length) return null;
 
   const handleImageError = (index) => {
     setErrorIndexes((prev) => [...prev, index]);
   };
-
+  
   return (
     <div className="flex flex-col items-center w-screen h-full py-20 px-4 md:px-8 bg-[#333]">
       <div className="max-w-[800px]">

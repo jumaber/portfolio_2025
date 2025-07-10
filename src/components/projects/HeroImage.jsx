@@ -5,7 +5,7 @@ export function HeroImage({ hero }) {
   const [heroError, setHeroError] = useState(false);
 
   return (
-    <>
+    <div className="w-screen">
       {!heroError && hero ? (
         <img
           src={hero}
@@ -16,6 +16,6 @@ export function HeroImage({ hero }) {
       ) : (
         <DefaultImage className="w-full h-96 sm:hidden md:flex" />
       )}
-    </>
+    </div>
   );
 }
