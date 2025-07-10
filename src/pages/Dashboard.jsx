@@ -143,7 +143,7 @@ export function Dashboard() {
         <div className="dashboard-title">Welcome back, Júlia! </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row w-full lg:gap-12 ">
+      <div className="flex flex-col lg:flex-row w-full gap-4 lg:gap-12 ">
         <div className="flex flex-col lg:w-3/5 gap-4 lg:gap-10">
           {/* Summary */}
           <div className="flex flex-row justify-between gap-1 lg:gap-4">
@@ -244,7 +244,8 @@ export function Dashboard() {
 
         {/* Analytics */}
         <div className="flex flex-col w-full lg:w-2/5">
-          <div className="flex flex-col justify-between gap-10">
+        <h2 className="lg:hidden mt-10 pb-4 text-h1">Analytics</h2>
+          <div className="flex flex-col justify-between gap-4 lg:gap-10">
             {/* Analytics Summary */}
 
             {/* Hotjar */}
