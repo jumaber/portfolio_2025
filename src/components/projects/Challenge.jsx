@@ -13,7 +13,7 @@ export function Challenge({ challenges }) {
             <div className="text-h3 blue pt-0.5 w-[32px]">
               {String(index + 1).padStart(2, "0")}
             </div>
-            <div className="paragraph w-screen">{challenge}</div>
+            <div className="paragraph lg:w-screen">{challenge}</div>
           </div>
         ))}
       </div>
