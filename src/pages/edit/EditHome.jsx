@@ -75,7 +75,7 @@ export function EditHome() {
     const pageData = new FormData();
     pageData.append("file", file);
     pageData.append("upload_preset", "portfolio_upload");
-    pageData.append("folder", "portfolio");
+    pageData.append("folder", "/card-pages");
 
     try {
       const res = await fetch(

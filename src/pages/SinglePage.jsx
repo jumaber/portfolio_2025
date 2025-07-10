@@ -4,19 +4,30 @@ import { NavBar } from "../components/other/NavBar";
 import { TextBlock } from "../components/pages/TextBlock";
 import { LoadingScreen } from "../components/other/LoadingScreen";
 import { ScrollTracker } from "../components/other/ScrollTracker";
+import { PageNotFound } from "./PageNotFound";
 
 
 export function SinglePage() {
   const { slug } = useParams();
   const [page, setPage] = useState(null);
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
     fetch(`https://portfolio-2025-wyed.onrender.com/api/pages/${slug}`)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          if (res.status === 404) {
+            setNotFound(true);
+          }
+          throw new Error(`HTTP ${res.status}`);
+        }
+        return res.json();
+      })
       .then((data) => setPage(data))
-      .catch((err) => console.error("Failed to fetch page:", err));
+      .catch((err) => console.error("Fetch error:", err));
   }, [slug]);
 
+  if (notFound) return <PageNotFound />; // ← show your 404 page :contentReference[oaicite:1]{index=1}
   if (!page) return <LoadingScreen />;
 
   return (
