@@ -41,6 +41,28 @@ export function EditCardPage({ page, onChange }) {
 
   return (
     <div className="grey-box">
+      <div className="form-header">Slug <span className="text-red-500">*</span></div>
+      <input
+        type="text"
+        name="slug"
+        value={page.slug}
+        onChange={handleChange}
+        placeholder="Page Slug"
+        className="form-input"
+        required
+      />
+
+      {/* Other fields */}
+      <div className="form-header">Dashboard List Title</div>
+      <input
+        type="text"
+        name="title"
+        value={page.title}
+        onChange={handleChange}
+        placeholder="Title"
+        className="form-input"
+      />
+
       {/* Upload button */}
       <div className="form-header flex justify-between items-center mt-4">
         <span>Image</span>
@@ -95,28 +117,6 @@ export function EditCardPage({ page, onChange }) {
           />
         )}
       </div>
-
-      {/* Other fields */}
-      <div className="form-header">Dashboard List Title</div>
-      <input
-        type="text"
-        name="title"
-        value={page.title}
-        onChange={handleChange}
-        placeholder="Title"
-        className="form-input"
-      />
-
-      <div className="form-header">Slug (*)</div>
-      <input
-        type="text"
-        name="slug"
-        value={page.slug}
-        onChange={handleChange}
-        placeholder="Page Slug"
-        className="form-input"
-        required
-      />
     </div>
   );
 }

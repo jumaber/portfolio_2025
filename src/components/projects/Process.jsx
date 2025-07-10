@@ -48,7 +48,7 @@ export function Process({ process }) {
             {activeContent?.highlights.map((item, index) => (
               <li
                 key={index}
-                className="paragraph relative pl-6 before:absolute before:bg-[#333] before:left-0 before:top-[1.1rem] before:w-1 before:h-1 before:rounded-full"
+                className="paragraph relative pl-6 before:absolute before:bg-[#333] before:left-0 before:top-[1.1rem] before:w-1 before:h-1 before:rounded-full w-full"
               >
                 {item}
               </li>

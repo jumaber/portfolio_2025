@@ -9,8 +9,6 @@ import { EditHomeContact } from "../../components/edit/pages/home/EditHomeContac
 import { Trash2, ExternalLink } from "lucide-react";
 import toast from "react-hot-toast";
 
-
-
 export function EditHome() {
   const navigate = useNavigate();
 
@@ -33,7 +31,7 @@ export function EditHome() {
   if (!page) return <LoadingScreen />;
 
   // Save Home
-  
+
   async function handleSave() {
     if (editorRef.current?.save) {
       const updatedDescription = await editorRef.current.save();
@@ -57,11 +55,11 @@ export function EditHome() {
       const data = await res.json();
 
       if (res.ok) {
-             toast.success("Home page saved!", { id: toastId });
-              } else {
-                console.error("Save failed:", data.error);
-                toast.error("Error: " +  data.error, { id: toastId });
-              }
+        toast.success("Home page saved!", { id: toastId });
+      } else {
+        console.error("Save failed:", data.error);
+        toast.error("Error: " + data.error, { id: toastId });
+      }
     } catch (err) {
       console.error("Save error:", err);
       toast.error("An error occurred while saving.", { id: toastId });
@@ -116,12 +114,12 @@ export function EditHome() {
       const data = await res.json();
 
       if (res.ok) {
-                toast.success("✅ Home page deleted!", { id: toastId });
-                navigate("/dashboard");
-              } else {
-                console.error("❌ Delete failed:", data.error);
-                toast.error("Error: " + data.error, { id: toastId });
-              }
+        toast.success("✅ Home page deleted!", { id: toastId });
+        navigate("/dashboard");
+      } else {
+        console.error("❌ Delete failed:", data.error);
+        toast.error("Error: " + data.error, { id: toastId });
+      }
     } catch (err) {
       console.error("❌ Delete error:", err);
       toast.error("An error occurred while deleting.", { id: toastId });
@@ -163,14 +161,43 @@ export function EditHome() {
                 className="w-9 h-9 p-2 cursor-pointer hover:text-red-500"
                 onClick={(e) => {
                   e.stopPropagation();
-                  const confirmDelete = window.confirm(
-                    "Are you sure you want to delete this page? This cannot be undone."
+                  toast.custom(
+                    (t) => (
+                      <div
+                        className={` bg-white p-4 rounded shadow-lg max-w-sm ${t.visible ? "animate-enter" : "animate-leave"}`}
+                      >
+                        <p className="text-gray-800">
+                          Are you sure you want to delete this page?
+                          <br />
+                          <span className="italic">
+                            (This cannot be undone.)
+                          </span>
+                        </p>
+                        <div className="mt-3 flex justify-end gap-2">
+                          <button
+                            className="px-3 py-1 bg-red-500 text-white rounded"
+                            onClick={() => {
+                              handleDelete();
+                              toast.dismiss(t.id);
+                              toast.success("Page deleted!");
+                            }}
+                          >
+                            Yes
+                          </button>
+                          <button
+                            className="px-3 py-1 bg-gray-200 rounded"
+                            onClick={() => toast.dismiss(t.id)}
+                          >
+                            No
+                          </button>
+                        </div>
+                      </div>
+                    ),
+                    { duration: Infinity }
                   );
-                  if (confirmDelete) {
-                    handleDelete();
-                  }
                 }}
               />
+
               <a href={`/`} target="_blank" rel="noopener noreferrer">
                 <ExternalLink className="w-9 h-9 p-2" />
               </a>

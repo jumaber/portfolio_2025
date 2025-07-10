@@ -78,13 +78,13 @@ export function NewProject() {
         toast.success("Project created successfully!", { id: toastId });
         navigate("/dashboard");
       } else if (res.status === 409) {
-        toast.error("❌ A project with this slug already exists.", { id: toastId });
+        toast.error("A project with this slug already exists.", { id: toastId });
       } else {
-        toast.error(`❌ Error: ${data.error || "Unknown error"}`, { id: toastId });
+        toast.error(`Error: ${data.error || "Unknown error"}`, { id: toastId });
       }
     } catch (err) {
       console.error(err);
-      toast.error("❌ Network error: could not save project.", { id: toastId });
+      toast.error("Network error: could not save project.", { id: toastId });
     }
   }
 

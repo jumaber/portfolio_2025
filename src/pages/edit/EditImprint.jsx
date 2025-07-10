@@ -155,14 +155,46 @@ export function EditImprint() {
                   className="w-9 h-9 p-2 cursor-pointer hover:text-red-500"
                   onClick={(e) => {
                     e.stopPropagation();
-                    const confirmDelete = window.confirm(
-                      "Are you sure you want to delete this  Imprint Page? This cannot be undone."
+                    toast.custom(
+                      (t) => (
+                        <div
+                          className={`
+          bg-white p-4 rounded shadow-lg max-w-sm
+          ${t.visible ? "animate-enter" : "animate-leave"}
+        `}
+                        >
+                          <p className="text-gray-800">
+                            Are you sure you want to delete this page?
+                            <br />
+                            <span className="italic">
+                              (This cannot be undone.)
+                            </span>
+                          </p>
+                          <div className="mt-3 flex justify-end gap-2">
+                            <button
+                              className="px-3 py-1 bg-red-500 text-white rounded"
+                              onClick={() => {
+                                handleDelete();
+                                toast.dismiss(t.id);
+                                toast.success("Page deleted!");
+                              }}
+                            >
+                              Yes
+                            </button>
+                            <button
+                              className="px-3 py-1 bg-gray-200 rounded"
+                              onClick={() => toast.dismiss(t.id)}
+                            >
+                              No
+                            </button>
+                          </div>
+                        </div>
+                      ),
+                      { duration: Infinity }
                     );
-                    if (confirmDelete) {
-                      handleDelete();
-                    }
                   }}
                 />
+
                 <a
                   href={`/${imprint.slug}`}
                   target="_blank"

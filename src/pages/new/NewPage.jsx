@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 export function NewPage() {
   // 🧭 Navigation hook from React Router
   const navigate = useNavigate();
+  
 
   // 📦 State: holds the full structure of a project
   const [page, setPage] = useState({

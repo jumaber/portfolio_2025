@@ -11,10 +11,8 @@ export function Learnings({ learnings }) {
             key={index}
             className="flex flex-row gap-4 lg:gap-10 lg:pb-4 items-start"
           >
-            <div className="text-h3 blue pt-1 w-[32px]">
-              ✔️
-            </div>
-            <div className="paragraph">{item}</div>
+            <div className="text-h3 blue pt-1 w-[32px]">✔️</div>
+            <div className="paragraph w-screen">{item}</div>
           </div>
         ))}
       </div>

@@ -110,144 +110,146 @@ export function EditProject() {
 
   // 🖥️ UI Layout
   return (
-    <div className="bg-[#f5f5f5] flex flex-col h-screen w-screen items-start p-4 md:p-8 lg:p-16 overflow-x-hidden">
-      {/* 🔹 Header: Back button, Save button, Delete + View icons */}
-      <div className="flex flex-col w-full pb-10">
-        <div className="flex flex-row w-full justify-between items-center">
-          <Link to="/dashboard">
-            <div className="back-button">← Back to Dashboard</div>
-          </Link>
-          <ButtonSmall
-            text={"Save"}
-            bgColor="bg-[var(--color-blue)]"
-            textColor="text-[var(--color-white)] "
-            hoverColor="bg-[var(--color-pink)]"
-            hoverTextColor="text-white"
-            paddingX="px-4 lg:px-6"
-            paddingY="py-2 lg:py-3"
-            textSize="text-[14px] lg:text-[16px]"
-            image={null}
-            onClick={handleSave}
-          />
+    <div className="bg-[#f5f5f5] flex flex-col h-screen w-screen items-center p-4 md:p-8 lg:p-16 overflow-x-hidden">
+      <div className="w-full lg:max-w-[1240px]">
+        {/* 🔹 Header: Back button, Save button, Delete + View icons */}
+        <div className="flex flex-col w-full pb-10">
+          <div className="flex flex-row w-full justify-between items-center">
+            <Link to="/dashboard">
+              <div className="back-button">← Back to Dashboard</div>
+            </Link>
+            <ButtonSmall
+              text={"Save"}
+              bgColor="bg-[var(--color-blue)]"
+              textColor="text-[var(--color-white)] "
+              hoverColor="bg-[var(--color-pink)]"
+              hoverTextColor="text-white"
+              paddingX="px-4 lg:px-6"
+              paddingY="py-2 lg:py-3"
+              textSize="text-[14px] lg:text-[16px]"
+              image={null}
+              onClick={handleSave}
+            />
+          </div>
+
+          {/* 🔸 Project title + icons */}
+          <div className="flex flex-col lg:flex-row lg:items-center gap-4 w-full pt-10">
+            <div className="flex flex-row justify-between items-end w-full">
+              <div className="project-title w-full">
+                {project.cardTitle || "Untitled Project"}
+              </div>
+
+              {/* 🗑️ Trash + 🔗 Preview Link */}
+              <div className="flex flex-row gap-2 bg-white rounded-sm border border-gray-200">
+                <Trash2
+                  className="w-9 h-9 p-2 cursor-pointer hover:text-red-500"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    const confirmDelete = window.confirm(
+                      "Are you sure you want to delete this project? This cannot be undone."
+                    );
+                    if (confirmDelete) {
+                      handleDeleteProject();
+                    }
+                  }}
+                />
+                <a
+                  href={`/project/${slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <ExternalLink className="w-9 h-9 p-2" />
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* 🔸 Project title + icons */}
-        <div className="flex flex-col lg:flex-row lg:items-center gap-4 w-full pt-10">
-          <div className="flex flex-row justify-between items-end w-full">
-            <div className="project-title w-full">
-              {project.cardTitle || "Untitled Project"}
-            </div>
+        {/* 📄 Main content area */}
+        <div className="flex flex-col lg:flex-row w-full justify-between gap-6">
+          {/* 🧱 Left column: editable project content blocks */}
+          <div className="flex flex-row w-full lg:w-2/3">
+            <div className="white-box h-fit">
+              <div className="text-h3 blue pb-4 ">Content</div>
+              <div className="flex flex-col gap-4">
+                <EditIntro
+                  ref={editorRef}
+                  data={{
+                    title: project.title,
+                    subtitle: project.subtitle,
+                    location: project.location,
+                    period: project.period,
+                    liveUrl: project.liveUrl,
+                    githubUrl: project.githubUrl,
+                    description: project.description,
+                    image: project.image,
+                    roles: project.roles,
+                    tech: project.tech,
+                  }}
+                  onChange={handleIntroChange}
+                  editorRef={editorRef}
+                />
 
-            {/* 🗑️ Trash + 🔗 Preview Link */}
-            <div className="flex flex-row gap-2 bg-white rounded-sm border border-gray-200">
-              <Trash2
-                className="w-9 h-9 p-2 cursor-pointer hover:text-red-500"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  const confirmDelete = window.confirm(
-                    "Are you sure you want to delete this project? This cannot be undone."
-                  );
-                  if (confirmDelete) {
-                    handleDeleteProject();
+                <EditHero
+                  form={project}
+                  setForm={setProject}
+                  onChange={handleFormChange}
+                />
+
+                <EditListField
+                  title="Challenges"
+                  values={project.challenges}
+                  onChange={(updated) =>
+                    setProject((prev) => ({ ...prev, challenges: updated }))
                   }
-                }}
-              />
-              <a
-                href={`/project/${slug}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <ExternalLink className="w-9 h-9 p-2" />
-              </a>
+                />
+
+                <EditProcess
+                  form={project}
+                  setForm={setProject}
+                  onChange={handleFormChange}
+                />
+
+                <EditListField
+                  title="Outcomes"
+                  values={project.outcomes}
+                  onChange={(updated) =>
+                    setProject((prev) => ({ ...prev, outcomes: updated }))
+                  }
+                />
+
+                <EditListField
+                  title="Learnings"
+                  values={project.learnings}
+                  onChange={(updated) =>
+                    setProject((prev) => ({ ...prev, learnings: updated }))
+                  }
+                />
+
+                <EditWireframes
+                  form={project}
+                  setForm={setProject}
+                  onChange={handleFormChange}
+                />
+
+                <EditCustomHtml
+                  form={project}
+                  setForm={setProject}
+                  onChange={handleFormChange}
+                />
+              </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* 📄 Main content area */}
-      <div className="flex flex-col lg:flex-row w-full justify-between gap-10">
-        {/* 🧱 Left column: editable project content blocks */}
-        <div className="flex flex-row w-full lg:w-2/3">
+          {/* 🖼️ Right column: editable card fields */}
           <div className="white-box h-fit">
-            <div className="text-h3 blue pb-4 ">Content</div>
-            <div className="flex flex-col gap-4">
-              <EditIntro
-                ref={editorRef}
-                data={{
-                  title: project.title,
-                  subtitle: project.subtitle,
-                  location: project.location,
-                  period: project.period,
-                  liveUrl: project.liveUrl,
-                  githubUrl: project.githubUrl,
-                  description: project.description,
-                  image: project.image,
-                  roles: project.roles,
-                  tech: project.tech,
-                }}
-                onChange={handleIntroChange}
-                editorRef={editorRef}
-              />
-
-              <EditHero
-                form={project}
-                setForm={setProject}
-                onChange={handleFormChange}
-              />
-
-              <EditListField
-                title="Challenges"
-                values={project.challenges}
-                onChange={(updated) =>
-                  setProject((prev) => ({ ...prev, challenges: updated }))
-                }
-              />
-
-              <EditProcess
-                form={project}
-                setForm={setProject}
-                onChange={handleFormChange}
-              />
-
-              <EditListField
-                title="Outcomes"
-                values={project.outcomes}
-                onChange={(updated) =>
-                  setProject((prev) => ({ ...prev, outcomes: updated }))
-                }
-              />
-
-              <EditListField
-                title="Learnings"
-                values={project.learnings}
-                onChange={(updated) =>
-                  setProject((prev) => ({ ...prev, learnings: updated }))
-                }
-              />
-
-              <EditWireframes
-                form={project}
-                setForm={setProject}
-                onChange={handleFormChange}
-              />
-
-              <EditCustomHtml
-                form={project}
-                setForm={setProject}
-                onChange={handleFormChange}
-              />
-            </div>
+            <div className="text-h3 blue w-full h-fit lg:w-1/3 pb-4">Card</div>
+            <EditCard
+              form={project}
+              setForm={setProject}
+              onChange={handleFormChange}
+            />
           </div>
-        </div>
-
-        {/* 🖼️ Right column: editable card fields */}
-        <div className="white-box h-fit">
-          <div className="text-h3 blue w-full h-fit lg:w-1/3 pb-4">Card</div>
-          <EditCard
-            form={project}
-            setForm={setProject}
-            onChange={handleFormChange}
-          />
         </div>
       </div>
     </div>
