@@ -20,7 +20,7 @@ export function Intro({
 
   return (
     <>
-      <div className="flex flex-col items-center w-full h-full py-20 px-4 md:px-8">
+      <div className="flex flex-col items-center w-full h-full py-6 lg:py-10 px-4 md:px-8">
         <div className="max-w-[800px]">
           {/* Title & Subtitle */}
           <div>
