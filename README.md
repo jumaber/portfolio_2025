@@ -1,13 +1,50 @@
-# React + Vite
+# Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A professional portfolio site built with **React** (Vite), **Tailwind CSS**, and a **MongoDB-powered** backend. It features both static pages (Home, Impressum) and dynamic content (projects, custom pages), managed via a visual dashboard with drag-and-drop blocks.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Overview
 
-## Expanding the ESLint configuration
+This repository contains:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# portfolio_2025
+- **Client**: A Vite-powered React app using Tailwind CSS for styling, React Router for navigation, Firebase Auth for admin login, DnD-Kit for drag-and-drop, Editor.js for rich-text blocks, and Cloudinary for image uploads.  
+- **Server**: A Node.js/Express API connected to MongoDB, exposing REST endpoints to manage pages and projects.
+
+The admin **Dashboard** lets you visually assemble pages and projects from reorderable “blocks” (Intro, Hero, Card Info, Process, Wireframes, Custom HTML, etc.), then publishes them to the public site.
+
+---
+
+## Tech Stack
+
+- **Frontend**
+  - [React](https://reactjs.org/) (with Vite)  
+  - [Tailwind CSS](https://tailwindcss.com/)  
+  - [React Router v6](https://reactrouter.com/)  
+  - [Firebase Authentication](https://firebase.google.com/docs/auth)  
+  - [@dnd-kit](https://github.com/clauderic/dnd-kit) (drag & drop)  
+  - [Editor.js](https://editorjs.io/) (rich text blocks)  
+  - [Cloudinary](https://cloudinary.com/) (image hosting)  
+
+- **Backend**
+  - [Node.js](https://nodejs.org/) + [Express](https://expressjs.com/)  
+  - [MongoDB](https://www.mongodb.com/) (via Mongoose)  
+  - [dotenv](https://github.com/motdotla/dotenv) for config  
+  - CORS, body-parser, and standard middleware  
+
+---
+
+## Features
+
+- **Public Site**
+  - Static pages: Home, Impressum (Legal)  
+  - Dynamic pages: any slug under `/api/pages/:slug`  
+  - Project detail pages under `/projects/:slug`  
+  - Scroll-spy navigation for deep links  
+  
+- **Admin Dashboard**
+  - Email/password login (only the site owner)  
+  - List, create, edit, delete pages & projects  
+  - Drag-and-drop reorder of projects on dashboard  
+  - Block-based editor with live preview  
+  - Custom HTML injection for advanced layouts  
