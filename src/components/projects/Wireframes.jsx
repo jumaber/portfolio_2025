@@ -11,7 +11,7 @@ export function Wireframes({ wireframes = [], title = "Wireframes" }) {
   };
 
   return (
-    <div className="flex flex-col items-center w-full h-full py-20 px-4 md:px-8 bg-[#333]">
+    <div className="flex flex-col items-center w-screen h-full py-20 px-4 md:px-8 bg-[#333]">
       <div className="max-w-[800px]">
         <div className="text-h2 text-amber-200 white pb-2 lg:pb-6">{title}</div>
         <div className="flex flex-wrap w-full gap-4 lg:gap-10 items-center">
