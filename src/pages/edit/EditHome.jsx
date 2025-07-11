@@ -130,7 +130,7 @@ export function EditHome() {
     <div className="bg-[#f5f5f5] flex flex-col h-screen w-screen items-center p-4 md:p-8 lg:p-16 overflow-x-hidden">
       <div className="w-full lg:max-w-[1240px]">
         {/* Header*/}
-        <div className="flex flex-col w-full pb-10">
+        <div className="flex flex-col w-full py-10">
           <div className="flex flex-row w-full justify-between items-center">
             <Link to="/dashboard">
               <div className="back-button">← Back to Dashboard</div>

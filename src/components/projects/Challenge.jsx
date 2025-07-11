@@ -10,7 +10,7 @@ export function Challenge({ challenges }) {
             key={index}
             className="flex flex-row gap-4 lg:gap-10 lg:pb-4 items-start"
           >
-            <div className="text-h3 blue pt-0.5 w-[32px]">
+            <div className="text-h3 text-[var(--color-blue)] pt-0.5 w-[32px] shrink-0">
               {String(index + 1).padStart(2, "0")}
             </div>
             <div className="paragraph lg:w-screen">{challenge}</div>

@@ -71,11 +71,11 @@ export function EditProject() {
       const data = await res.json();
 
       if (res.ok) {
-                toast.success("Project saved!", { id: toastId });
-              } else {
-                console.error("Save failed:", data.error);
-                toast.error("Error: " + data.error, { id: toastId });
-              }
+        toast.success("Project saved!", { id: toastId });
+      } else {
+        console.error("Save failed:", data.error);
+        toast.error("Error: " + data.error, { id: toastId });
+      }
     } catch (err) {
       console.error("Save error:", err);
       toast.error("An error occurred while saving.", { id: toastId });
@@ -96,12 +96,12 @@ export function EditProject() {
       const data = await res.json();
 
       if (res.ok) {
-                toast.success("Project deleted!", { id: toastId });
-                navigate("/dashboard");
-              } else {
-                console.error("Delete failed:", data.error);
-                toast.error("Error: " + data.error, { id: toastId });
-              }
+        toast.success("Project deleted!", { id: toastId });
+        navigate("/dashboard");
+      } else {
+        console.error("Delete failed:", data.error);
+        toast.error("Error: " + data.error, { id: toastId });
+      }
     } catch (err) {
       console.error("Delete error:", err);
       toast.error("An error occurred while deleting.", { id: toastId });
@@ -185,6 +185,7 @@ export function EditProject() {
                     image: project.image,
                     roles: project.roles,
                     tech: project.tech,
+                    slug: project.slug, // ← ensure slug is passed down for uploads
                   }}
                   onChange={handleIntroChange}
                   editorRef={editorRef}
