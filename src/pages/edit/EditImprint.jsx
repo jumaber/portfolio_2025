@@ -106,7 +106,7 @@ export function EditImprint() {
       const data = await res.json();
 
       if (res.ok) {
-               toast.success("✅ Imprint page deleted!", { id: toastId });
+               toast.success("Imprint page deleted!", { id: toastId });
                 navigate("/dashboard");
               } else {
                 console.error(" Delete failed:", data.error);
@@ -119,160 +119,162 @@ export function EditImprint() {
   }
 
   return (
-    <div className="bg-[#f5f5f5] flex flex-col h-screen w-screen items-start p-4 md:p-8 lg:p-16 overflow-x-hidden">
-      {/* Header*/}
-      <div className="flex flex-col w-full pb-10">
-        <div className="flex flex-row w-full justify-between items-center">
-          <Link to="/dashboard">
-            <div className="back-button">← Back to Dashboard</div>
-          </Link>
-          <div className="flex flex-row items-center gap-4">
-            <ButtonSmall
-              text={"Save"}
-              bgColor="bg-[var(--color-blue)]"
-              textColor="text-[var(--color-white)] "
-              hoverColor="bg-[var(--color-pink)]"
-              hoverTextColor="text-white"
-              paddingX="px-4 lg:px-6"
-              paddingY="py-2 lg:py-3"
-              textSize="text-[14px] lg:text-[16px]"
-              image={null}
-              onClick={handleSave}
-            />
+    <div className="bg-[#f5f5f5] flex flex-col h-screen w-screen items-center p-4 md:p-8 lg:p-16 overflow-x-hidden">
+      <div className="w-full lg:max-w-[1240px]">
+        {/* Header*/}
+        <div className="flex flex-col w-full pb-10">
+          <div className="flex flex-row w-full justify-between items-center">
+            <Link to="/dashboard">
+              <div className="back-button">← Back to Dashboard</div>
+            </Link>
+            <div className="flex flex-row items-center gap-4">
+              <ButtonSmall
+                text={"Save"}
+                bgColor="bg-[var(--color-blue)]"
+                textColor="text-[var(--color-white)] "
+                hoverColor="bg-[var(--color-pink)]"
+                hoverTextColor="text-white"
+                paddingX="px-4 lg:px-6"
+                paddingY="py-2 lg:py-3"
+                textSize="text-[14px] lg:text-[16px]"
+                image={null}
+                onClick={handleSave}
+              />
+            </div>
           </div>
-        </div>
-        <div className="flex flex-col lg:flex-row lg:items-center gap-4  pt-6">
-          {/* 🔸  Imprint Page title + icons */}
-          <div className="flex flex-col lg:flex-row lg:items-center gap-4 w-full pt-10">
-            <div className="flex flex-row justify-between items-end w-full">
-              <div className="project-title w-full">
-                {imprint.title || "Home"}
-              </div>
+          <div className="flex flex-col lg:flex-row lg:items-center gap-4  pt-6">
+            {/* 🔸  Imprint Page title + icons */}
+            <div className="flex flex-col lg:flex-row lg:items-center gap-4 w-full pt-10">
+              <div className="flex flex-row justify-between items-end w-full">
+                <div className="project-title w-full">
+                  {imprint.title || "Home"}
+                </div>
 
-              {/* 🗑️ Trash + 🔗 Preview Link */}
-              <div className="flex flex-row gap-2 bg-white rounded-sm border border-gray-200">
-                <Trash2
-                  className="w-9 h-9 p-2 cursor-pointer hover:text-red-500"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toast.custom(
-                      (t) => (
-                        <div
-                          className={`
+                {/* 🗑️ Trash + 🔗 Preview Link */}
+                <div className="flex flex-row gap-2 bg-white rounded-sm border border-gray-200">
+                  <Trash2
+                    className="w-9 h-9 p-2 cursor-pointer hover:text-red-500"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toast.custom(
+                        (t) => (
+                          <div
+                            className={`
           bg-white p-4 rounded shadow-lg max-w-sm
           ${t.visible ? "animate-enter" : "animate-leave"}
         `}
-                        >
-                          <p className="text-gray-800">
-                            Are you sure you want to delete this page?
-                            <br />
-                            <span className="italic">
-                              (This cannot be undone.)
-                            </span>
-                          </p>
-                          <div className="mt-3 flex justify-end gap-2">
-                            <button
-                              className="px-3 py-1 bg-red-500 text-white rounded"
-                              onClick={() => {
-                                handleDelete();
-                                toast.dismiss(t.id);
-                                toast.success("Page deleted!");
-                              }}
-                            >
-                              Yes
-                            </button>
-                            <button
-                              className="px-3 py-1 bg-gray-200 rounded"
-                              onClick={() => toast.dismiss(t.id)}
-                            >
-                              No
-                            </button>
+                          >
+                            <p className="text-gray-800">
+                              Are you sure you want to delete this page?
+                              <br />
+                              <span className="italic">
+                                (This cannot be undone.)
+                              </span>
+                            </p>
+                            <div className="mt-3 flex justify-end gap-2">
+                              <button
+                                className="px-3 py-1 bg-red-500 text-white rounded"
+                                onClick={() => {
+                                  handleDelete();
+                                  toast.dismiss(t.id);
+                                  toast.success("Page deleted!");
+                                }}
+                              >
+                                Yes
+                              </button>
+                              <button
+                                className="px-3 py-1 bg-gray-200 rounded"
+                                onClick={() => toast.dismiss(t.id)}
+                              >
+                                No
+                              </button>
+                            </div>
                           </div>
-                        </div>
-                      ),
-                      { duration: Infinity }
-                    );
-                  }}
-                />
+                        ),
+                        { duration: Infinity }
+                      );
+                    }}
+                  />
 
-                <a
-                  href={`/${imprint.slug}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <ExternalLink className="w-9 h-9 p-2" />
-                </a>
+                  <a
+                    href={`/${imprint.slug}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ExternalLink className="w-9 h-9 p-2" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Content */}
-      <div className="flex flex-col lg:flex-row w-full justify-between gap-10">
-        <div className="flex flex-row w-full lg:w-2/3">
-          <div className="white-box  h-fit">
-            <div className="text-h3 blue pb-4 ">Content</div>
-            <div className="flex flex-col gap-4">
-              <EditImprintContent
-                data={{
-                  imprintResponsible: imprint.imprintResponsible,
-                  imprintContactEmail: imprint.imprintContactEmail,
-                  imprintDisclaimer: imprint.imprintDisclaimer,
-                  imprintDisclaimerEU: imprint.imprintDisclaimerEU,
-                  imprintDisclaimerFreelance:
-                    imprint.imprintDisclaimerFreelance,
-                  imprintStreet: imprint.imprintStreet,
-                  imprintPostCode: imprint.imprintPostCode,
-                  imprintCity: imprint.imprintCity,
-                  imprintCountry: imprint.imprintCountry,
-                }}
-                onChange={handleFormChange}
-                editorRef={editorRef}
-              />
+        {/* Content */}
+        <div className="flex flex-col lg:flex-row w-full justify-between gap-10">
+          <div className="flex flex-row w-full lg:w-2/3">
+            <div className="white-box  h-fit">
+              <div className="text-h3 blue pb-4 ">Content</div>
+              <div className="flex flex-col gap-4">
+                <EditImprintContent
+                  data={{
+                    imprintResponsible: imprint.imprintResponsible,
+                    imprintContactEmail: imprint.imprintContactEmail,
+                    imprintDisclaimer: imprint.imprintDisclaimer,
+                    imprintDisclaimerEU: imprint.imprintDisclaimerEU,
+                    imprintDisclaimerFreelance:
+                      imprint.imprintDisclaimerFreelance,
+                    imprintStreet: imprint.imprintStreet,
+                    imprintPostCode: imprint.imprintPostCode,
+                    imprintCity: imprint.imprintCity,
+                    imprintCountry: imprint.imprintCountry,
+                  }}
+                  onChange={handleFormChange}
+                  editorRef={editorRef}
+                />
+              </div>
             </div>
           </div>
-        </div>
-        <div className="white-box h-fit">
-          <div className="text-h3 blue w-full h-fit pb-4">
-            Dashboard Preview
-          </div>
-          <div className="grey-box">
-            <div className="form-header flex justify-between items-center mt-4">
-              <span>Image</span>
-              <ButtonSmall
-                text="Upload Image"
-                onClick={() => fileInputRef.current.click()}
-                className="bg-[#0C0093] text-white"
-                image={null}
+          <div className="white-box h-fit">
+            <div className="text-h3 blue w-full h-fit pb-4">
+              Dashboard Preview
+            </div>
+            <div className="grey-box">
+              <div className="form-header flex justify-between items-center mt-4">
+                <span>Image</span>
+                <ButtonSmall
+                  text="Upload Image"
+                  onClick={() => fileInputRef.current.click()}
+                  className="bg-[#0C0093] text-white"
+                  image={null}
+                />
+              </div>
+
+              {imprint.image && (
+                <img
+                  src={imprint.image}
+                  alt="Hero"
+                  className="w-full h-auto my-4 rounded-md border border-neutral-200"
+                />
+              )}
+
+              <input
+                type="file"
+                accept="image/*"
+                ref={fileInputRef}
+                onChange={handleImageUpload}
+                className="hidden"
+              />
+
+              <div className="form-header">Dashboard List Title</div>
+              <input
+                type="text"
+                name="title"
+                value={imprint.title}
+                onChange={handleChange}
+                placeholder="Title"
+                className="form-input"
               />
             </div>
-
-            {imprint.image && (
-              <img
-                src={imprint.image}
-                alt="Hero"
-                className="w-full h-auto my-4 rounded-md border border-neutral-200"
-              />
-            )}
-
-            <input
-              type="file"
-              accept="image/*"
-              ref={fileInputRef}
-              onChange={handleImageUpload}
-              className="hidden"
-            />
-
-            <div className="form-header">Dashboard List Title</div>
-            <input
-              type="text"
-              name="title"
-              value={imprint.title}
-              onChange={handleChange}
-              placeholder="Title"
-              className="form-input"
-            />
           </div>
         </div>
       </div>

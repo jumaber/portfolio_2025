@@ -61,54 +61,56 @@ export function NewPage() {
 
   // 📐 Return: Editor UI layout with sections
   return (
-    <div className="bg-[#f5f5f5] flex flex-col h-screen w-screen items-start p-4 md:p-8 lg:p-16 overflow-x-hidden">
-      {/* 🧭 Header: Back button + Save button */}
-      <div className="flex flex-col w-full pb-10">
-        <div className="flex flex-row w-full justify-between items-center">
-          <Link to="/dashboard">
-            <div className="back-button">← Back to Dashboard</div>
-          </Link>
-          <div className="flex flex-row items-center gap-4">
-            <ButtonSmall
-              text={"Save"}
-              bgColor="bg-[var(--color-blue)]"
-              textColor="text-[var(--color-white)] "
-              hoverColor="bg-[var(--color-pink)]"
-              hoverTextColor="text-white"
-              paddingX="px-4 lg:px-6"
-              paddingY="py-2 lg:py-3"
-              textSize="text-[14px] lg:text-[16px]"
-              image={null}
-              onClick={handleSave}
-            />
-          </div>
-        </div>
-
-        {/* ✏️ Page title */}
-        <div className="flex flex-col lg:flex-row lg:items-center gap-4 pt-10">
-          <div className="project-title">{page.title || " New Page"}</div>
-        </div>
-      </div>
-
-      {/* 📄 Main editor layout: Left = content blocks, Right = card preview */}
-      <div className="flex flex-col lg:flex-row w-full justify-between gap-10">
-        {/* 📦 Left: Content sections */}
-        <div className="flex flex-row w-full lg:w-2/3">
-          <div className="white-box h-fit">
-            <div className="text-h3 blue pb-4">Content</div>
-            <div className="flex flex-col gap-4">
-              {/* 🧱 Block-based editable sections */}
-              <EditTextBlock data={page} onChange={handleFormChange} />
+    <div className="bg-[#f5f5f5] flex flex-col h-screen w-screen items-center p-4 md:p-8 lg:p-16 overflow-x-hidden">
+      <div className="w-full lg:max-w-[1240px]">
+        {/* 🧭 Header: Back button + Save button */}
+        <div className="flex flex-col w-full pb-10">
+          <div className="flex flex-row w-full justify-between items-center">
+            <Link to="/dashboard">
+              <div className="back-button">← Back to Dashboard</div>
+            </Link>
+            <div className="flex flex-row items-center gap-4">
+              <ButtonSmall
+                text={"Save"}
+                bgColor="bg-[var(--color-blue)]"
+                textColor="text-[var(--color-white)] "
+                hoverColor="bg-[var(--color-pink)]"
+                hoverTextColor="text-white"
+                paddingX="px-4 lg:px-6"
+                paddingY="py-2 lg:py-3"
+                textSize="text-[14px] lg:text-[16px]"
+                image={null}
+                onClick={handleSave}
+              />
             </div>
           </div>
+
+          {/* ✏️ Page title */}
+          <div className="flex flex-col lg:flex-row lg:items-center gap-4 pt-10">
+            <div className="project-title">{page.title || " New Page"}</div>
+          </div>
         </div>
 
-        {/* 🖼️ Right: Card preview and editor */}
-        <div className="white-box h-fit">
-          <div className="text-h3 blue w-full h-fit pb-4">
-            Dashboard Preview
+        {/* 📄 Main editor layout: Left = content blocks, Right = card preview */}
+        <div className="flex flex-col lg:flex-row w-full justify-between gap-10">
+          {/* 📦 Left: Content sections */}
+          <div className="flex flex-row w-full lg:w-2/3">
+            <div className="white-box h-fit">
+              <div className="text-h3 blue pb-4">Content</div>
+              <div className="flex flex-col gap-4">
+                {/* 🧱 Block-based editable sections */}
+                <EditTextBlock data={page} onChange={handleFormChange} />
+              </div>
+            </div>
           </div>
-          <EditCardPage page={page} onChange={handleFormChange} />
+
+          {/* 🖼️ Right: Card preview and editor */}
+          <div className="white-box h-fit">
+            <div className="text-h3 blue w-full h-fit pb-4">
+              Dashboard Preview
+            </div>
+            <EditCardPage page={page} onChange={handleFormChange} />
+          </div>
         </div>
       </div>
     </div>

@@ -94,6 +94,7 @@ export function EditPage() {
   return (
     <div className="bg-[#f5f5f5] flex flex-col h-screen w-screen items-center p-4 md:p-8 lg:p-16 overflow-x-hidden">
       <div className="w-full lg:max-w-[1240px]">
+      
         {/* 🔹 Header: Back button, Save button, Delete + View icons */}
         <div className="flex flex-col w-full pb-10">
           <div className="flex flex-row w-full justify-between items-center">
