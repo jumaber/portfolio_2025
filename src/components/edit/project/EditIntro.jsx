@@ -182,7 +182,7 @@ export const EditIntro = forwardRef(({ data, onChange }, ref) => {
           <div className="form-header flex justify-between items-center">
             <span>Image</span>
             <ButtonSmall
-              text="Upload Image"
+              text="Upload Image or Video"
               onClick={() => fileInputRef.current.click()}
               className="bg-[#0C0093] text-white"
               image={null}
@@ -230,7 +230,7 @@ export const EditIntro = forwardRef(({ data, onChange }, ref) => {
               <img
                 src={form.image}
                 alt="Preview"
-                className="w-full h-auto rounded-md" // <- no absolute here
+                className="w-full h-auto rounded-md" 
               />
             )}
           </div>
