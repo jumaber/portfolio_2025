@@ -1,9 +1,5 @@
 # My Portfolio Frontend
 
-> **Part of a MERN stack application:** MongoDB, Express, React, Node.js
-
-*
-
 [![Vite](https://img.shields.io/badge/bundler-vite-blue)]() [![React](https://img.shields.io/badge/framework-react-61dafb)]() [![TailwindCSS](https://img.shields.io/badge/style-tailwindcss-38b2ac)]() [![License: MIT](https://img.shields.io/badge/license-MIT-green)]()
 
 An interactive, Vite-powered React portfolio site with the following features:
@@ -16,6 +12,8 @@ An interactive, Vite-powered React portfolio site with the following features:
 * Cloudinary image hosting for optimized media delivery
 * Stylized toast notifications with react-hot-toast
 * Integrated analytics via Google Analytics (Looker Studio)
+
+> **Part of a MERN stack application:** MongoDB, Express, React, Node.js
 
 ---
 
