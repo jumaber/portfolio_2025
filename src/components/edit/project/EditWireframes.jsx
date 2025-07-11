@@ -1,33 +1,33 @@
-import { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { ButtonSmall } from "../../dashboard/ButtonSmall";
+import { LoadingAnimation } from "../../other/LoadingAnimation";
 
 export function EditWireframes({ form, setForm, onChange }) {
   const [isOpen, setIsOpen] = useState(false);
   const fileInputRef = useRef();
+  const [isUploading, setIsUploading] = useState(false);
 
   async function handleImagesUpload(e) {
     const files = Array.from(e.target.files);
     const uploadedUrls = [];
+    setIsUploading(true);
 
     for (const file of files) {
       const formData = new FormData();
       formData.append("file", file);
       formData.append("upload_preset", "portfolio_upload");
-      formData.append("folder", "portfolio");
+      formData.append("folder", `project/${form.slug}`);
 
       try {
         const res = await fetch(
           "https://api.cloudinary.com/v1_1/jumaber/image/upload",
-          {
-            method: "POST",
-            body: formData,
-          }
+          { method: "POST", body: formData }
         );
         const data = await res.json();
         uploadedUrls.push(data.secure_url);
       } catch (err) {
-        console.error("Image upload failed:", err);
+        console.error("Wireframes upload failed:", err);
       }
     }
 
@@ -35,6 +35,7 @@ export function EditWireframes({ form, setForm, onChange }) {
     const updatedForm = { ...form, wireframes: updatedWireframes };
     setForm(updatedForm);
     onChange(updatedForm);
+    setIsUploading(false);
   }
 
   function handleChange(e) {
@@ -74,12 +75,10 @@ export function EditWireframes({ form, setForm, onChange }) {
             className="form-input mb-4"
           />
 
-          {/* Upload */}
+          {/* Upload button + hidden input */}
           <ButtonSmall
             text="Upload Image(s)"
             onClick={() => fileInputRef.current.click()}
-            className="bg-[#0C0093] text-white"
-            image={null}
           />
           <input
             type="file"
@@ -90,8 +89,18 @@ export function EditWireframes({ form, setForm, onChange }) {
             className="hidden"
           />
 
-          {/* Display preview */}
-          <div className="grid grid-cols-2 gap-4 mt-4">
+          {/* Preview grid with upload overlay */}
+          <div className="grid grid-cols-2 gap-4 mt-4 w-full">
+            {isUploading && (
+              <div className="flex flex-col bg-opacity-70 w-full items-center justify-center z-10 h-18 ">
+                <LoadingAnimation
+                  classNameImage="w-16"
+                  classNameText="hidden"
+                />
+                <p className="tag">Uploading..</p>
+              </div>
+            )}
+
             {form.wireframes.map((url, i) => (
               <div key={i} className="relative w-full">
                 <button
