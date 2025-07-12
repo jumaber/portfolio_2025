@@ -182,7 +182,7 @@ export const EditIntro = forwardRef(({ data, onChange }, ref) => {
           <div className="form-header flex justify-between items-center">
             <span>Image</span>
             <ButtonSmall
-              text="Upload Image or Video"
+              text="Upload Image"
               onClick={() => fileInputRef.current.click()}
               className="bg-[#0C0093] text-white"
               image={null}

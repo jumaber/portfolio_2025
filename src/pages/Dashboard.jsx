@@ -244,7 +244,7 @@ export function Dashboard() {
 
         {/* Analytics */}
         <div className="flex flex-col w-full lg:w-2/5">
-        <h2 className="lg:hidden mt-10 pb-4 text-h1">Analytics</h2>
+          <h2 className="lg:hidden mt-10 pb-4 text-h1">Analytics</h2>
           <div className="flex flex-col justify-between gap-4 lg:gap-10">
             {/* Analytics Summary */}
 
@@ -260,7 +260,7 @@ export function Dashboard() {
                     🔥
                   </h2>
                   <p className="flex flex-row justify-center items-center gap-1 text-[var(--color-black)] font-normal text-[14px]">
-                    Hotjar
+                    <span className="text-[10px]">🔗</span>Hotjar
                   </p>
                 </a>
               </div>
@@ -276,7 +276,7 @@ export function Dashboard() {
                     📊
                   </h2>
                   <p className="flex flex-row justify-center items-center gap-1 text-[var(--color-black)] font-normal text-[14px]">
-                    GA
+                    <span className="text-[10px]">🔗</span> GA
                   </p>
                 </a>
               </div>
