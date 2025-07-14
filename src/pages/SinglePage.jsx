@@ -11,9 +11,11 @@ export function SinglePage() {
   const { slug } = useParams();
   const [page, setPage] = useState(null);
   const [notFound, setNotFound] = useState(false);
+  const API = import.meta.env.VITE_API_BASE_URL;
+
 
   useEffect(() => {
-    fetch(`https://portfolio-2025-wyed.onrender.com/api/pages/${slug}`)
+    fetch(`${API}/api/pages/${slug}`)
       .then((res) => {
         if (!res.ok) {
           if (res.status === 404) {

@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 
 export function EditImprint() {
   const navigate = useNavigate();
+  const API = import.meta.env.VITE_API_BASE_URL;
 
   const [imprint, setPage] = useState(null);
   const editorRef = useRef(null);
@@ -15,7 +16,7 @@ export function EditImprint() {
 
   // Fetch the  Imprint Page from backend
   useEffect(() => {
-    fetch(`https://portfolio-2025-wyed.onrender.com/api/pages/imprint`)
+    fetch(`${API}/api/pages/imprint`)
       .then((res) => res.json())
       .then((data) => setPage(data))
       .catch((err) => console.error("Failed to fetch imprint page:", err));
@@ -34,7 +35,7 @@ export function EditImprint() {
       const { _id, __v, ...safePage } = imprint;
 
       const res = await fetch(
-        `https://portfolio-2025-wyed.onrender.com/api/pages/imprint`,
+        `${API}/api/pages/imprint`,
         {
           method: "PATCH",
           headers: {
@@ -97,7 +98,7 @@ export function EditImprint() {
     const toastId = toast.loading("Deleting imprint page…");
     try {
       const res = await fetch(
-        `https://portfolio-2025-wyed.onrender.com/api/pages/imprint`,
+        `${API}/api/pages/imprint`,
         {
           method: "DELETE",
         }

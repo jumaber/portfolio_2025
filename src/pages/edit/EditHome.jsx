@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 
 export function EditHome() {
   const navigate = useNavigate();
+  const API = import.meta.env.VITE_API_BASE_URL;
 
   const [page, setPage] = useState(null);
   const editorRef = useRef(null);
@@ -18,7 +19,7 @@ export function EditHome() {
 
   // Fetch the page from backend
   useEffect(() => {
-    fetch(`https://portfolio-2025-wyed.onrender.com/api/pages/home`)
+    fetch(`${API}/api/pages/home`)
       .then((res) => res.json())
       .then((data) => setPage(data))
       .catch((err) => console.error("Failed to fetch home page:", err));
@@ -42,7 +43,7 @@ export function EditHome() {
       const { _id, __v, ...safePage } = page;
 
       const res = await fetch(
-        `https://portfolio-2025-wyed.onrender.com/api/pages/home`,
+        `${API}/api/pages/home`,
         {
           method: "PATCH",
           headers: {
@@ -105,7 +106,7 @@ export function EditHome() {
     const toastId = toast.loading("Deleting home page…");
     try {
       const res = await fetch(
-        `https://portfolio-2025-wyed.onrender.com/api/pages/home}`,
+        `${API}/api/pages/home}`,
         {
           method: "DELETE",
         }

@@ -13,12 +13,14 @@ import toast from "react-hot-toast";
 // It shares the same visual structure as NewProject, but with editing logic.
 export function EditPage() {
   const navigate = useNavigate();
+  const API = import.meta.env.VITE_API_BASE_URL;
+
   const { slug } = useParams();
   const [page, setPage] = useState(null);
 
   // 🛰️ Fetch project data from backend when component mounts
   useEffect(() => {
-    fetch(`https://portfolio-2025-wyed.onrender.com/api/pages/${slug}`)
+    fetch(`${API}/api/pages/${slug}`)
       .then((res) => res.json())
       .then((data) => setPage(data))
       .catch((err) => console.error("Failed to fetch page:", err));
@@ -40,7 +42,7 @@ export function EditPage() {
       const { _id, __v, ...safePage } = page; // Remove MongoDB metadata
 
       const res = await fetch(
-        `https://portfolio-2025-wyed.onrender.com/api/pages/${slug}`,
+        `${API}/api/pages/${slug}`,
         {
           method: "PATCH",
           headers: {
@@ -69,7 +71,7 @@ export function EditPage() {
     const toastId = toast.loading("Deleting page…");
     try {
       const res = await fetch(
-        `https://portfolio-2025-wyed.onrender.com/api/pages/${slug}`,
+        `${API}/api/pages/${slug}`,
         {
           method: "DELETE",
         }

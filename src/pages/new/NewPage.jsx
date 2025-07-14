@@ -9,7 +9,8 @@ import toast from "react-hot-toast";
 export function NewPage() {
   // 🧭 Navigation hook from React Router
   const navigate = useNavigate();
-  
+  const API = import.meta.env.VITE_API_BASE_URL;
+
 
   // 📦 State: holds the full structure of a project
   const [page, setPage] = useState({
@@ -36,7 +37,7 @@ export function NewPage() {
 
     try {
       const res = await fetch(
-        "https://portfolio-2025-wyed.onrender.com/api/pages/",
+        `${API}/api/pages/`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

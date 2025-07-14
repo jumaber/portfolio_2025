@@ -12,6 +12,7 @@ import toast from "react-hot-toast";
 
 export function NewProject() {
   const navigate = useNavigate();
+  const API = import.meta.env.VITE_API_BASE_URL;
   const editorRef = useRef(null);
 
   const [project, setProject] = useState({
@@ -59,7 +60,7 @@ export function NewProject() {
 
     try {
       const res = await fetch(
-        "https://portfolio-2025-wyed.onrender.com/api/projects",
+        `${API}/api/projects`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

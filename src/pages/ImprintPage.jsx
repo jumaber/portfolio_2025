@@ -5,9 +5,10 @@ import { LoadingAnimation } from "../components/other/LoadingAnimation";
 
 export function ImprintPage() {
   const [imprint, setImprint] = useState(null);
+  const API = import.meta.env.VITE_API_BASE_URL;
 
    useEffect(() => {
-      fetch("https://portfolio-2025-wyed.onrender.com/api/pages/imprint")
+      fetch(`${API}/api/pages/imprint`)
         .then((res) => res.json())
         .then((data) => {
           console.log("Fetched page:", data);

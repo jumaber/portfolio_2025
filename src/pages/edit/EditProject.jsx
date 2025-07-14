@@ -18,13 +18,15 @@ import toast from "react-hot-toast";
 // It shares the same visual structure as NewProject, but with editing logic.
 export function EditProject() {
   const navigate = useNavigate();
+  const API = import.meta.env.VITE_API_BASE_URL;
+
   const { slug } = useParams();
   const editorRef = useRef(null);
   const [project, setProject] = useState(null);
 
   // 🛰️ Fetch project data from backend when component mounts
   useEffect(() => {
-    fetch(`https://portfolio-2025-wyed.onrender.com/api/projects/${slug}`)
+    fetch(`${API}/api/projects/${slug}`)
       .then((res) => res.json())
       .then((data) => setProject(data))
       .catch((err) => console.error("Failed to fetch project:", err));
@@ -61,7 +63,7 @@ export function EditProject() {
 
       // 3. Fire off your PATCH
       const res = await fetch(
-        `https://portfolio-2025-wyed.onrender.com/api/projects/${slug}`,
+        `${API}/api/projects/${slug}`,
         {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
@@ -87,7 +89,7 @@ export function EditProject() {
     const toastId = toast.loading("Deleting project…");
     try {
       const res = await fetch(
-        `https://portfolio-2025-wyed.onrender.com/api/projects/${slug}`,
+        `${API}/api/projects/${slug}`,
         {
           method: "DELETE",
         }

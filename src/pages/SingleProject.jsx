@@ -17,9 +17,10 @@ export function SingleProject() {
   const { slug } = useParams();
   const [project, setProject] = useState(null);
   const [notFound, setNotFound] = useState(false);
+  const API = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
-    fetch(`https://portfolio-2025-wyed.onrender.com/api/projects/${slug}`)
+    fetch(`${API}/api/projects/${slug}`)
       .then((res) => {
         if (res.status === 404) {
           setNotFound(true);
