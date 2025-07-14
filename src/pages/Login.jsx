@@ -14,7 +14,10 @@ export function Login() {
     e.preventDefault();
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
-      if (res.user.uid === "i67JburFKwRSWgKaXpraD9DWioD3") {
+      if (
+        res.user.uid === "i67JburFKwRSWgKaXpraD9DWioD3" ||
+        res.user.uid === "u4M3DMWdsUav7VAKs8x260fgfno1"
+      ) {
         navigate("/dashboard");
       } else {
         setError("Nice try. You're not me.");
