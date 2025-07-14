@@ -12,6 +12,9 @@ import { LoadingScreen } from "../components/other/LoadingScreen";
 
 
 export function Home() {
+  console.log("all env:", import.meta.env);
+  console.log("API base:", import.meta.env.VITE_API_BASE_URL);
+
   const [page, setPage] = useState(null);
   const API = import.meta.env.VITE_API_BASE_URL;
 

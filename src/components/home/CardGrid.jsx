@@ -11,19 +11,28 @@ function chunkArray(array, size) {
 
 export function CardGrid() {
   const [featuredProjects, setFeaturedProjects] = useState([]);
-  const API = import.meta.env.VITE_API_BASE_URL;
+  const API = import.meta.env.VITE_API_BASE_URL?.replace(/\/+$/, "");
+  ;
 
   useEffect(() => {
+    console.log("→ API base:", API);
+    console.log("→ Fetching:", `${API}/api/projects`);
+
     fetch(`${API}/api/projects`)
-      .then((res) => res.json())
+      .then((res) => {
+        console.log("→ HTTP status:", res.status);
+        if (!res.ok) throw new Error(res.statusText);
+        return res.json();
+      })
       .then((data) => {
+        console.log("→ Raw data from API:", data);
         const featured = Object.values(data)
           .filter((p) => p.featured === true && p.slug)
           .sort((a, b) => a.order - b.order);
         setFeaturedProjects(featured);
       })
       .catch((err) => console.error("Failed to fetch projects:", err));
-  }, []);
+  }, [API]);
 
   const rows = chunkArray(featuredProjects, 2);
 
