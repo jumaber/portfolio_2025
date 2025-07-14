@@ -3,7 +3,6 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { Link, useNavigate } from "react-router-dom";
 
-
 export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -44,6 +43,7 @@ export function Login() {
         <label className="text-left text-sm font-semibold mb-1">Email</label>
         <input
           type="email"
+          autoComplete="email"
           placeholder="Enter my email"
           className="p-3 border rounded bg-white mb-4"
           value={email}
@@ -54,6 +54,7 @@ export function Login() {
         <label className="text-left text-sm font-semibold mb-1">Password</label>
         <input
           type="password"
+          autoComplete="current-password"
           placeholder="Enter my password"
           className="p-3 border rounded bg-white mb-4"
           value={password}
