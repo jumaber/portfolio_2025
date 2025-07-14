@@ -9,6 +9,8 @@ import { ListItem } from "./ListItem";
 
 // This component wraps a project in sortable functionality from dnd-kit
 export function SortableItem({ project, setProjects, showBorder }) {
+
+
   // Destructure helpers returned by useSortable
   // - id must be unique for each item (we use project.slug)
   const { attributes, listeners, setNodeRef, transform, transition } =
@@ -20,18 +22,17 @@ export function SortableItem({ project, setProjects, showBorder }) {
     transition, // smooth movement animation
   };
 
+  const API = import.meta.env.VITE_API_BASE_URL;
+
   // Function to update the 'featured' status of a project when toggled
   const handleFeaturedToggle = async (newValue) => {
     try {
       // Send a PATCH request to update the backend with the new value
-      await fetch(
-        `https://portfolio-2025-wyed.onrender.com/api/projects/${project.slug}`,
-        {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ featured: newValue }),
-        }
-      );
+      await fetch(`${API}/api/projects/${project.slug}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ featured: newValue }),
+      });
 
       // Update the local state to reflect the change
       setProjects((prev) =>

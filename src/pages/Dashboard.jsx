@@ -34,6 +34,7 @@ export function Dashboard() {
   // Usestate for Projects & Pages
   const [projects, setProjects] = useState([]);
   const [pages, setPages] = useState([]);
+  const API = import.meta.env.VITE_API_BASE_URL;
 
   // Function to Log out
   const handleLogout = () => {
@@ -44,7 +45,7 @@ export function Dashboard() {
 
   // Get data for Projects
   useEffect(() => {
-    fetch("https://portfolio-2025-wyed.onrender.com/api/projects/")
+    fetch(`${API}/api/projects/`)
       .then((res) => res.json())
       .then((data) =>
         setProjects([...data].sort((a, b) => (a.order || 0) - (b.order || 0)))
@@ -54,7 +55,7 @@ export function Dashboard() {
 
   // Get data for Pages
   useEffect(() => {
-    fetch("https://portfolio-2025-wyed.onrender.com/api/pages/")
+    fetch(`${API}/api/pages/`)
       .then((res) => res.json())
       .then((data) =>
         setPages([...data].sort((a, b) => (a.order || 0) - (b.order || 0)))
@@ -101,7 +102,7 @@ export function Dashboard() {
       console.log(`🔄 Updating ${project.slug} to order ${index + 1}`);
 
       fetch(
-        `https://portfolio-2025-wyed.onrender.com/api/projects/${project.slug}`,
+        `${API}/api/projects//${project.slug}`,
         {
           method: "PATCH",
           headers: {

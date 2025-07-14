@@ -10,11 +10,11 @@ function chunkArray(array, size) {
 }
 
 export function CardGrid() {
-  const [error, setError] = useState(null);
   const [featuredProjects, setFeaturedProjects] = useState([]);
+  const API = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
-    fetch("https://portfolio-2025-wyed.onrender.com/api/projects")
+    fetch(`${API}/api/projects`)
       .then((res) => res.json())
       .then((data) => {
         const featured = Object.values(data)

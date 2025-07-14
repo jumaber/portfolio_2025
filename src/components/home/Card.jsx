@@ -13,9 +13,10 @@ export function Card({ slug }) {
       ? url.replace("/upload/", `/upload/q_auto,f_auto,w_${width}/`)
       : url;
 
+  const API = import.meta.env.VITE_API_BASE_URL;
       
   useEffect(() => {
-    fetch(`https://portfolio-2025-wyed.onrender.com/api/projects/${slug}`)
+    fetch(`${API}/api/projects/${project.slug}`)
       .then((res) => res.json())
       .then((data) => setCard(data))
       .catch((err) => console.error("❌ Failed to fetch card:", err));

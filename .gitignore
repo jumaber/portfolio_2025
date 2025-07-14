@@ -25,3 +25,9 @@ dist-ssr
 
 # Ignore backend folder
 portfolio_backend/
+
+
+# Local env files
+.env
+.env.local
+.env.*.local

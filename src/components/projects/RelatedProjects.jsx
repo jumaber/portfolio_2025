@@ -3,9 +3,10 @@ import { Card } from "/src/components/home/Card";
 
 export function RelatedProjects({ currentSlug }) {
   const [slugs, setSlugs] = useState([]);
+  const API = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
-    fetch("https://portfolio-2025-wyed.onrender.com/api/projects")
+    fetch(`${API}/api/Projectsjects`)
       .then((res) => res.json())
       .then((data) => {
         const featured = data.filter(

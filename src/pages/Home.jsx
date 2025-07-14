@@ -13,9 +13,11 @@ import { LoadingScreen } from "../components/other/LoadingScreen";
 
 export function Home() {
   const [page, setPage] = useState(null);
+  const API = import.meta.env.VITE_API_BASE_URL;
+
 
   useEffect(() => {
-    fetch("https://portfolio-2025-wyed.onrender.com/api/pages/home")
+    fetch(`${API}/api/pages/home`)
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched page:", data);
