@@ -7,7 +7,7 @@ export function ImprintPage() {
   const [imprint, setImprint] = useState(null);
 
    useEffect(() => {
-      fetch("https://portfolio-2025-wyed.onrender.com/api/pages/imprint")
+      fetch(`${import.meta.env.VITE_API_URL}/pages/imprint`)
         .then((res) => res.json())
         .then((data) => {
           console.log("Fetched page:", data);

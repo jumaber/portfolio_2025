@@ -1,6 +1,5 @@
-import { signOut } from "firebase/auth";
-import { auth } from "../firebase";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 import { useEffect, useState } from "react";
 
 import { ButtonSmall } from "../components/dashboard/ButtonSmall";
@@ -30,21 +29,27 @@ import { SortableItem } from "../components/dashboard/SortableItem";
 
 export function Dashboard() {
   const navigate = useNavigate();
+  const { logout, authenticatedFetch } = useAuth();
 
   // Usestate for Projects & Pages
   const [projects, setProjects] = useState([]);
   const [pages, setPages] = useState([]);
 
   // Function to Log out
-  const handleLogout = () => {
-    signOut(auth)
-      .then(() => navigate("/login"))
-      .catch((error) => console.error("Logout failed:", error));
+  const handleLogout = async () => {
+    try {
+      const result = await logout();
+      if (result.success) {
+        navigate("/login");
+      }
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
   };
 
   // Get data for Projects
   useEffect(() => {
-    fetch("https://portfolio-2025-wyed.onrender.com/api/projects/")
+    fetch(`${import.meta.env.VITE_API_URL}/projects/`)
       .then((res) => res.json())
       .then((data) =>
         setProjects([...data].sort((a, b) => (a.order || 0) - (b.order || 0)))
@@ -54,7 +59,7 @@ export function Dashboard() {
 
   // Get data for Pages
   useEffect(() => {
-    fetch("https://portfolio-2025-wyed.onrender.com/api/pages/")
+    fetch(`${import.meta.env.VITE_API_URL}/pages/`)
       .then((res) => res.json())
       .then((data) =>
         setPages([...data].sort((a, b) => (a.order || 0) - (b.order || 0)))
@@ -100,13 +105,10 @@ export function Dashboard() {
 
       console.log(`🔄 Updating ${project.slug} to order ${index + 1}`);
 
-      fetch(
-        `https://portfolio-2025-wyed.onrender.com/api/projects/${project.slug}`,
+      authenticatedFetch(
+        `${import.meta.env.VITE_API_URL}/projects/${project.slug}`,
         {
           method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
           body: JSON.stringify({ order: index + 1 }),
         }
       ).catch((err) =>

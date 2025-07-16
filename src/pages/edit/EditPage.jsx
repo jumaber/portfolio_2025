@@ -1,6 +1,7 @@
 // 📦 Imports: hooks, components, icons
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 import { ButtonSmall } from "../../components/dashboard/ButtonSmall";
 import { LoadingScreen } from "../../components/other/LoadingScreen";
 import { Trash2, ExternalLink } from "lucide-react";
@@ -15,10 +16,11 @@ export function EditPage() {
   const navigate = useNavigate();
   const { slug } = useParams();
   const [page, setPage] = useState(null);
+  const { authenticatedFetch } = useAuth();
 
   // 🛰️ Fetch project data from backend when component mounts
   useEffect(() => {
-    fetch(`https://portfolio-2025-wyed.onrender.com/api/pages/${slug}`)
+    fetch(`${import.meta.env.VITE_API_URL}/pages/${slug}`)
       .then((res) => res.json())
       .then((data) => setPage(data))
       .catch((err) => console.error("Failed to fetch page:", err));
@@ -39,13 +41,10 @@ export function EditPage() {
     try {
       const { _id, __v, ...safePage } = page; // Remove MongoDB metadata
 
-      const res = await fetch(
-        `https://portfolio-2025-wyed.onrender.com/api/pages/${slug}`,
+      const res = await authenticatedFetch(
+        `${import.meta.env.VITE_API_URL}/pages/${slug}`,
         {
           method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
           body: JSON.stringify(safePage),
         }
       );
@@ -68,8 +67,8 @@ export function EditPage() {
   async function handleDeletePage() {
     const toastId = toast.loading("Deleting page…");
     try {
-      const res = await fetch(
-        `https://portfolio-2025-wyed.onrender.com/api/pages/${slug}`,
+      const res = await authenticatedFetch(
+        `${import.meta.env.VITE_API_URL}/pages/${slug}`,
         {
           method: "DELETE",
         }

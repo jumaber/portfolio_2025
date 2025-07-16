@@ -13,7 +13,7 @@ export function SinglePage() {
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
-    fetch(`https://portfolio-2025-wyed.onrender.com/api/pages/${slug}`)
+    fetch(`${import.meta.env.VITE_API_URL}/pages/${slug}`)
       .then((res) => {
         if (!res.ok) {
           if (res.status === 404) {

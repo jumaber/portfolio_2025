@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 import { ButtonSmall } from "../../components/dashboard/ButtonSmall.jsx";
 import { LoadingScreen } from "../../components/other/LoadingScreen.jsx";
 import { EditImprintContent } from "../../components/edit/pages/imprint/EditImprintContent.jsx";
@@ -8,6 +9,7 @@ import toast from "react-hot-toast";
 
 export function EditImprint() {
   const navigate = useNavigate();
+  const { authenticatedFetch } = useAuth();
 
   const [imprint, setPage] = useState(null);
   const editorRef = useRef(null);
@@ -15,7 +17,7 @@ export function EditImprint() {
 
   // Fetch the  Imprint Page from backend
   useEffect(() => {
-    fetch(`https://portfolio-2025-wyed.onrender.com/api/pages/imprint`)
+    fetch(`${import.meta.env.VITE_API_URL}/pages/imprint`)
       .then((res) => res.json())
       .then((data) => setPage(data))
       .catch((err) => console.error("Failed to fetch imprint page:", err));
@@ -33,13 +35,10 @@ export function EditImprint() {
     try {
       const { _id, __v, ...safePage } = imprint;
 
-      const res = await fetch(
-        `https://portfolio-2025-wyed.onrender.com/api/pages/imprint`,
+      const res = await authenticatedFetch(
+        `${import.meta.env.VITE_API_URL}/pages/imprint`,
         {
           method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
           body: JSON.stringify(safePage),
         }
       );
@@ -97,7 +96,7 @@ export function EditImprint() {
     const toastId = toast.loading("Deleting imprint page…");
     try {
       const res = await fetch(
-        `https://portfolio-2025-wyed.onrender.com/api/pages/imprint`,
+        `${import.meta.env.VITE_API_URL}/pages/imprint`,
         {
           method: "DELETE",
         }

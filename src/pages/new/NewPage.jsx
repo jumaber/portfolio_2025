@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 import { ButtonSmall } from "../../components/dashboard/ButtonSmall";
 import { EditCardPage } from "../../components/edit/pages/EditCardPage";
 import { EditTextBlock } from "../../components/edit/pages/EditTextBlock";
@@ -9,6 +10,7 @@ import toast from "react-hot-toast";
 export function NewPage() {
   // 🧭 Navigation hook from React Router
   const navigate = useNavigate();
+  const { authenticatedFetch } = useAuth();
   
 
   // 📦 State: holds the full structure of a project
@@ -35,11 +37,10 @@ export function NewPage() {
     const toastId = toast.loading("Saving page…");
 
     try {
-      const res = await fetch(
-        "https://portfolio-2025-wyed.onrender.com/api/pages/",
+      const res = await authenticatedFetch(
+        `${import.meta.env.VITE_API_URL}/pages/`,
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(page),
         }
       );

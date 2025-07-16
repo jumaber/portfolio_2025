@@ -12,6 +12,7 @@ import { EditCustomHtml } from "../../components/edit/EditCustomHtml.jsx";
 import { LoadingScreen } from "../../components/other/LoadingScreen.jsx";
 import { Trash2, ExternalLink } from "lucide-react";
 import toast from "react-hot-toast";
+import { useAuth } from "../../contexts/AuthContext";
 
 // 🧩 Component: EditProject
 // This screen loads a project from the backend and lets you update or delete it.
@@ -21,10 +22,11 @@ export function EditProject() {
   const { slug } = useParams();
   const editorRef = useRef(null);
   const [project, setProject] = useState(null);
+  const { authenticatedFetch } = useAuth();
 
   // 🛰️ Fetch project data from backend when component mounts
   useEffect(() => {
-    fetch(`https://portfolio-2025-wyed.onrender.com/api/projects/${slug}`)
+    fetch(`${import.meta.env.VITE_API_URL}/projects/${slug}`)
       .then((res) => res.json())
       .then((data) => setProject(data))
       .catch((err) => console.error("Failed to fetch project:", err));
@@ -60,11 +62,10 @@ export function EditProject() {
       const safeProject = { ...rest, description: newDescription };
 
       // 3. Fire off your PATCH
-      const res = await fetch(
-        `https://portfolio-2025-wyed.onrender.com/api/projects/${slug}`,
+      const res = await authenticatedFetch(
+        `${import.meta.env.VITE_API_URL}/projects/${slug}`,
         {
           method: "PATCH",
-          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(safeProject),
         }
       );
@@ -86,8 +87,8 @@ export function EditProject() {
   async function handleDeleteProject() {
     const toastId = toast.loading("Deleting project…");
     try {
-      const res = await fetch(
-        `https://portfolio-2025-wyed.onrender.com/api/projects/${slug}`,
+      const res = await authenticatedFetch(
+        `${import.meta.env.VITE_API_URL}/projects/${slug}`,
         {
           method: "DELETE",
         }

@@ -14,7 +14,7 @@ export function CardGrid() {
   const [featuredProjects, setFeaturedProjects] = useState([]);
 
   useEffect(() => {
-    fetch("https://portfolio-2025-wyed.onrender.com/api/projects")
+    fetch(`${import.meta.env.VITE_API_URL}/projects`)
       .then((res) => res.json())
       .then((data) => {
         const featured = Object.values(data)

@@ -15,7 +15,7 @@ export function Card({ slug }) {
 
       
   useEffect(() => {
-    fetch(`https://portfolio-2025-wyed.onrender.com/api/projects/${slug}`)
+    fetch(`${import.meta.env.VITE_API_URL}/projects/${slug}`)
       .then((res) => res.json())
       .then((data) => setCard(data))
       .catch((err) => console.error("❌ Failed to fetch card:", err));

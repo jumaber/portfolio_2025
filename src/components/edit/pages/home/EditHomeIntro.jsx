@@ -159,7 +159,7 @@ export const EditHomeIntro = forwardRef(({ data, onChange }, ref) => {
           <div className="form-header">Greeting - Line 2</div>
           <input
             type="text"
-            name="title"
+            name="introTitle"
             value={form.introTitle}
             onChange={handleChange}
             placeholder="Greeting"

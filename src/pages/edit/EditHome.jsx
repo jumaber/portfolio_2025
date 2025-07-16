@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 import { ButtonSmall } from "../../components/dashboard/ButtonSmall.jsx";
 import { LoadingScreen } from "../../components/other/LoadingScreen.jsx";
 import { EditHomeIntro } from "../../components/edit/pages/home/EditHomeIntro.jsx";
@@ -11,6 +12,7 @@ import toast from "react-hot-toast";
 
 export function EditHome() {
   const navigate = useNavigate();
+  const { authenticatedFetch } = useAuth();
 
   const [page, setPage] = useState(null);
   const editorRef = useRef(null);
@@ -18,7 +20,7 @@ export function EditHome() {
 
   // Fetch the page from backend
   useEffect(() => {
-    fetch(`https://portfolio-2025-wyed.onrender.com/api/pages/home`)
+    fetch(`${import.meta.env.VITE_API_URL}/pages/home`)
       .then((res) => res.json())
       .then((data) => setPage(data))
       .catch((err) => console.error("Failed to fetch home page:", err));
@@ -41,13 +43,10 @@ export function EditHome() {
     try {
       const { _id, __v, ...safePage } = page;
 
-      const res = await fetch(
-        `https://portfolio-2025-wyed.onrender.com/api/pages/home`,
+      const res = await authenticatedFetch(
+        `${import.meta.env.VITE_API_URL}/pages/home`,
         {
           method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
           body: JSON.stringify(safePage),
         }
       );
@@ -105,7 +104,7 @@ export function EditHome() {
     const toastId = toast.loading("Deleting home page…");
     try {
       const res = await fetch(
-        `https://portfolio-2025-wyed.onrender.com/api/pages/home}`,
+        `${import.meta.env.VITE_API_URL}/pages/home}`,
         {
           method: "DELETE",
         }

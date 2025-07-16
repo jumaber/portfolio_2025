@@ -15,10 +15,11 @@ export function Home() {
   const [page, setPage] = useState(null);
 
   useEffect(() => {
-    fetch("https://portfolio-2025-wyed.onrender.com/api/pages/home")
+    fetch(`${import.meta.env.VITE_API_URL}/pages/home`)
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched page:", data);
+        console.log(data);
         setPage(data);
       })
       .catch((err) => console.error("Failed to fetch page:", err));

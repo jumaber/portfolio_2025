@@ -6,9 +6,12 @@ import { CSS } from "@dnd-kit/utilities";
 
 // Import the reusable ListItem component you want to make sortable
 import { ListItem } from "./ListItem";
+import { useAuth } from "../../contexts/AuthContext";
 
 // This component wraps a project in sortable functionality from dnd-kit
 export function SortableItem({ project, setProjects, showBorder }) {
+  const { authenticatedFetch } = useAuth();
+  
   // Destructure helpers returned by useSortable
   // - id must be unique for each item (we use project.slug)
   const { attributes, listeners, setNodeRef, transform, transition } =
@@ -24,11 +27,10 @@ export function SortableItem({ project, setProjects, showBorder }) {
   const handleFeaturedToggle = async (newValue) => {
     try {
       // Send a PATCH request to update the backend with the new value
-      await fetch(
-        `https://portfolio-2025-wyed.onrender.com/api/projects/${project.slug}`,
+      await authenticatedFetch(
+        `${import.meta.env.VITE_API_URL}/projects/${project.slug}`,
         {
           method: "PATCH",
-          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ featured: newValue }),
         }
       );

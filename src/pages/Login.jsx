@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 
 export function Login() {
@@ -9,18 +8,22 @@ export function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError(""); // Clear previous errors
+    
     try {
-      const res = await signInWithEmailAndPassword(auth, email, password);
-      if (res.user.uid === "i67JburFKwRSWgKaXpraD9DWioD3") {
+      const result = await login(email, password);
+      
+      if (result.success) {
         navigate("/dashboard");
       } else {
-        setError("Nice try. You're not me.");
+        setError(result.error);
       }
     } catch (err) {
-      setError("Nice try. You're not me.");
+      setError("An unexpected error occurred. Please try again.");
     }
   };
 

@@ -9,10 +9,12 @@ import { EditListField } from "../../components/edit/project/EditListField";
 import { EditWireframes } from "../../components/edit/project/EditWireframes";
 import { EditCustomHtml } from "../../components/edit/EditCustomHtml";
 import toast from "react-hot-toast";
+import { useAuth } from "../../contexts/AuthContext";
 
 export function NewProject() {
   const navigate = useNavigate();
   const editorRef = useRef(null);
+  const { authenticatedFetch } = useAuth();
 
   const [project, setProject] = useState({
     title: "",
@@ -58,11 +60,10 @@ export function NewProject() {
     const toastId = toast.loading("Saving project…");
 
     try {
-      const res = await fetch(
-        "https://portfolio-2025-wyed.onrender.com/api/projects",
+      const res = await authenticatedFetch(
+        `${import.meta.env.VITE_API_URL}/projects`,
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(project),
         }
       );
