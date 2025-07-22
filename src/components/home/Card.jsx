@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import DefaultImage from "../other/DefaultImage";
 import { useProjectClickTracker } from "../other/useProjectClickTracker";
 
-export function Card({ slug, card: cardProp }) {
+export function Card({ slug, card: cardProp, project }) {
   const { track } = useProjectClickTracker();
-  const [card, setCard] = useState(cardProp || null);
+  const [card, setCard] = useState(cardProp || project || null);
 
   const cloudinaryImage = (url, width) =>
     url?.includes("/upload/")

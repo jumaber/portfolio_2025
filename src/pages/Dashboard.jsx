@@ -96,13 +96,14 @@ export function Dashboard() {
     reordered.forEach((project, index) => {
       if (!project.slug) {
         console.warn("❗️ Missing slug for project:", project);
+        console.log(`🔄 Updating ${project.slug} to order ${index + 1}`);
         return;
       }
 
       console.log(`🔄 Updating ${project.slug} to order ${index + 1}`);
 
       fetch(
-        `${API}/api/projects//${project.slug}`,
+        `${API}/api/projects/${project.slug}`,
         {
           method: "PATCH",
           headers: {
