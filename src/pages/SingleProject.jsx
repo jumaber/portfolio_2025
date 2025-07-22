@@ -82,7 +82,7 @@ export function SingleProject() {
           "relatedProjects",
         ]}
       />
-      <div className="h-screen bg-[#FFF6F6] flex flex-col items-start max-w-full overflow-x-hidden sm:pt-20 lg:pt-10">
+      <div className="h-screen bg-[#FFF6F6] flex flex-col items-start max-w-full overflow-x-hidden pt-20 lg:pt-10">
         {/* Intro Section */}
         <section id="intro" className="z-10 w-full">
           <Intro
