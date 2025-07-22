@@ -15,7 +15,7 @@ export function Contact({
 
   return (
     <>
-      <div className="pt-20">
+      <div className="py-20">
         <div className="text-h2 blue pb-4 md:pb-6">{contactTitle}</div>
 
         <div

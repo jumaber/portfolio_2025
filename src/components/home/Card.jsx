@@ -3,33 +3,30 @@ import { Link } from "react-router-dom";
 import DefaultImage from "../other/DefaultImage";
 import { useProjectClickTracker } from "../other/useProjectClickTracker";
 
-export function Card({ slug }) {
+export function Card({ slug, card: cardProp }) {
   const { track } = useProjectClickTracker();
-  const [card, setCard] = useState(null);
+  const [card, setCard] = useState(cardProp || null);
 
   const cloudinaryImage = (url, width) =>
     url?.includes("/upload/")
       ? url.replace("/upload/", `/upload/q_auto,f_auto,w_${width}/`)
       : url;
 
-  // Trim any trailing slash just in case
   const API = import.meta.env.VITE_API_BASE_URL?.replace(/\/+$/, "");
 
   useEffect(() => {
-    console.log("Fetching card for slug:", slug);
-    fetch(`${API}/api/projects/${slug}`)
-      .then((res) => {
-        if (!res.ok) throw new Error(`Status ${res.status}`);
-        return res.json();
-      })
-      .then((data) => {
-        console.log("→ Card data:", data);
-        setCard(data);
-      })
-      .catch((err) => console.error("❌ Failed to fetch card:", err));
-  }, [slug, API]);
+    if (!card && slug) {
+      fetch(`${API}/api/projects/${slug}`)
+        .then((res) => {
+          if (!res.ok) throw new Error(`Status ${res.status}`);
+          return res.json();
+        })
+        .then((data) => setCard(data))
+        .catch((err) => console.error("❌ Failed to fetch card:", err));
+    }
+  }, [slug, card, API]);
 
-  if (!card) return null; // or a loading placeholder
+  if (!card) return null;
 
   function handleClick() {
     track(card.slug, { title: card.title, subtitle: card.subtitle });
@@ -62,7 +59,7 @@ export function Card({ slug }) {
           {card.tech && (
             <div className="flex flex-wrap gap-1 pt-3">
               {card.tech.map((item, i) => (
-                <span key={i} className="tag blue">
+                <span key={i} className="tag pr-4 blue">
                   {item}
                 </span>
               ))}

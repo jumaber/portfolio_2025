@@ -6,7 +6,7 @@ export function RelatedProjects({ currentSlug }) {
   const API = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
-    fetch(`${API}/api/Projectsjects`)
+    fetch(`${API}/api/projects`)
       .then((res) => res.json())
       .then((data) => {
         const featured = data.filter(
