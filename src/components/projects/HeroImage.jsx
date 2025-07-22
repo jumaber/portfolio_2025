@@ -10,7 +10,7 @@ export function HeroImage({ hero }) {
         <img
           src={hero}
           alt="hero"
-          className="w-full h-auto sm:hidden md:flex"
+          className="w-full h-auto md:flex"
           onError={() => setHeroError(true)}
         />
       ) : (
